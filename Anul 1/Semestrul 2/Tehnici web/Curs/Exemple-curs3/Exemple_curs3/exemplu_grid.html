@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Grid layout</title>
+<style>
+#container{display:grid; 
+           grid-template-columns: auto auto 1fr;
+           grid-column-gap:10px;
+           grid-row-gap: 5px;
+           width:50%; 
+           border:2px solid black;
+           }
+
+#container div{ border:2px solid red; height:50px;}
+</style>
+</head>
+<body>
+<h1>Grid fr vs auto</h1>
+<div id="container">
+<div>DIV1</div>
+<div>DIV2</div>
+<div>DIV3</div>
+<div>DIV4</div>
+<div>DIV5</div>
+<div>DIV6</div>
+
+</div>
+</body>
+</html>
+
+
+
+
+
