@@ -1,0 +1,10 @@
+{
+  "Restaurant": [
+    {
+      "id": 3,
+      "nume": "Gigel",
+      "data": 1223,
+      "telefon": 21312
+    },
+  ]
+}

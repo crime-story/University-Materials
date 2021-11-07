@@ -1,0 +1,57 @@
+th {
+    font-family: 'Dealers Solid';
+    -webkit-text-stroke-width: 0.05vw;
+    -webkit-text-stroke-color: black;
+}
+
+td {
+    font-family:'Dancing Script';
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    color: white;
+    text-align: center;
+}
+
+section {
+    
+    
+}
+
+.ProdusContainer {
+    display: inline-flex;
+    flex-direction: column;
+    width: 20%;
+}
+
+.ProdusContainer > div{
+    font-size: 3rem;
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    color: white;
+    font-family:'Dancing Script';
+}
+
+.ProdusContainer > div:first-of-type{
+    font-family: 'Dealers Solid';
+    -webkit-text-stroke-width: 0.05vw;
+    -webkit-text-stroke-color: black;
+}
+
+.element {
+    display: flex;
+    justify-content: space-between;
+    border: 1px red solid;
+}
+
+td{
+    font-size:1.1vw;
+}
+
+th{
+    font-size:2vw;
+}

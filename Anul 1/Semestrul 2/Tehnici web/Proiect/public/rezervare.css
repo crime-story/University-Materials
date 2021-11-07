@@ -1,0 +1,55 @@
+#Text {
+    color:white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#Rezervari, #Text2 {
+    font-size: 2rem;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#help {
+    font-size: 3rem;
+    font-family: 'Dealers Solid';
+    -webkit-text-stroke-width: 0.05vw;
+    -webkit-text-stroke-color: black;
+    color: red;
+}
+
+#center {
+    text-align: center;
+}
+
+.NumeClass {
+    text-align: center;
+    font-size: 2rem;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.DataClass {
+    text-align: center;
+    font-size: 2rem;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.TelefonClass {
+    text-align: center;
+    font-size: 2rem;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.Edit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Delete {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
