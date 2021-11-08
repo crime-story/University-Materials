@@ -13,7 +13,7 @@ ifstream fin("bfs.in");
 ofstream fout("bfs.out");
 
 stack<pair<int, int>> stivaComponenteBiconexe;
-vector<set<int>> componenteBiconexee;
+vector<set<int>> componenteBiconexe;
 
 class Graf {
     int nrNoduri, nrMuchii;
@@ -43,9 +43,9 @@ public:
 
     void nrComponenteConexe();
 
-    void citirecomponenteBiconexe();
+    void citireBiconex();
 
-    void componenteBiconexe(int nodPlecare, int precedent, int k);
+    void biconex(int nodPlecare, int precedent, int k);
 
     void afisareComponenteBiconexe();
 
@@ -149,7 +149,7 @@ void Graf::nrComponenteConexe() {
     fout << nr;
 }
 
-void Graf::citirecomponenteBiconexe() {
+void Graf::citireBiconex() {
     fin >> nrNoduri >> nrMuchii;
     for (int i = 1; i <= nrMuchii; i++) {
         fin >> x >> y;
@@ -160,7 +160,7 @@ void Graf::citirecomponenteBiconexe() {
         vizitat[i] = -1;
 }
 
-void Graf::componenteBiconexe(int nodPlecare, int precedent, int k) {
+void Graf::biconex(int nodPlecare, int precedent, int k) {
     vizitat[nodPlecare] = k;
     niv_min[nodPlecare] = k;
 
@@ -169,7 +169,7 @@ void Graf::componenteBiconexe(int nodPlecare, int precedent, int k) {
         if (vecin != precedent) {
             if (vizitat[vecin] == -1) {
                 stivaComponenteBiconexe.push(make_pair(nodPlecare, vecin));
-                componenteBiconexe(vecin, nodPlecare, k + 1);
+                biconex(vecin, nodPlecare, k + 1);
                 if (niv_min[nodPlecare] > niv_min[vecin])
                     niv_min[nodPlecare] = niv_min[vecin];
 
@@ -183,7 +183,7 @@ void Graf::componenteBiconexe(int nodPlecare, int precedent, int k) {
                         aux.insert(aux2);
                         stivaComponenteBiconexe.pop();
                     } while (aux1 != nodPlecare || aux2 != vecin);
-                    componenteBiconexee.push_back(aux);
+                    componenteBiconexe.push_back(aux);
                 }
             } else {
                 if (niv_min[nodPlecare] > vizitat[vecin])
@@ -196,9 +196,9 @@ void Graf::componenteBiconexe(int nodPlecare, int precedent, int k) {
 
 void Graf::afisareComponenteBiconexe() {
     set<int>::iterator it;
-    fout << componenteBiconexee.size() << "\n";
+    fout << componenteBiconexe.size() << "\n";
 
-    for (auto &i: componenteBiconexee) {
+    for (auto &i: componenteBiconexe) {
         for (it = i.begin(); it != i.end(); it++) {
             fout << *it << " ";
         }
@@ -377,8 +377,8 @@ int main() {
     // Problema Componente Biconexe (100p)
     // Link: https://infoarena.ro/problema/biconex
     Graf g1;
-    g1.citirecomponenteBiconexe();
-    g1.componenteBiconexe(1, 0, 0);
+    g1.citireBiconex();
+    g1.biconex(1, 0, 0);
     g1.afisareComponenteBiconexe();
     */
 
