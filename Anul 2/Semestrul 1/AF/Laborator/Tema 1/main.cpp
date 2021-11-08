@@ -373,14 +373,14 @@ int main() {
     g1.nrComponenteConexe();
     */
 
-
+    /*
     // Problema Componente Biconexe (100p)
     // Link: https://infoarena.ro/problema/biconex
     Graf g1;
     g1.citireBiconex();
     g1.biconex(1, 0, 0);
     g1.afisareComponenteBiconexe();
-
+    */
 
     /*
     // Problema CTC (Componente Tare Conexe) (100p)
