@@ -395,11 +395,11 @@ int main() {
     g1.afisareComponenteTareConexe();
     */
 
-
+    /*
     // Problema Havel Hakimi
     Graf g1;
     g1.havelHakimi();
-
+    */
 
     /*
     // Problema Sortare topologica (100p)
