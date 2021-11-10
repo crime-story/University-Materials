@@ -344,14 +344,20 @@ void Graf::muchieCriticaDF(int nodPlecare) {
             muchieCriticaDF(i); // reapelez DF din nodul in care am ajuns
             niv_min[nodPlecare] = min(niv_min[nodPlecare], niv_min[i]); // cand se intoarce recursiv
             // modifica nivelul minim al nodului de plecare
-            if (niv_min[i] >
-                nivel[nodPlecare]) // daca nu exista muchie de intoarcere
-                // inseamna (daca nodul de plecare si nodul i nu fac parte dintr-un ciclu)
+            // de exemplu face DF din nodul 5..
+            // de la nodul 5 exista o muchie de intoarcere la un nod care deja a fost vizitat (un stramos al sau),
+            // deci o muchie de intoarcere (niv_min[5] = 3), atunci nivelul minim al nodului de plecare va fi minimul
+            // dintre el si cel al nodului 5
+
+            // daca nivelul minim al lui 5 nu este mai mic decat nivelul minim al nodului de plecare,
+            // nivelul minim al nodului de plecare ramane acelasi
+            if (niv_min[i] > nivel[nodPlecare]) // daca un nod are nivelul minim mai mare decat nivelul tatalui sau,
+                // inseamna ca nu face parte dintr-un ciclu, deci am gasit o muchie critica
                 fout << nodPlecare << " " << i << "\n"; // am gasit o muchie critica
         } else if (nivel[i] < nivel[nodPlecare] - 1)   // daca exista muchie de intoarcere
-            // si aceasta face parte dintr-un ciclu
+            // la un nod care fost deja vizitat (stramos)
             niv_min[nodPlecare] = min(niv_min[nodPlecare], nivel[i]); // se reactualizeaza nivelul minim al acelui nod,
-    // ca fiind minimul dintre nivelul lui si nivelul descendentului lui
+    // ca fiind minimul dintre nivelul lui si nivelul stramosului/desecendentului lui
 }
 
 int main() {
