@@ -413,6 +413,7 @@ int main() {
     /*
     // Problema muchie critica (success)
     // Link: https://leetcode.com/problems/critical-connections-in-a-network/
+    // Sursa: https://leetcode.com/submissions/detail/583031282/
     Graf g1;
     g1.citireDFS();
     g1.muchieCriticaDF(1);
