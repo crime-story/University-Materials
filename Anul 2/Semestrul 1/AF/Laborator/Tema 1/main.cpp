@@ -9,8 +9,8 @@
 
 using namespace std;
 
-ifstream fin("biconex.in");
-ofstream fout("biconex.out");
+ifstream fin("bfs.in");
+ofstream fout("bfs.out");
 
 stack<pair<int, int>> stivaComponenteBiconexe;
 vector<set<int>> componenteBiconexe;
@@ -61,7 +61,7 @@ public:
 
     void citireSortareTopologica();
 
-    void DFS2(int nodPlecare, int *vizitat, stack<int> &stiva);
+    void DFS2(int nodPlecare, stack<int> &stiva);
 
     void sortareTopologica();
 
@@ -307,11 +307,11 @@ void Graf::citireSortareTopologica() {
     }
 }
 
-void Graf::DFS2(int nodPlecare, int *viz, stack<int> &stiva) {
-    viz[nodPlecare] = 1;
+void Graf::DFS2(int nodPlecare, stack<int> &stiva) {
+    vizitat[nodPlecare] = 1;
     for (auto i: adiacenta[nodPlecare])
-        if (!viz[i])
-            DFS2(i, viz, stiva);
+        if (!vizitat[i])
+            DFS2(i, stiva);
     stiva.push(nodPlecare);
 }
 
@@ -319,7 +319,7 @@ void Graf::sortareTopologica() {
     stack<int> stiva;
     for (int i = 1; i <= nrNoduri; ++i)
         if (!vizitat[i])
-            DFS2(i, vizitat, stiva);
+            DFS2(i, stiva);
 
     while (!stiva.empty()) {
         fout << stiva.top() << " ";
