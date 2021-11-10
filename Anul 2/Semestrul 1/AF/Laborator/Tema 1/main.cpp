@@ -353,7 +353,7 @@ void Graf::muchieCriticaDF(int nodPlecare) {
             // nivelul minim al nodului de plecare ramane acelasi
             if (niv_min[i] > nivel[nodPlecare]) // daca un nod are nivelul minim mai mare decat nivelul tatalui sau,
                 // inseamna ca nu face parte dintr-un ciclu, deci am gasit o muchie critica
-                fout << nodPlecare << " " << i << "\n"; // am gasit o muchie critica
+                fout << nodPlecare << " " << i << "\n";
         } else if (nivel[i] < nivel[nodPlecare] - 1)   // daca exista muchie de intoarcere
             // la un nod care fost deja vizitat (stramos)
             niv_min[nodPlecare] = min(niv_min[nodPlecare], nivel[i]); // se reactualizeaza nivelul minim al acelui nod,
