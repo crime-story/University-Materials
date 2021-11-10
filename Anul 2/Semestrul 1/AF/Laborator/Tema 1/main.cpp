@@ -9,8 +9,8 @@
 
 using namespace std;
 
-ifstream fin("bfs.in");
-ofstream fout("bfs.out");
+ifstream fin("biconex.in");
+ofstream fout("biconex.out");
 
 stack<pair<int, int>> stivaComponenteBiconexe;
 vector<set<int>> componenteBiconexe;
@@ -149,31 +149,22 @@ void Graf::nrComponenteConexe() {
     fout << nr;
 }
 
-void Graf::citireBiconex() {
-    fin >> nrNoduri >> nrMuchii;
-    for (int i = 1; i <= nrMuchii; i++) {
-        fin >> x >> y;
-        adiacenta[x].push_back(y);
-        adiacenta[y].push_back(x);
-    }
-    for (int i = 1; i <= nrNoduri; i++)
-        vizitat[i] = -1;
-}
-
 void Graf::biconex(int nodPlecare, int precedent, int k) {
     vizitat[nodPlecare] = k;
     niv_min[nodPlecare] = k;
-
     for (auto i: adiacenta[nodPlecare]) {
         int vecin = i;
-        if (vecin != precedent) {
-            if (vizitat[vecin] == -1) {
+        if (vecin != precedent) { // pentru optimizare (iese din timp altfel, uneori),
+            // daca vecinul curent nu s-a executat la pasul anterior
+            if (!vizitat[vecin]) { // daca vecinul nu a fost vizitat
                 stivaComponenteBiconexe.push(make_pair(nodPlecare, vecin));
-                biconex(vecin, nodPlecare, k + 1);
-                if (niv_min[nodPlecare] > niv_min[vecin])
-                    niv_min[nodPlecare] = niv_min[vecin];
-
+                biconex(vecin, nodPlecare, k + 1); // reapelez DF din nodul in care am ajuns
+                if (niv_min[nodPlecare] > niv_min[vecin]) // daca face parte din ciclu
+                    niv_min[nodPlecare] = niv_min[vecin]; // actualizez nivelul minim
                 if (niv_min[vecin] >= vizitat[nodPlecare]) {
+                    // daca un vecin are nivelul minim mai mare sau egal decat nivelul tatalui sau
+                    // (vizitat este pe pos de nivel din muchia critica, i.e. nivelul din arborele DF),
+                    // inseamna ca nu face parte dintr-un ciclu, deci am gasit o componenta biconexa
                     set<int> aux;
                     int aux1, aux2;
                     do {
@@ -185,10 +176,11 @@ void Graf::biconex(int nodPlecare, int precedent, int k) {
                     } while (aux1 != nodPlecare || aux2 != vecin);
                     componenteBiconexe.push_back(aux);
                 }
-            } else {
-                if (niv_min[nodPlecare] > vizitat[vecin])
-                    niv_min[nodPlecare] = vizitat[vecin];
-
+            } else if (niv_min[nodPlecare] > vizitat[vecin]) { // daca nodul curent a fost deja vizitat
+                // si daca exista o muchie de intoarcere de la nodPlecare la nodul curent, exista legatura cu un stramos
+                // (muchie de intoarcere de la nodPlecare la nodul curent)
+                niv_min[nodPlecare] = vizitat[vecin]; // nivelul nodului de Plecare
+                // va fi nivelul stramosului sau (nodul deja vizitat)
             }
         }
     }
@@ -383,8 +375,8 @@ int main() {
     // Problema Componente Biconexe (100p)
     // Link: https://infoarena.ro/problema/biconex
     Graf g1;
-    g1.citireBiconex();
-    g1.biconex(1, 0, 0);
+    g1.citireDFS();
+    g1.biconex(1, 0, 1);
     g1.afisareComponenteBiconexe();
     */
 
