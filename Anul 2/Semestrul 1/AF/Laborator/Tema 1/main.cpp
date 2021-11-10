@@ -1,3 +1,6 @@
+// Popescu Paullo Robertto Karloss Grupa 2311
+// Linkurile pentru fiecare problema se gasesc in main
+
 #include <fstream>
 #include <vector>
 #include <queue>
@@ -356,6 +359,7 @@ int main() {
     /*
     // Problema BFS (100p)
     // Link: https://infoarena.ro/problema/bfs
+    // Sursa: https://infoarena.ro/job_detail/2797664?action=view-source
     int nodPlecare;
     Graf g1;
     g1.citireBFS(nodPlecare);
@@ -366,6 +370,7 @@ int main() {
     /*
     // Problema DFS (100p)
     // Link: https://infoarena.ro/problema/dfs
+    // Sursa: https://infoarena.ro/job_detail/2797669?action=view-source
     Graf g1;
     g1.citireDFS();
     g1.nrComponenteConexe();
@@ -374,6 +379,7 @@ int main() {
     /*
     // Problema Componente Biconexe (100p)
     // Link: https://infoarena.ro/problema/biconex
+    // Sursa: https://infoarena.ro/job_detail/2797675?action=view-source
     Graf g1;
     g1.citireDFS();
     g1.biconex(1, 0, 1);
@@ -383,20 +389,22 @@ int main() {
     /*
     // Problema CTC (Componente Tare Conexe) (100p)
     // Link: https://infoarena.ro/problema/ctc
+    // Sursa: https://infoarena.ro/job_detail/2797676?action=view-source
     Graf g1;
     g1.citireComponenteTareConexe();
     g1.afisareComponenteTareConexe();
     */
 
-    /*
+
     // Problema Havel Hakimi
     Graf g1;
     g1.havelHakimi();
-    */
+
 
     /*
     // Problema Sortare topologica (100p)
     // Link: https://infoarena.ro/problema/sortaret
+    // Sursa: https://infoarena.ro/job_detail/2797552?action=view-source
     Graf g1;
     g1.citireSortareTopologica();
     g1.sortareTopologica();
