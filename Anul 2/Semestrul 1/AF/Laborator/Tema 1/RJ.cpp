@@ -1,6 +1,9 @@
-// Link: https://www.infoarena.ro/job_detail/2797659?action=view-source
+// Link: https://www.infoarena.ro/job_detail/2799191?action=view-source
 
 #include <fstream>
+#include <queue>
+
+#define NMAX 102
 
 using namespace std;
 
@@ -10,30 +13,25 @@ ofstream g("rj.out");
 int n, m, xr, yr, xj, yj;
 int dl[8] = {0, 1, 0, -1, -1, 1, -1, 1};
 int dc[8] = {1, 0, -1, 0, -1, 1, 1, -1};
-char l[102][102];
-int r[102][102];
-int j[102][102];
+queue<pair<int, int>> coada;
+char l[NMAX][NMAX];
+int r[NMAX][NMAX];
+int j[NMAX][NMAX];
 
-struct Punct {
-    int l, c;
-} C[102 * 102], p;
-
-
-int main() {
-    int i, k;
-    char c;
-
+void citire() {
+//    char c;
+    char c[NMAX];
     f >> n >> m;
-    for (i = 0; i <= n + 1; i++)
+    for (int i = 0; i <= n + 1; i++)
         l[i][0] = l[i][m + 1] = 'X';
-    for (i = 0; i <= m + 1; i++)
+    for (int i = 0; i <= m + 1; i++)
         l[0][i] = l[n + 1][i] = 'X';
 
     f.get();
-    for (i = 1; i <= n; i++) {
-        for (k = 1; k <= m; k++) {
-            f.get(c);
-            l[i][k] = c;
+    for (int i = 1; i <= n; i++) {
+        f.get(c, NMAX);
+        for (int k = 1; k <= m; k++) {
+            l[i][k] = c[k - 1];
             if (l[i][k] == 'R') {
                 xr = i;
                 yr = k;
@@ -47,53 +45,34 @@ int main() {
         }
         f.get();
     }
+}
 
-
-    int inc = 0, sf = 0;
-    for (i = 0; i <= n + 1; i++)
-        for (k = 0; k <= m + 1; k++)
-            r[i][k] = 0;
-
-    C[0].l = xr;
-    C[0].c = yr;
-
-    r[xr][yr] = 1;
-
-    while (inc <= sf) {
-        p = C[inc++];
-        for (i = 0; i < 8; i++)
-            if (l[p.l + dl[i]][p.c + dc[i]] == ' ' && r[p.l + dl[i]][p.c + dc[i]] == 0) {
-                r[p.l + dl[i]][p.c + dc[i]] = 1 + r[p.l][p.c];
-                C[++sf].l = p.l + dl[i];
-                C[sf].c = p.c + dc[i];
+void lee(int liniePlecare, int coloanaPlecare, int matrice[102][102]) {
+    for (int i = 0; i <= n + 1; i++)
+        for (int k = 0; k <= m + 1; k++)
+            matrice[i][k] = 0;
+    matrice[liniePlecare][coloanaPlecare] = 1;
+    coada.push(make_pair(liniePlecare, coloanaPlecare));
+    matrice[liniePlecare][coloanaPlecare] = 1;
+    while (!coada.empty()) {
+        int x = coada.front().first; // linia
+        int y = coada.front().second; // coloana
+        coada.pop();
+        for (int i = 0; i < 8; i++)
+            if (l[x + dl[i]][y + dc[i]] == ' ' && matrice[x + dl[i]][y + dc[i]] == 0) {
+                matrice[x + dl[i]][y + dc[i]] = 1 + matrice[x][y];
+                coada.push(make_pair(x + dl[i], y + dc[i]));
             }
     }
+}
 
-    inc = 0, sf = 0;
-    for (i = 0; i <= n + 1; i++)
-        for (k = 0; k <= m + 1; k++)
-            j[i][k] = 0;
-
-    C[0].l = xj;
-    C[0].c = yj;
-    j[xj][yj] = 1;
-
-    while (inc <= sf) {
-        p = C[inc++];
-        for (i = 0; i < 8; i++)
-            if (l[p.l + dl[i]][p.c + dc[i]] == ' ' && j[p.l + dl[i]][p.c + dc[i]] == 0) {
-                j[p.l + dl[i]][p.c + dc[i]] = 1 + j[p.l][p.c];
-                C[++sf].l = p.l + dl[i];
-                C[sf].c = p.c + dc[i];
-            }
-    }
-
+void afisare() {
     int tmin = 102 * 102;
     int xmin = -1;
     int ymin = -1;
 
-    for (i = 1; i <= n; i++)
-        for (k = 1; k <= m; k++)
+    for (int i = 1; i <= n; i++)
+        for (int k = 1; k <= m; k++)
             if (r[i][k] == j[i][k])
                 if (r[i][k] < tmin && r[i][k] != 0) {
                     tmin = r[i][k];
@@ -101,5 +80,12 @@ int main() {
                     ymin = k;
                 }
     g << tmin << " " << xmin << " " << ymin << endl;
+}
+
+int main() {
+    citire();
+    lee(xr, yr, r); // pt Romeo
+    lee(xj, yj, j); // pt Julieta
+    afisare();
     return 0;
 }
