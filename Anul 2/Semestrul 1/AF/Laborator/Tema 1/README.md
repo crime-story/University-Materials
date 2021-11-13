@@ -8,3 +8,4 @@ Probleme:
 - [x] Havel Hakimi [(Photo)](https://imgur.com/noJMXa9)
 - [x] Sortare topologica [(100p)](https://infoarena.ro/problema/sortaret)
 - [x] Critical Connections in a Network [(success)](https://leetcode.com/problems/critical-connections-in-a-network/)
+- [x] RJ [(100p)](https://www.infoarena.ro/job_detail/2799509)
