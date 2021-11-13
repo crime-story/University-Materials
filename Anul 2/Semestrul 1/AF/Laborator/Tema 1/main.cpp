@@ -28,7 +28,7 @@ class Graf {
 
     vector<int> *adiacenta; // lista de vecini
     vector<int> *adiacenta2; // lista de vecini transpusa (i.e. in loc de x si y folosim y si x ca la grafuri neorientate)
-    queue<int> coada;
+    queue<int> coada2;
 
 
 public:
@@ -70,6 +70,10 @@ public:
 
     void muchieCriticaDF(int nodPlecare);
 
+    void GrafInfoarena();
+
+    void GrafBFS(int nodPlecare, vector<int> &distanta);
+
     ~Graf();
 };
 
@@ -82,19 +86,19 @@ void Graf::citireBFS(int &nodPlecare) {
     }
     for (int i = 1; i <= maxi; i++)
         vizitat[i] = -1;
-    coada.push(nodPlecare);
-    vizitat[coada.back()] = 1;
+    coada2.push(nodPlecare);
+    vizitat[coada2.back()] = 1;
 }
 
 void Graf::BFS() {
-    if (!coada.empty()) // daca mai sunt elemente in coada / nu am verificat pt toate nodurile
+    if (!coada2.empty()) // daca mai sunt elemente in coada / nu am verificat pt toate nodurile
     {
-        int nodPlecare = coada.front(); // retin nodul de unde plec
+        int nodPlecare = coada2.front(); // retin nodul de unde plec
         for (auto i: adiacenta[nodPlecare])
             if (vizitat[i] == -1) {
                 // caut toate nodurile nevizitate care sunt adiacente cu nodul de plecare
                 vizitat[i] = vizitat[nodPlecare] + 1; // il marcam vizitat
-                coada.push(i); // il adaug in coada PUSH
+                coada2.push(i); // il adaug in coada PUSH
             }
         /*
         // Echivalent cu:
@@ -104,7 +108,7 @@ void Graf::BFS() {
                 coada.push(adiacenta[nodPlecare][j]);
             }
         */
-        coada.pop();
+        coada2.pop();
         BFS();
     }
 }
@@ -355,6 +359,48 @@ void Graf::muchieCriticaDF(int nodPlecare) {
     // ca fiind minimul dintre nivelul lui si nivelul stramosului/desecendentului lui
 }
 
+void Graf::GrafInfoarena() {
+    int nodStart, nodEnd;
+    fin >> nrNoduri >> nrMuchii >> nodStart >> nodEnd;
+    for (int i = 1; i <= nrMuchii; i++) {
+        fin >> x >> y;
+        adiacenta[x].push_back(y);
+        adiacenta[y].push_back(x);
+    }
+    vector<int> distantaStart(nrNoduri + 1, 0);
+    vector<int> distantaEnd(nrNoduri + 1, 0);
+    vector<int> frecventa(nrNoduri + 1, 0);
+    vector<int> etichete;
+    GrafBFS(nodStart, distantaStart);
+    GrafBFS(nodEnd, distantaEnd);
+    int lungimeLant = distantaStart[nodEnd];
+    for (int i = 1; i <= nrNoduri; i++)
+        if (distantaStart[i] + distantaEnd[i] - 1 == lungimeLant)
+            frecventa[distantaStart[i]]++;
+    for (int i = 1; i <= nrNoduri; i++)
+        if (distantaStart[i] + distantaEnd[i] - 1 == lungimeLant && frecventa[distantaStart[i]] == 1)
+            etichete.push_back(i);
+    fout << etichete.size() << "\n";
+    for (auto i: etichete)
+        fout << i << " ";
+}
+
+void Graf::GrafBFS(int nodPlecare, vector<int> &distanta) {
+    queue<int> coada;
+    coada.push(nodPlecare);
+    distanta[coada.back()] = 1;
+    while (!coada.empty()) { // daca mai sunt elemente in coada / nu am verificat pt toate nodurile
+        nodPlecare = coada.front(); // retin nodul de unde plec
+        coada.pop();
+        for (auto i: adiacenta[nodPlecare])
+            if (!distanta[i]) {
+                // caut toate nodurile nevizitate care sunt adiacente cu nodul de plecare
+                distanta[i] = distanta[nodPlecare] + 1; // il marcam vizitat
+                coada.push(i); // il adaug in coada PUSH
+            }
+    }
+}
+
 int main() {
     /*
     // Problema BFS (100p)
@@ -417,6 +463,14 @@ int main() {
     Graf g1;
     g1.citireDFS();
     g1.muchieCriticaDF(1);
+    */
+
+    /*
+    // Problema Graf
+    // Link: https://www.infoarena.ro/problema/graf
+    // Sursa: https://www.infoarena.ro/job_detail/2800679?action=view-source
+    Graf g1;
+    g1.GrafInfoarena();
     */
 
     fin.close();
