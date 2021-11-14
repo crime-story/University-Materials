@@ -62,6 +62,8 @@ public:
 
     void havelHakimi();
 
+    void havelHakimiCountingSort();
+
     void citireSortareTopologica();
 
     void DFS2(int nodPlecare, stack<int> &stiva);
@@ -306,6 +308,56 @@ void Graf::havelHakimi() {
         }
 }
 
+void countingSort(vector<int> &gradeNoduri) {
+    vector<int> nrAparitii(gradeNoduri.size() * gradeNoduri.size(), 0);
+    int maxim = 0;
+    for (int i : gradeNoduri) {
+        nrAparitii[i]++;
+        if (i > maxim)
+            maxim = i;
+    }
+    int capat = 0;
+    for (int i = maxim; i >= 0; i--)
+        while (nrAparitii[i]) {
+            nrAparitii[i]--;
+            gradeNoduri[capat++] = i;
+        }
+}
+
+void Graf::havelHakimiCountingSort() {
+    int gradCurent, sumaGrade = 0;
+    vector<int> gradeNoduri;
+    bool ok = true; // presupun ca suma gradelor este para si ca gradul oricarui nod nu este >= decat nrNoduri sau negativ
+    fin >> nrNoduri;
+    for (int i = 1; i <= nrNoduri && ok; i++) {
+        fin >> gradCurent;
+        sumaGrade += gradCurent;
+        if (gradCurent > nrNoduri - 1 || gradCurent < 0) {
+            fout << "NU";
+            ok = false;
+        } else
+            gradeNoduri.push_back(gradCurent);
+    }
+    if (ok && sumaGrade % 2)
+        fout << "NU";
+    else if (ok && sumaGrade % 2 == 0)
+        while (ok) {
+            countingSort(gradeNoduri);
+            if (gradeNoduri[0] == 0) {
+                fout << "DA";
+                ok = false;
+            }
+            gradeNoduri.erase(gradeNoduri.begin());
+            for (int i = 0; i < gradeNoduri[0]; i++) {
+                gradeNoduri[i]--;
+                if (gradeNoduri[i] < 0) {
+                    fout << "NU";
+                    ok = false;
+                }
+            }
+        }
+}
+
 void Graf::citireSortareTopologica() {
     fin >> nrNoduri >> nrMuchii;
     for (int i = 1; i <= nrMuchii; i++) {
@@ -445,6 +497,12 @@ int main() {
     // Problema Havel Hakimi
     Graf g1;
     g1.havelHakimi();
+    */
+
+    /*
+    // Problema Havel Hakimi cu Counting Sort pentru sortarea gradelor nodurilor
+    Graf g1;
+    g1.havelHakimiCountingSort();
     */
 
     /*
