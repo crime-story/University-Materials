@@ -1,6 +1,7 @@
 # Popescu Paullo Robertto Karloss Grupa 2311
 
-Tema 1 Probleme: 
+##Tema 1 
+Probleme: 
 - [x] BFS [(100p)](https://infoarena.ro/problema/bfs)
 - [x] DFS [(100p)](https://infoarena.ro/problema/dfs)
 - [x] Componente Biconexe [(100p)](https://infoarena.ro/problema/biconex)
