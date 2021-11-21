@@ -638,18 +638,20 @@ int main() {
 
     // Tema 2:
     /*
-    // Problema apm
+    // Problema apm (100p)
     // Link: https://infoarena.ro/problema/apm
     // Sursa: https://infoarena.ro/job_detail/2805610?action=view-source
     Graf g1;
     g1.apm();
     */
 
-    // Problema Paduri de multimi disjuncte
+    /*
+    // Problema Paduri de multimi disjuncte (100p)
     // Link: https://infoarena.ro/problema/disjoint
-    // Sursa:
+    // Sursa: https://infoarena.ro/job_detail/2805636?action=view-source
     Graf g1;
     g1.disjoint();
+    */
 
     fin.close();
     fout.close();
