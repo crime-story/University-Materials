@@ -76,6 +76,14 @@ public:
 
     void GrafBFS(int nodPlecare, vector<int> &distanta);
 
+    void apm();
+
+    int reprezentant_tata(int nod, vector<int> &tata);
+
+    void reuneste(int tataSursa, int tataDestinatie, vector<int> &tata, vector<int> &inaltime);
+
+    void disjoint();
+
     ~Graf();
 };
 
@@ -311,7 +319,7 @@ void Graf::havelHakimi() {
 void countingSort(vector<int> &gradeNoduri) {
     vector<int> nrAparitii(gradeNoduri.size() * gradeNoduri.size(), 0);
     int maxim = 0;
-    for (int i : gradeNoduri) {
+    for (int i: gradeNoduri) {
         nrAparitii[i]++;
         if (i > maxim)
             maxim = i;
@@ -453,7 +461,104 @@ void Graf::GrafBFS(int nodPlecare, vector<int> &distanta) {
     }
 }
 
+// Tema 2
+
+struct muchie {
+    int sursa, destinatie, cost;
+} u[400001];
+
+struct muchie2 {
+    int tipOperatie, sursa, destinatie;
+} u2[100001];
+
+bool comp(muchie a, muchie b) {
+    return a.cost < b.cost;
+}
+
+// complexitatea pentru a gasii reprezentantul este O(reprezentant)
+int Graf::reprezentant_tata(int nod, vector<int> &tata) { // caut radacina nodului curent in subarbore
+    while (tata[nod] != nod)
+        nod = tata[nod];
+    return nod;
+}
+
+// regula: intotdeauna vom unii arborele de inaltime mai mica de arborele cu inaltime mai mare
+void Graf::reuneste(int tataSursa, int tataDestinatie, vector<int> &tata, vector<int> &inaltime) {
+    if (inaltime[tataSursa] > inaltime[tataDestinatie])
+        // daca subarborele tataSursa are inaltimea mai mare decat tataDestinatie
+        tata[tataDestinatie] = tataSursa;
+        // leg subarborele de inaltime mai mica (in cazul nostru tataDestinatie)
+        // de subarborele de inaltime mai mare (in cazul nostru tataSursa)
+    else if (inaltime[tataSursa] < inaltime[tataDestinatie])
+        tata[tataSursa] = tataDestinatie;
+    else if (inaltime[tataSursa] == inaltime[tataDestinatie]) {
+        // daca au aceeasi inaltime
+        tata[tataSursa] = tataDestinatie; // leg subarborele tataSursa de subarborele tataDestinatie
+        inaltime[tataDestinatie]++; // dupa ce le-am legat inaltimea arborelui meu creste
+        // de exemplu am 2 subarbori de inaltime 2, arborele meu, dupa ce i-am unit va avea inaltimea 3.
+        // pot unii fie primul subarbore de al doilea sau invers
+        // dupa ce i-am unit arborele meu va avea inaltimea unui subarbore + 1
+        // de ce? atunci cand unesc doi subarbori, eu adaug ca fiu al radacinii subarborelui meu, celalalt subarbore
+    }
+}
+
+// Pentru gasirea APM-ului am folosit algoritmul lui Kruskal
+void Graf::apm() {
+    vector<pair<int, int>> apm;
+    fin >> nrNoduri >> nrMuchii;
+    vector<int> tata(nrNoduri + 1);
+    vector<int> inaltime(nrNoduri + 1);
+    int costAPM = 0;
+    for (int i = 1; i <= nrMuchii; i++)
+        fin >> u[i].sursa >> u[i].destinatie >> u[i].cost;
+    sort(u + 1, u + nrMuchii + 1, comp); // sortez crescator muchiile dupa cost
+    for (int i = 1; i <= nrNoduri; i++) { // initializare complexitate O(n)
+        tata[i] = i;
+        inaltime[i] = 0;
+    }
+    for (int i = 1; i <= nrMuchii; i++) {
+        int tataSursa = reprezentant_tata(u[i].sursa, tata); // caut reprezentantul nodului sursa curent
+        int tataDestinatie = reprezentant_tata(u[i].destinatie,
+                                               tata); // caut reprezentantantul nodului destinatie curent
+        if (tataSursa != tataDestinatie) {
+            // daca nu am acelasi tata inseamna ca pot sa reunesc
+            reuneste(tataSursa, tataDestinatie, tata, inaltime);
+            apm.push_back(make_pair(u[i].sursa, u[i].destinatie));
+            costAPM += u[i].cost;
+        }
+    }
+    nrMuchii = nrNoduri - 1; // stim ca un APM are intotdeuna nrNoduri - 1 muchii
+    fout << costAPM << "\n" << nrMuchii << "\n";
+    for (auto i: apm)
+        fout << i.first << " " << i.second << "\n";
+}
+
+void Graf::disjoint() {
+    fin >> nrNoduri >> nrMuchii;
+    vector<int> tata(nrNoduri + 1);
+    vector<int> inaltime(nrNoduri + 1, 0);
+    for (int i = 1; i <= nrMuchii; i++)
+        fin >> u2[i].tipOperatie >> u2[i].sursa >> u2[i].destinatie; // tip operatie
+    for (int i = 1; i <= nrNoduri; i++) // initializare complexitate O(n)
+        tata[i] = i;
+    for (int i = 1; i <= nrMuchii; i++) {
+        int tataSursa = reprezentant_tata(u2[i].sursa, tata);
+        // caut reprezentantul nodului sursa curent
+        int tataDestinatie = reprezentant_tata(u2[i].destinatie,tata);
+        // caut reprezentantantul nodului destinatie curent
+        if (u2[i].tipOperatie == 1)
+            reuneste(tataSursa, tataDestinatie, tata, inaltime);
+        else if (tataSursa == tataDestinatie)
+            // daca am acelasi tata inseamna ca fac parte din aceeasi multime
+            fout << "DA\n";
+        else
+            fout << "NU\n";
+    }
+}
+
+
 int main() {
+    // Tema 1:
     /*
     // Problema BFS (100p)
     // Link: https://infoarena.ro/problema/bfs
@@ -524,12 +629,27 @@ int main() {
     */
 
     /*
-    // Problema Graf
+    // Problema Graf (100p)
     // Link: https://www.infoarena.ro/problema/graf
     // Sursa: https://www.infoarena.ro/job_detail/2800679?action=view-source
     Graf g1;
     g1.GrafInfoarena();
     */
+
+    // Tema 2:
+    /*
+    // Problema apm
+    // Link: https://infoarena.ro/problema/apm
+    // Sursa: https://infoarena.ro/job_detail/2805610?action=view-source
+    Graf g1;
+    g1.apm();
+    */
+
+    // Problema Paduri de multimi disjuncte
+    // Link: https://infoarena.ro/problema/disjoint
+    // Sursa:
+    Graf g1;
+    g1.disjoint();
 
     fin.close();
     fout.close();
