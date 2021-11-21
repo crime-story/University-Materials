@@ -84,6 +84,8 @@ public:
 
     void disjoint();
 
+    void dijkstra();
+
     ~Graf();
 };
 
@@ -556,6 +558,39 @@ void Graf::disjoint() {
     }
 }
 
+void Graf::dijkstra() {
+    fin >> nrNoduri >> nrMuchii;
+    int sursa, destinatie, cost;
+    const int inf = INT_MAX;
+    vector<vector<pair<int, int>>> adiacentaCost(nrNoduri + 1, vector<pair<int, int>>(1, {-1, -1}));
+    for (int i = 1; i <= nrMuchii; ++i) {
+        fin >> sursa >> destinatie >> cost;
+        adiacentaCost[sursa].push_back(make_pair(destinatie, cost));
+    }
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> minHeap;
+    vector<int> distanta(nrNoduri + 1, inf);
+    vector<int> vizitat(nrNoduri + 1, 0);
+    minHeap.push(make_pair(0, 1));
+    distanta[1] = 0;
+
+    while (!minHeap.empty()) {
+        int nod = minHeap.top().second;
+        minHeap.pop();
+        if (!vizitat[nod]) {
+            vizitat[nod] = 1;
+            for (int i = 1; i < adiacentaCost[nod].size(); i++)
+                if (distanta[nod] + adiacentaCost[nod][i].second < distanta[adiacentaCost[nod][i].first] ) {
+                    distanta[adiacentaCost[nod][i].first] = distanta[nod] + adiacentaCost[nod][i].second;
+                    minHeap.push(make_pair(distanta[adiacentaCost[nod][i].first], adiacentaCost[nod][i].first));
+                }
+        }
+    }
+    for (int i = 2; i <= nrNoduri; i++)
+        if (distanta[i] != inf)
+            fout << distanta[i] << " ";
+        else
+            fout << 0 << " ";
+}
 
 int main() {
     // Tema 1:
@@ -651,6 +686,14 @@ int main() {
     // Sursa: https://infoarena.ro/job_detail/2805636?action=view-source
     Graf g1;
     g1.disjoint();
+    */
+
+    /*
+    // Problema Dijkstra
+    // Link: https://infoarena.ro/problema/dijkstra
+    // Sursa:
+    Graf g1;
+    g1.dijkstra();
     */
 
     fin.close();
