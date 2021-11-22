@@ -7,13 +7,14 @@
 #include <stack>
 #include <set>
 #include <algorithm>
+#include <climits>
 
 #define maxi 100001
 
 using namespace std;
 
-ifstream fin("bfs.in");
-ofstream fout("bfs.out");
+ifstream fin("bellmanford.in");
+ofstream fout("bellmanford.out");
 
 stack<pair<int, int>> stivaComponenteBiconexe;
 vector<set<int>> componenteBiconexe;
@@ -85,6 +86,8 @@ public:
     void disjoint();
 
     void dijkstra();
+
+    void bellmanFord();
 
     ~Graf();
 };
@@ -546,7 +549,7 @@ void Graf::disjoint() {
     for (int i = 1; i <= nrMuchii; i++) {
         int tataSursa = reprezentant_tata(u2[i].sursa, tata);
         // caut reprezentantul nodului sursa curent
-        int tataDestinatie = reprezentant_tata(u2[i].destinatie,tata);
+        int tataDestinatie = reprezentant_tata(u2[i].destinatie, tata);
         // caut reprezentantantul nodului destinatie curent
         if (u2[i].tipOperatie == 1)
             reuneste(tataSursa, tataDestinatie, tata, inaltime);
@@ -567,21 +570,27 @@ void Graf::dijkstra() {
         fin >> sursa >> destinatie >> cost;
         adiacentaCost[sursa].push_back(make_pair(destinatie, cost));
     }
-    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> minHeap;
-    vector<int> distanta(nrNoduri + 1, inf);
-    vector<int> vizitat(nrNoduri + 1, 0);
-    minHeap.push(make_pair(0, 1));
-    distanta[1] = 0;
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> minHeap; // {cost, nodDestinatie}
+    vector<int> distanta(nrNoduri + 1, inf); // initial toate distantele sunt infinit
+    vector<int> vizitat(nrNoduri + 1, 0); // toate nodurile nu sunt vizitate
+    minHeap.push(make_pair(0, 1)); // introduc in minHeap prima data costul de la nodStart, care este 0 si nodulStart
+    distanta[1] = 0; // distanta pana la nodulStart este 0
 
     while (!minHeap.empty()) {
-        int nod = minHeap.top().second;
-        minHeap.pop();
-        if (!vizitat[nod]) {
-            vizitat[nod] = 1;
-            for (int i = 1; i < adiacentaCost[nod].size(); i++)
-                if (distanta[nod] + adiacentaCost[nod][i].second < distanta[adiacentaCost[nod][i].first] ) {
+        int nod = minHeap.top().second; // iau nodul cel mai apropiat din minHeap
+        minHeap.pop(); // il scot din minHeap
+        if (!vizitat[nod]) { // daca nu am verificat inca nodul
+            vizitat[nod] = 1; // il marchez ca fiind verificat
+            for (int i = 1; i < adiacentaCost[nod].size(); i++) // iau toate nodurile adiacente cu el
+                if (distanta[nod] + adiacentaCost[nod][i].second < distanta[adiacentaCost[nod][i].first]) {
+                    // daca distanta pana la nodul in care sunt + costul pana la nodul adiacent cu el
+                    // este mai mic decat distanta pana nodul adiacent cu el
+                    // atunci actualizez distanta ca fiind:
+                    // distanta pana nodul meu + costul pana nodul adiacent cu el
                     distanta[adiacentaCost[nod][i].first] = distanta[nod] + adiacentaCost[nod][i].second;
                     minHeap.push(make_pair(distanta[adiacentaCost[nod][i].first], adiacentaCost[nod][i].first));
+                    // introduc in minHeap distanta actualizata pana la nodul adiacent cu nodul meu,
+                    // si nodul adiacent cu mine
                 }
         }
     }
@@ -589,7 +598,61 @@ void Graf::dijkstra() {
         if (distanta[i] != inf)
             fout << distanta[i] << " ";
         else
-            fout << 0 << " ";
+            fout << 0 << " "; // pun 0 ca asa cere infoarena. Normal se pune infinit
+}
+
+void Graf::bellmanFord() {
+    fin >> nrNoduri >> nrMuchii;
+    int sursa, destinatie, cost;
+    vector<vector<pair<int, int>>> adiacentaCost(nrNoduri + 1, vector<pair<int, int>>(1, {-1, -1}));
+    for (int i = 1; i <= nrMuchii; ++i) {
+        fin >> sursa >> destinatie >> cost;
+        adiacentaCost[sursa].push_back(make_pair(destinatie, cost));
+    }
+    const int inf = INT_MAX;
+    vector<int> distanta(nrNoduri + 1, inf);
+    vector<int> vizitat(nrNoduri + 1, 0);
+    vector<int> apartCoada(nrNoduri + 1, 0); // verfica daca un nod se gaseste in coada
+    // de ce? pentru ca nu vreau sa il pun de mai multe ori in coada
+    // daca l-as pune de mai multe ori in coada, ar verifica pentru aceasi imbunatatire de mai multe ori (acelasi drum)
+    // daca verific de mai multe ori acelasi drum, se incrementeaza counter-ul de mai multe ori la acelasi pas,
+    // ceea ce imi va strica verificarea de ciclu negativ
+    bool cicluNegativ = false;
+
+    coada2.push(1); // introduc in coada nodulStart
+    apartCoada[1] = 1; //
+    distanta[1] = 0; // distanta pana la nodulStart este 0
+
+    while (!coada2.empty() && !cicluNegativ) {
+        int nod = coada2.front();
+        coada2.pop();
+        apartCoada[nod] = 0;
+
+        for (int i = 1; i < adiacentaCost[nod].size(); i++)
+            if (distanta[nod] + adiacentaCost[nod][i].second < distanta[adiacentaCost[nod][i].first]) {
+                distanta[adiacentaCost[nod][i].first] = distanta[nod] + adiacentaCost[nod][i].second;
+                vizitat[adiacentaCost[nod][i].first]++;
+
+                if (vizitat[adiacentaCost[nod][i].first] >= nrNoduri) {
+                    // daca am vizitat un nod adiacent cu mine de mai multe ori decat numarul de noduri
+                    // inseamna ca avem un ciclu negativ
+                    cicluNegativ = true;
+                    break;
+                }
+
+                if (!apartCoada[adiacentaCost[nod][i].first]) {
+                    coada2.push(adiacentaCost[nod][i].first);
+                    apartCoada[adiacentaCost[nod][i].first] = 1;
+                }
+            }
+    }
+    if (cicluNegativ) {
+        fout << "Ciclu negativ!";
+    } else {
+        for (int i = 2; i <= nrNoduri; i++)
+            fout << distanta[i] << " ";
+    }
+
 }
 
 int main() {
@@ -694,6 +757,14 @@ int main() {
     // Sursa:
     Graf g1;
     g1.dijkstra();
+    */
+
+    /*
+    // Problema Bellman-Ford
+    // Link:
+    // Sursa:
+    Graf g1;
+    g1.bellmanFord();
     */
 
     fin.close();

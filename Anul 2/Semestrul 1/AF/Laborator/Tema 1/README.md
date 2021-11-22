@@ -15,7 +15,7 @@ Probleme:
 
 ## Tema 2
 Probleme:
-- [ ] APM
-- [ ] disjoint 
-- [ ] Dijkstra
-- [ ] Bellman-Ford
+- [x] APM
+- [x] disjoint 
+- [x] Dijkstra
+- [x] Bellman-Ford
