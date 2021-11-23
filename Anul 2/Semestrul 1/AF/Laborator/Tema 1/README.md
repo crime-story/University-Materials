@@ -6,7 +6,7 @@ Probleme:
 - [x] DFS [(100p)](https://infoarena.ro/job_detail/2797669?action=view-source)
 - [x] Componente Biconexe [(100p)](https://infoarena.ro/job_detail/2797675?action=view-source)
 - [x] Componente Tare Conexe [(100p)](https://infoarena.ro/job_detail/2797676?action=view-source)
-- [x] Havel Hakimi cu functia sort(); pentru sortarea gradelor nodurilor[(Photo)](https://imgur.com/noJMXa9)
+- [x] Havel Hakimi cu functia sort(); pentru sortarea gradelor nodurilor [(Photo)](https://imgur.com/noJMXa9)
 - [x] Havel Hakimi cu Counting Sort pentru sortarea gradurilor nodurilor [(Photo)](https://imgur.com/noJMXa9)
 - [x] Sortare topologica [(100p)](https://infoarena.ro/job_detail/2797552?action=view-source)
 - [x] Critical Connections in a Network [(success)](https://leetcode.com/problems/critical-connections-in-a-network/)
