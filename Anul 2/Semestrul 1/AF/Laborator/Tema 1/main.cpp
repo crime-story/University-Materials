@@ -9,126 +9,102 @@
 #include <algorithm>
 #include <climits>
 
-#define maxi 100001
+#define INFINIT INT_MAX
 
 using namespace std;
 
-ifstream fin("bellmanford.in");
-ofstream fout("bellmanford.out");
-
-stack<pair<int, int>> stivaComponenteBiconexe;
-vector<set<int>> componenteBiconexe;
+ifstream fin("bfs.in");
+ofstream fout("bfs.out");
 
 class Graf {
-    int nrNoduri, nrMuchii;
-    int x, y; // extremitate muchie stanga respectiv dreapta
-    int vizitat[maxi] = {0};
-
-    int niv_min[maxi] = {0}; // pt muchie critica
-    int nivel[maxi] = {0}; // pt muchie critica
-
+private:
+    int nrNoduri;
+    bool eOrientat, arePonderi;
     vector<int> *adiacenta; // lista de vecini
-    vector<int> *adiacenta2; // lista de vecini transpusa (i.e. in loc de x si y folosim y si x ca la grafuri neorientate)
-    queue<int> coada2;
-
+    vector<pair<int, pair<int, int>>> muchii; // {cost, {sursa, destinatie}};
 
 public:
-    Graf();
+    explicit Graf(int nrNoduri);
 
-    void citireBFS(int &nodPlecare);
+    Graf(int nrNoduri, const bool eOrientat, const bool arePonderi);
 
-    void BFS();
+    void citire(const int nrMuchii);
 
-    void afisareCoadaBFS();
+    void rezolvaBFS(int &nodPlecare);
 
-    void citireDFS();
+    void rezolvaDFS();
 
-    void DFS(int nodPlecare);
+    void rezolvaBiconex();
 
-    void nrComponenteConexe();
+    void rezolvaComponenteTareConexe(const int &nrMuchii);
 
-    void citireBiconex();
+    void havelHakimi(const bool sortareCountingSort);
 
-    void biconex(int nodPlecare, int precedent, int k);
+    void rezolvaSortareTopologica();
 
-    static void afisareComponenteBiconexe();
+    void rezolvaMuchieCritica();
 
-    void citireComponenteTareConexe();
+    void rezolvaGrafInfoarena(int &nodStart, int &nodEnd);
+
+    void rezolvaAPM(int &nrMuchii);
+
+    void rezolvaDisjoint(int &nrMuchii);
+
+    void rezolvaDijkstra(int &nrMuchii);
+
+    void rezolvaBellmanFord(int &nrMuchii);
+
+    ~Graf();
+
+private:
+    void adaugaMuchie(const int sursa, const int destinatie);
+
+    void adaugaMuchiePonderat(const int sursa, const int destinatie, const int cost);
+
+    void BFSrecursiv(queue<int> &coada, vector<int> &vizitat);
+
+    void DFSrecursiv(int &nodPlecare, vector<int> &vizitat);
+
+    void biconex(int nodPlecare, int precedent, int k, stack<pair<int, int>> &stivaComponenteBiconexe,
+                 vector<set<int>> &componenteBiconexe, vector<int> &vizitat, vector<int> &niv_min);
 
     void DF1(int nodPlecare, vector<int> &succesor, vector<int> &v, int &index);
 
-    void DF2(int nodPlecare, vector<int> &predecesor, int &nrComponenteTareConexe);
+    void DF2(int nodPlecare, vector<int> &predecesor, int &nrComponenteTareConexe, vector<int> *adiacenta2);
 
-    void afisareComponenteTareConexe();
+    void DFSsortareTopologica(int nodPlecare, stack<int> &stiva, vector<int> &vizitat);
 
-    void havelHakimi();
-
-    void havelHakimiCountingSort();
-
-    void citireSortareTopologica();
-
-    void DFS2(int nodPlecare, stack<int> &stiva);
-
-    void sortareTopologica();
-
-    void muchieCriticaDF(int nodPlecare);
-
-    void GrafInfoarena();
-
-    void GrafBFS(int nodPlecare, vector<int> &distanta);
-
-    void apm();
+    void BFSgrafInfoarena(int nodPlecare, vector<int> &distanta);
 
     int reprezentant_tata(int nod, vector<int> &tata);
 
     void reuneste(int tataSursa, int tataDestinatie, vector<int> &tata, vector<int> &inaltime);
 
-    void disjoint();
+    void DFmuchieCritica(int nodPlecare, vector<int> &vizitat, vector<int> &niv_min, vector<int> &nivel);
 
-    void dijkstra();
-
-    void bellmanFord();
-
-    ~Graf();
 };
 
-// citire graf orientat
-void Graf::citireBFS(int &nodPlecare) {
-    fin >> nrNoduri >> nrMuchii >> nodPlecare;
-    for (int i = 1; i <= nrMuchii; i++) {
-        fin >> x >> y;
-        adiacenta[x].push_back(y);
-    }
-    for (int i = 1; i <= maxi; i++)
-        vizitat[i] = -1;
-    coada2.push(nodPlecare);
-    vizitat[coada2.back()] = 1;
-}
-
-void Graf::BFS() {
-    if (!coada2.empty()) // daca mai sunt elemente in coada / nu am verificat pt toate nodurile
+void Graf::BFSrecursiv(queue<int> &coada, vector<int> &vizitat) {
+    if (!coada.empty()) // daca mai sunt elemente in coada / nu am verificat pt toate nodurile
     {
-        int nodPlecare = coada2.front(); // retin nodul de unde plec
-        for (auto i: adiacenta[nodPlecare])
+        int nodPlecare = coada.front(); // retin nodul de unde plec
+        for (auto &i: adiacenta[nodPlecare])
             if (vizitat[i] == -1) {
                 // caut toate nodurile nevizitate care sunt adiacente cu nodul de plecare
                 vizitat[i] = vizitat[nodPlecare] + 1; // il marcam vizitat
-                coada2.push(i); // il adaug in coada PUSH
+                coada.push(i); // il adaug in coada PUSH
             }
-        /*
-        // Echivalent cu:
-        for (int j = 0; j < adiacenta[nodPlecare].size(); j++)
-            if (vizitat[adiacenta[nodPlecare][j]] == -1) {
-                vizitat[adiacenta[nodPlecare][j]] = vizitat[nodPlecare] + 1;
-                coada.push(adiacenta[nodPlecare][j]);
-            }
-        */
-        coada2.pop();
-        BFS();
+        coada.pop();
+        BFSrecursiv(coada, vizitat);
     }
 }
 
-void Graf::afisareCoadaBFS() {
+void Graf::rezolvaBFS(int &nodPlecare) {
+    vector<int> vizitat(nrNoduri + 1, -1);
+    queue<int> coada;
+    coada.push(nodPlecare);
+    vizitat[coada.back()] = 1;
+    BFSrecursiv(coada, vizitat);
     for (int i = 1; i <= nrNoduri; i++) {
         if (vizitat[i] == -1)
             fout << -1 << " ";
@@ -137,50 +113,38 @@ void Graf::afisareCoadaBFS() {
     }
 }
 
-// citire graf neorientat
-void Graf::citireDFS() {
-    fin >> nrNoduri >> nrMuchii;
-    for (int i = 1; i <= nrMuchii; i++) {
-        fin >> x >> y;
-        adiacenta[x].push_back(y);
-        adiacenta[y].push_back(x);
-    }
-    nivel[1] = 1;
-}
-
-void Graf::DFS(int nodPlecare) {
+void Graf::DFSrecursiv(int &nodPlecare, vector<int> &vizitat) {
     vizitat[nodPlecare] = 1;
     for (auto i: adiacenta[nodPlecare])
         if (!vizitat[i])
-            DFS(i);
-    /*
-    // Echivalent cu:
-    for (int i = 0; i < adiacenta[nodPlecare].size(); i++)
-        if (!vizitat[adiacenta[nodPlecare][i]])
-            DFS(adiacenta[nodPlecare][i]);
-    */
+            DFSrecursiv(i, vizitat);
 }
 
-void Graf::nrComponenteConexe() {
-    int nr = 0;
+void Graf::rezolvaDFS() {
+    vector<int> nivel(nrNoduri + 1, 0);
+    vector<int> vizitat(nrNoduri + 1, 0);
+    nivel[1] = 0;
+    int numarComponenteConexe = 0;
     for (int i = 1; i <= nrNoduri; i++)
         if (vizitat[i] == 0) {
-            nr++;
-            DFS(i);
+            numarComponenteConexe++;
+            DFSrecursiv(i, vizitat);
         }
-    fout << nr;
+    fout << numarComponenteConexe;
 }
 
-void Graf::biconex(int nodPlecare, int precedent, int k) {
+void Graf::biconex(int nodPlecare, int precedent, int k, stack<pair<int, int>> &stivaComponenteBiconexe,
+                   vector<set<int>> &componenteBiconexe, vector<int> &vizitat, vector<int> &niv_min) {
     vizitat[nodPlecare] = k;
     niv_min[nodPlecare] = k;
-    for (auto i: adiacenta[nodPlecare]) {
+    for (auto &i: adiacenta[nodPlecare]) {
         int vecin = i;
         if (vecin != precedent) { // pentru optimizare (iese din timp altfel, uneori),
             // daca vecinul curent nu s-a executat la pasul anterior
             if (!vizitat[vecin]) { // daca vecinul nu a fost vizitat
                 stivaComponenteBiconexe.push(make_pair(nodPlecare, vecin));
-                biconex(vecin, nodPlecare, k + 1); // reapelez DF din nodul in care am ajuns
+                biconex(vecin, nodPlecare, k + 1, stivaComponenteBiconexe, componenteBiconexe, vizitat,
+                        niv_min); // reapelez DF din nodul in care am ajuns
                 if (niv_min[nodPlecare] > niv_min[vecin]) // daca face parte din ciclu
                     niv_min[nodPlecare] = niv_min[vecin]; // actualizez nivelul minim
                 if (niv_min[vecin] >= vizitat[nodPlecare]) {
@@ -208,10 +172,16 @@ void Graf::biconex(int nodPlecare, int precedent, int k) {
     }
 }
 
-void Graf::afisareComponenteBiconexe() {
+void Graf::rezolvaBiconex() {
+    stack<pair<int, int>> stivaComponenteBiconexe;
+    vector<set<int>> componenteBiconexe;
+
+    vector<int> vizitat(nrNoduri + 1, 0);
+    vector<int> niv_min(nrNoduri + 1, 0);
+
+    biconex(1, 0, 1, stivaComponenteBiconexe, componenteBiconexe, vizitat, niv_min);
     set<int>::iterator it;
     fout << componenteBiconexe.size() << "\n";
-
     for (auto &i: componenteBiconexe) {
         for (it = i.begin(); it != i.end(); it++) {
             fout << *it << " ";
@@ -220,44 +190,33 @@ void Graf::afisareComponenteBiconexe() {
     }
 }
 
-void Graf::citireComponenteTareConexe() {
-    fin >> nrNoduri >> nrMuchii;
-    for (int i = 1; i <= nrMuchii; i++) {
-        fin >> x >> y;
-        adiacenta[x].push_back(y); // retin lista succesorilor lui x
-        adiacenta2[y].push_back(x); // retin lista predecesorilor lui x
-    }
-}
-
 void Graf::DF1(int nodPlecare, vector<int> &succesor, vector<int> &v, int &index) {
     succesor[nodPlecare] = 1; // marchez nodul succesor nodului curent ca fiind vizitat
-    for (auto i: adiacenta[nodPlecare]) // parcurg toti vecinii nodului
+    for (auto &i: adiacenta[nodPlecare]) // parcurg toti vecinii nodului
         if (!succesor[i]) // daca succesorul nu a fost vizitat
             DF1(i, succesor, v, index); // continui parcurgerea
-    /*
-    // Echivalent cu:
-    for (int i = 0; i < adiacenta[nodPlecare].size(); i++)
-        if (!succesor[adiacenta[nodPlecare][i]])
-            DF1(adiacenta[nodPlecare][i]);
-    */
     v[++index] = nodPlecare; // retin succesorii intr-un array
 }
 
-void Graf::DF2(int nodPlecare, vector<int> &predecesor, int &nrComponenteTareConexe) {
+void Graf::DF2(int nodPlecare, vector<int> &predecesor, int &nrComponenteTareConexe, vector<int> *adiacenta2) {
     predecesor[nodPlecare] = nrComponenteTareConexe; // marchez nodul predecesor nodului curent ca fiind vizitat
-    for (auto i: adiacenta2[nodPlecare])
+    for (auto &i: adiacenta2[nodPlecare])
         if (!predecesor[i])
-            DF2(i, predecesor, nrComponenteTareConexe);
-    /*
-    // Echivalent cu:
-    for (int i = 0; i < adiacenta2[nodPlecare].size(); i++)
-        if (!predecesor[adiacenta2[nodPlecare][i]])
-            DF2(adiacenta2[nodPlecare][i]);
-    */
+            DF2(i, predecesor, nrComponenteTareConexe, adiacenta2);
 }
 
 // Am folosit algoritmul lui Kosaraju pentru a afla numarul de Componente Tare Conexe intr-un graf orientat
-void Graf::afisareComponenteTareConexe() {
+void Graf::rezolvaComponenteTareConexe(const int &nrMuchii) {
+    adiacenta = new vector<int>[nrNoduri + 1];
+    vector<int> adiacenta2[nrNoduri + 1]; // lista de vecini transpusa
+    // (i.e. in loc de x si y folosim y si x ca la grafuri neorientate)
+    int sursa, destinatie;
+    for (int i = 1; i <= nrMuchii; i++) {
+        fin >> sursa >> destinatie;
+        adiacenta[sursa].push_back(destinatie); // retin lista succesorilor lui x
+        adiacenta2[destinatie].push_back(sursa); // retin lista predecesorilor lui x
+    }
+
     vector<int> succesor(nrNoduri + 1, 0);
     vector<int> predecesor(nrNoduri + 1, 0);
     vector<int> v(nrNoduri + 1, 0);
@@ -269,7 +228,7 @@ void Graf::afisareComponenteTareConexe() {
     for (int i = nrNoduri; i >= 1; i--)
         if (predecesor[v[i]] == 0) // daca predecesorul lui i nu a fost vizitat
         {
-            DF2(v[i], predecesor, nrComponenteTareConexe); // parcurg in adancime marcand predecesorii
+            DF2(v[i], predecesor, nrComponenteTareConexe, adiacenta2); // parcurg in adancime marcand predecesorii
             nrComponenteTareConexe++;
         }
     fout << nrComponenteTareConexe - 1 << '\n';
@@ -285,40 +244,6 @@ void Graf::afisareComponenteTareConexe() {
             fout << p[i].second << " ";
         }
     }
-}
-
-void Graf::havelHakimi() {
-    int gradCurent, sumaGrade = 0;
-    vector<int> gradeNoduri;
-    bool ok = true; // presupun ca suma gradelor este para si ca gradul oricarui nod nu este >= decat nrNoduri sau negativ
-    fin >> nrNoduri;
-    for (int i = 1; i <= nrNoduri && ok; i++) {
-        fin >> gradCurent;
-        sumaGrade += gradCurent;
-        if (gradCurent > nrNoduri - 1 || gradCurent < 0) {
-            fout << "NU";
-            ok = false;
-        } else
-            gradeNoduri.push_back(gradCurent);
-    }
-    if (ok && sumaGrade % 2)
-        fout << "NU";
-    else if (ok && sumaGrade % 2 == 0)
-        while (ok) {
-            sort(gradeNoduri.begin(), gradeNoduri.end(), greater<>());
-            if (gradeNoduri[0] == 0) {
-                fout << "DA";
-                ok = false;
-            }
-            gradeNoduri.erase(gradeNoduri.begin());
-            for (int i = 0; i < gradeNoduri[0]; i++) {
-                gradeNoduri[i]--;
-                if (gradeNoduri[i] < 0) {
-                    fout << "NU";
-                    ok = false;
-                }
-            }
-        }
 }
 
 void countingSort(vector<int> &gradeNoduri) {
@@ -337,11 +262,10 @@ void countingSort(vector<int> &gradeNoduri) {
         }
 }
 
-void Graf::havelHakimiCountingSort() {
+void Graf::havelHakimi(const bool sortareCountingSort) {
     int gradCurent, sumaGrade = 0;
     vector<int> gradeNoduri;
     bool ok = true; // presupun ca suma gradelor este para si ca gradul oricarui nod nu este >= decat nrNoduri sau negativ
-    fin >> nrNoduri;
     for (int i = 1; i <= nrNoduri && ok; i++) {
         fin >> gradCurent;
         sumaGrade += gradCurent;
@@ -355,7 +279,10 @@ void Graf::havelHakimiCountingSort() {
         fout << "NU";
     else if (ok && sumaGrade % 2 == 0)
         while (ok) {
-            countingSort(gradeNoduri);
+            if (sortareCountingSort)
+                countingSort(gradeNoduri);
+            else
+                sort(gradeNoduri.begin(), gradeNoduri.end(), greater<>());
             if (gradeNoduri[0] == 0) {
                 fout << "DA";
                 ok = false;
@@ -371,41 +298,41 @@ void Graf::havelHakimiCountingSort() {
         }
 }
 
-void Graf::citireSortareTopologica() {
-    fin >> nrNoduri >> nrMuchii;
-    for (int i = 1; i <= nrMuchii; i++) {
-        fin >> x >> y;
-        adiacenta[x].push_back(y);
-    }
-}
-
-void Graf::DFS2(int nodPlecare, stack<int> &stiva) {
+void Graf::DFSsortareTopologica(int nodPlecare, stack<int> &stiva, vector<int> &vizitat) {
     vizitat[nodPlecare] = 1;
     for (auto i: adiacenta[nodPlecare])
         if (!vizitat[i])
-            DFS2(i, stiva);
+            DFSsortareTopologica(i, stiva, vizitat);
     stiva.push(nodPlecare);
 }
 
-void Graf::sortareTopologica() {
+void Graf::rezolvaSortareTopologica() {
+    vector<int> vizitat(nrNoduri + 1, 0);
     stack<int> stiva;
     for (int i = 1; i <= nrNoduri; ++i)
         if (!vizitat[i])
-            DFS2(i, stiva);
-
+            DFSsortareTopologica(i, stiva, vizitat);
     while (!stiva.empty()) {
         fout << stiva.top() << " ";
         stiva.pop();
     }
 }
 
-void Graf::muchieCriticaDF(int nodPlecare) {
+void Graf::rezolvaMuchieCritica() {
+    vector<int> vizitat(nrNoduri + 1, 0);
+    vector<int> niv_min(nrNoduri + 1, 0);
+    vector<int> nivel(nrNoduri + 1, 0);
+    vizitat[1] = 0;
+    DFmuchieCritica(1, vizitat, niv_min, nivel);
+}
+
+void Graf::DFmuchieCritica(int nodPlecare, vector<int> &vizitat, vector<int> &niv_min, vector<int> &nivel){
     vizitat[nodPlecare] = 1;
     niv_min[nodPlecare] = nivel[nodPlecare]; // initializez nivelul minim cu nivelul nodului, nivel[1] = 1 la inceput
-    for (auto i: adiacenta[nodPlecare])
+    for (auto &i: adiacenta[nodPlecare])
         if (!vizitat[i]) {
             nivel[i] = nivel[nodPlecare] + 1; // actualizez nivelul nodului in care am ajuns
-            muchieCriticaDF(i); // reapelez DF din nodul in care am ajuns
+            DFmuchieCritica(i, vizitat, niv_min, nivel); // reapelez DF din nodul in care am ajuns
             niv_min[nodPlecare] = min(niv_min[nodPlecare], niv_min[i]); // cand se intoarce recursiv
             // modifica nivelul minim al nodului de plecare
             // de exemplu face DF din nodul 5..
@@ -424,33 +351,7 @@ void Graf::muchieCriticaDF(int nodPlecare) {
     // ca fiind minimul dintre nivelul lui si nivelul stramosului/desecendentului lui
 }
 
-void Graf::GrafInfoarena() {
-    int nodStart, nodEnd;
-    fin >> nrNoduri >> nrMuchii >> nodStart >> nodEnd;
-    for (int i = 1; i <= nrMuchii; i++) {
-        fin >> x >> y;
-        adiacenta[x].push_back(y);
-        adiacenta[y].push_back(x);
-    }
-    vector<int> distantaStart(nrNoduri + 1, 0);
-    vector<int> distantaEnd(nrNoduri + 1, 0);
-    vector<int> frecventa(nrNoduri + 1, 0);
-    vector<int> etichete;
-    GrafBFS(nodStart, distantaStart);
-    GrafBFS(nodEnd, distantaEnd);
-    int lungimeLant = distantaStart[nodEnd];
-    for (int i = 1; i <= nrNoduri; i++)
-        if (distantaStart[i] + distantaEnd[i] - 1 == lungimeLant)
-            frecventa[distantaStart[i]]++;
-    for (int i = 1; i <= nrNoduri; i++)
-        if (distantaStart[i] + distantaEnd[i] - 1 == lungimeLant && frecventa[distantaStart[i]] == 1)
-            etichete.push_back(i);
-    fout << etichete.size() << "\n";
-    for (auto i: etichete)
-        fout << i << " ";
-}
-
-void Graf::GrafBFS(int nodPlecare, vector<int> &distanta) {
+void Graf::BFSgrafInfoarena(int nodPlecare, vector<int> &distanta) {
     queue<int> coada;
     coada.push(nodPlecare);
     distanta[coada.back()] = 1;
@@ -466,28 +367,31 @@ void Graf::GrafBFS(int nodPlecare, vector<int> &distanta) {
     }
 }
 
-// Tema 2
-
-struct muchie {
-    int sursa, destinatie, cost;
-} u[400001];
-
-struct muchie2 {
-    int tipOperatie, sursa, destinatie;
-} u2[100001];
-
-bool comp(muchie a, muchie b) {
-    return a.cost < b.cost;
+void Graf::rezolvaGrafInfoarena(int &nodStart, int &nodEnd) {
+    vector<int> distantaStart(nrNoduri + 1, 0);
+    vector<int> distantaEnd(nrNoduri + 1, 0);
+    vector<int> frecventa(nrNoduri + 1, 0);
+    vector<int> etichete;
+    BFSgrafInfoarena(nodStart, distantaStart);
+    BFSgrafInfoarena(nodEnd, distantaEnd);
+    int lungimeLant = distantaStart[nodEnd];
+    for (int i = 1; i <= nrNoduri; i++)
+        if (distantaStart[i] + distantaEnd[i] - 1 == lungimeLant)
+            frecventa[distantaStart[i]]++;
+    for (int i = 1; i <= nrNoduri; i++)
+        if (distantaStart[i] + distantaEnd[i] - 1 == lungimeLant && frecventa[distantaStart[i]] == 1)
+            etichete.push_back(i);
+    fout << etichete.size() << "\n";
+    for (auto i: etichete)
+        fout << i << " ";
 }
 
-// complexitatea pentru a gasii reprezentantul este O(reprezentant)
 int Graf::reprezentant_tata(int nod, vector<int> &tata) { // caut radacina nodului curent in subarbore
     while (tata[nod] != nod)
         nod = tata[nod];
     return nod;
 }
 
-// regula: intotdeauna vom unii arborele de inaltime mai mica de arborele cu inaltime mai mare
 void Graf::reuneste(int tataSursa, int tataDestinatie, vector<int> &tata, vector<int> &inaltime) {
     if (inaltime[tataSursa] > inaltime[tataDestinatie])
         // daca subarborele tataSursa are inaltimea mai mare decat tataDestinatie
@@ -508,50 +412,52 @@ void Graf::reuneste(int tataSursa, int tataDestinatie, vector<int> &tata, vector
 }
 
 // Pentru gasirea APM-ului am folosit algoritmul lui Kruskal
-void Graf::apm() {
+void Graf::rezolvaAPM(int &nrMuchii) {
     vector<pair<int, int>> apm;
-    fin >> nrNoduri >> nrMuchii;
     vector<int> tata(nrNoduri + 1);
     vector<int> inaltime(nrNoduri + 1);
     int costAPM = 0;
-    for (int i = 1; i <= nrMuchii; i++)
-        fin >> u[i].sursa >> u[i].destinatie >> u[i].cost;
-    sort(u + 1, u + nrMuchii + 1, comp); // sortez crescator muchiile dupa cost
+    sort(muchii.begin() + 1, muchii.end()); // sortez crescator muchiile dupa cost
     for (int i = 1; i <= nrNoduri; i++) { // initializare complexitate O(n)
         tata[i] = i;
         inaltime[i] = 0;
     }
     for (int i = 1; i <= nrMuchii; i++) {
-        int tataSursa = reprezentant_tata(u[i].sursa, tata); // caut reprezentantul nodului sursa curent
-        int tataDestinatie = reprezentant_tata(u[i].destinatie,
+        int tataSursa = reprezentant_tata(muchii[i].second.first, tata); // caut reprezentantul nodului sursa curent
+        int tataDestinatie = reprezentant_tata(muchii[i].second.second,
                                                tata); // caut reprezentantantul nodului destinatie curent
         if (tataSursa != tataDestinatie) {
             // daca nu am acelasi tata inseamna ca pot sa reunesc
             reuneste(tataSursa, tataDestinatie, tata, inaltime);
-            apm.push_back(make_pair(u[i].sursa, u[i].destinatie));
-            costAPM += u[i].cost;
+            apm.push_back({muchii[i].second.first, muchii[i].second.second});
+            costAPM += muchii[i].first;
         }
     }
     nrMuchii = nrNoduri - 1; // stim ca un APM are intotdeuna nrNoduri - 1 muchii
     fout << costAPM << "\n" << nrMuchii << "\n";
-    for (auto i: apm)
+    for (auto &i: apm)
         fout << i.first << " " << i.second << "\n";
 }
 
-void Graf::disjoint() {
-    fin >> nrNoduri >> nrMuchii;
+void Graf::rezolvaDisjoint(int &nrMuchii) {
+    // in citire avem asa:
+    // muchie[i] = {distanta, {tipOperatie, sursa}};
+
+    // Deci in cazul asta:
+    // muchie[i].first = distanta
+    // muchie[i].second.first = tipul Operatiei
+    // muchie[i].second.second = sursa
+
     vector<int> tata(nrNoduri + 1);
     vector<int> inaltime(nrNoduri + 1, 0);
-    for (int i = 1; i <= nrMuchii; i++)
-        fin >> u2[i].tipOperatie >> u2[i].sursa >> u2[i].destinatie; // tip operatie
     for (int i = 1; i <= nrNoduri; i++) // initializare complexitate O(n)
         tata[i] = i;
     for (int i = 1; i <= nrMuchii; i++) {
-        int tataSursa = reprezentant_tata(u2[i].sursa, tata);
+        int tataSursa = reprezentant_tata(muchii[i].second.second, tata);
         // caut reprezentantul nodului sursa curent
-        int tataDestinatie = reprezentant_tata(u2[i].destinatie, tata);
+        int tataDestinatie = reprezentant_tata(muchii[i].first, tata);
         // caut reprezentantantul nodului destinatie curent
-        if (u2[i].tipOperatie == 1)
+        if (muchii[i].second.first == 1)
             reuneste(tataSursa, tataDestinatie, tata, inaltime);
         else if (tataSursa == tataDestinatie)
             // daca am acelasi tata inseamna ca fac parte din aceeasi multime
@@ -561,17 +467,13 @@ void Graf::disjoint() {
     }
 }
 
-void Graf::dijkstra() {
-    fin >> nrNoduri >> nrMuchii;
-    int sursa, destinatie, cost;
-    const int inf = INT_MAX;
+void Graf::rezolvaDijkstra(int &nrMuchii) {
     vector<vector<pair<int, int>>> adiacentaCost(nrNoduri + 1, vector<pair<int, int>>(1, {-1, -1}));
     for (int i = 1; i <= nrMuchii; ++i) {
-        fin >> sursa >> destinatie >> cost;
-        adiacentaCost[sursa].push_back(make_pair(destinatie, cost));
+        adiacentaCost[muchii[i].second.first].push_back(make_pair(muchii[i].second.second, muchii[i].first));
     }
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> minHeap; // {cost, nodDestinatie}
-    vector<int> distanta(nrNoduri + 1, inf); // initial toate distantele sunt infinit
+    vector<int> distanta(nrNoduri + 1, INFINIT); // initial toate distantele sunt infinit
     vector<int> vizitat(nrNoduri + 1, 0); // toate nodurile nu sunt vizitate
     minHeap.push(make_pair(0, 1)); // introduc in minHeap prima data costul de la nodStart, care este 0 si nodulStart
     distanta[1] = 0; // distanta pana la nodulStart este 0
@@ -595,22 +497,18 @@ void Graf::dijkstra() {
         }
     }
     for (int i = 2; i <= nrNoduri; i++)
-        if (distanta[i] != inf)
+        if (distanta[i] != INFINIT)
             fout << distanta[i] << " ";
         else
             fout << 0 << " "; // pun 0 ca asa cere infoarena. Normal se pune infinit
 }
 
-void Graf::bellmanFord() {
-    fin >> nrNoduri >> nrMuchii;
-    int sursa, destinatie, cost;
+void Graf::rezolvaBellmanFord(int &nrMuchii) {
     vector<vector<pair<int, int>>> adiacentaCost(nrNoduri + 1, vector<pair<int, int>>(1, {-1, -1}));
-    for (int i = 1; i <= nrMuchii; ++i) {
-        fin >> sursa >> destinatie >> cost;
-        adiacentaCost[sursa].push_back(make_pair(destinatie, cost));
+    for (int i = 1; i <= nrMuchii; i++) {
+        adiacentaCost[muchii[i].second.first].push_back(make_pair(muchii[i].second.second, muchii[i].first));
     }
-    const int inf = INT_MAX;
-    vector<int> distanta(nrNoduri + 1, inf);
+    vector<int> distanta(nrNoduri + 1, INFINIT);
     vector<int> vizitat(nrNoduri + 1, 0);
     vector<int> apartCoada(nrNoduri + 1, 0); // verfica daca un nod se gaseste in coada
     // de ce? pentru ca nu vreau sa il pun de mai multe ori in coada
@@ -618,7 +516,7 @@ void Graf::bellmanFord() {
     // daca verific de mai multe ori acelasi drum, se incrementeaza counter-ul de mai multe ori la acelasi pas,
     // ceea ce imi va strica verificarea de ciclu negativ
     bool cicluNegativ = false;
-
+    queue<int> coada2;
     coada2.push(1); // introduc in coada nodulStart
     apartCoada[1] = 1; //
     distanta[1] = 0; // distanta pana la nodulStart este 0
@@ -661,110 +559,129 @@ int main() {
     // Problema BFS (100p)
     // Link: https://infoarena.ro/problema/bfs
     // Sursa: https://infoarena.ro/job_detail/2797664?action=view-source
-    int nodPlecare;
-    Graf g1;
-    g1.citireBFS(nodPlecare);
-    g1.BFS();
-    g1.afisareCoadaBFS();
+    int nrNoduri, nrMuchii, nodPlecare;
+    fin >> nrNoduri >> nrMuchii >> nodPlecare;
+    Graf g1(nrNoduri, true, false);
+    g1.citire(nrMuchii);
+    g1.rezolvaBFS(nodPlecare);
     */
 
     /*
     // Problema DFS (100p)
     // Link: https://infoarena.ro/problema/dfs
     // Sursa: https://infoarena.ro/job_detail/2797669?action=view-source
-    Graf g1;
-    g1.citireDFS();
-    g1.nrComponenteConexe();
+    int nrNoduri, nrMuchii;
+    fin >> nrNoduri >> nrMuchii;
+    Graf g1(nrNoduri, false, false);
+    g1.citire(nrMuchii);
+    g1.rezolvaDFS();
     */
 
     /*
     // Problema Componente Biconexe (100p)
     // Link: https://infoarena.ro/problema/biconex
     // Sursa: https://infoarena.ro/job_detail/2797675?action=view-source
-    Graf g1;
-    g1.citireDFS();
-    g1.biconex(1, 0, 1);
-    g1.afisareComponenteBiconexe();
+    int nrNoduri, nrMuchii;
+    fin >> nrNoduri >> nrMuchii;
+    Graf g1(nrNoduri, false, false);
+    g1.citire(nrMuchii);
+    g1.rezolvaBiconex();
     */
 
     /*
     // Problema CTC (Componente Tare Conexe) (100p)
     // Link: https://infoarena.ro/problema/ctc
     // Sursa: https://infoarena.ro/job_detail/2797676?action=view-source
-    Graf g1;
-    g1.citireComponenteTareConexe();
-    g1.afisareComponenteTareConexe();
+    int nrNoduri, nrMuchii;
+    fin >> nrNoduri >> nrMuchii;
+    Graf g1(nrNoduri);
+    g1.rezolvaComponenteTareConexe(nrMuchii);
     */
 
     /*
-    // Problema Havel Hakimi
-    Graf g1;
-    g1.havelHakimi();
-    */
-
-    /*
-    // Problema Havel Hakimi cu Counting Sort pentru sortarea gradelor nodurilor
-    Graf g1;
-    g1.havelHakimiCountingSort();
+    // Problema Havel Hakimi cu/fara Counting Sort pentru sortarea gradelor nodurilor
+    int nrNoduri;
+    fin >> nrNoduri;
+    Graf g1(nrNoduri);
+    g1.havelHakimi(true);
     */
 
     /*
     // Problema Sortare topologica (100p)
     // Link: https://infoarena.ro/problema/sortaret
     // Sursa: https://infoarena.ro/job_detail/2797552?action=view-source
-    Graf g1;
-    g1.citireSortareTopologica();
-    g1.sortareTopologica();
+    int nrNoduri, nrMuchii;
+    fin >> nrNoduri >> nrMuchii;
+    Graf g1(nrNoduri, true, false);
+    g1.citire(nrMuchii);
+    g1.rezolvaSortareTopologica();
     */
 
     /*
     // Problema muchie critica (success)
     // Link: https://leetcode.com/problems/critical-connections-in-a-network/
     // Sursa: https://leetcode.com/submissions/detail/583031282/
-    Graf g1;
-    g1.citireDFS();
-    g1.muchieCriticaDF(1);
+    int nrNoduri, nrMuchii;
+    fin >> nrNoduri >> nrMuchii;
+    Graf g1(nrNoduri, false, false);
+    g1.citire(nrMuchii);
+    g1.rezolvaMuchieCritica();
     */
 
     /*
     // Problema Graf (100p)
     // Link: https://www.infoarena.ro/problema/graf
     // Sursa: https://www.infoarena.ro/job_detail/2800679?action=view-source
-    Graf g1;
-    g1.GrafInfoarena();
+    int nrNoduri, nrMuchii, nodStart, nodEnd;
+    fin >> nrNoduri >> nrMuchii >> nodStart >> nodEnd;
+    Graf g1(nrNoduri, false, false);
+    g1.citire(nrMuchii);
+    g1.rezolvaGrafInfoarena(nodStart, nodEnd);
     */
 
     // Tema 2:
     /*
     // Problema apm (100p)
     // Link: https://infoarena.ro/problema/apm
-    // Sursa: https://infoarena.ro/job_detail/2805610?action=view-source
-    Graf g1;
-    g1.apm();
+    // Sursa: https://infoarena.ro/job_detail/2807085?action=view-source
+    int nrNoduri, nrMuchii;
+    fin >> nrNoduri >> nrMuchii;
+    Graf g1(nrNoduri, false, true);
+    g1.citire(nrMuchii);
+    g1.rezolvaAPM(nrMuchii);
     */
 
     /*
     // Problema Paduri de multimi disjuncte (100p)
     // Link: https://infoarena.ro/problema/disjoint
-    // Sursa: https://infoarena.ro/job_detail/2805636?action=view-source
-    Graf g1;
-    g1.disjoint();
+    // Sursa: https://infoarena.ro/job_detail/2807108?action=view-source
+    int nrNoduri, nrMuchii;
+    fin >> nrNoduri >> nrMuchii;
+    Graf g1(nrNoduri, false, true);
+    g1.citire(nrMuchii);
+    g1.rezolvaDisjoint(nrMuchii);
     */
 
     /*
-    // Problema Dijkstra
+    // Problema Dijkstra (100p)
     // Link: https://infoarena.ro/problema/dijkstra
-    // Sursa:
-    Graf g1;
-    g1.dijkstra();
+    // Sursa: https://infoarena.ro/job_detail/2807148?action=view-source
+    int nrNoduri, nrMuchii;
+    fin >> nrNoduri >> nrMuchii;
+    Graf g1(nrNoduri, true, true);
+    g1.citire(nrMuchii);
+    g1.rezolvaDijkstra(nrMuchii);
     */
 
     /*
-    // Problema Bellman-Ford
-    // Link:
-    // Sursa:
-    Graf g1;
-    g1.bellmanFord();
+    // Problema Bellman-Ford (100p)
+    // Link: https://infoarena.ro/problema/bellmanford
+    // Sursa: https://infoarena.ro/job_detail/2807149?action=view-source
+    int nrNoduri, nrMuchii;
+    fin >> nrNoduri >> nrMuchii;
+    Graf g1(nrNoduri, true, true);
+    g1.citire(nrMuchii);
+    g1.rezolvaBellmanFord(nrMuchii);
     */
 
     fin.close();
@@ -772,13 +689,55 @@ int main() {
     return 0;
 }
 
-Graf::Graf() {
-    nrNoduri = nrMuchii = x = y = 0;
-    adiacenta = new vector<int>[maxi];
-    adiacenta2 = new vector<int>[maxi];
+Graf::Graf(const int nrNoduri) {
+    this->nrNoduri = nrNoduri;
+}
+
+Graf::Graf(const int nrNoduri, const bool eOrientat, const bool arePonderi) {
+    this->nrNoduri = nrNoduri;
+    this->eOrientat = eOrientat;
+    this->arePonderi = arePonderi;
+}
+
+void Graf::adaugaMuchie(const int sursa, const int destinatie) {
+    adiacenta[sursa].push_back(destinatie);
+}
+
+void Graf::adaugaMuchiePonderat(const int sursa, const int destinatie, const int cost) {
+//    adiacentaCost[sursa].push_back(muchieCost(destinatie, cost));
+}
+
+void Graf::citire(const int nrMuchii) {
+    int sursa, destinatie; // extremitate muchie stanga respectiv dreapta
+    adiacenta = new vector<int>[nrNoduri + 1];
+    if (!arePonderi) {
+        if (eOrientat)
+            for (int i = 1; i <= nrMuchii; i++) {
+                fin >> sursa >> destinatie;
+                adaugaMuchie(sursa, destinatie);
+            }
+        else
+            for (int i = 1; i <= nrMuchii; i++) {
+                fin >> sursa >> destinatie;
+                adaugaMuchie(sursa, destinatie);
+                adaugaMuchie(destinatie, sursa);
+            }
+    } else {
+        int cost; // costul muchiei
+        muchii.resize(nrMuchii + 1);
+        if (eOrientat)
+            for (int i = 1; i <= nrMuchii; i++) {
+                fin >> sursa >> destinatie >> cost;
+                muchii[i] = {cost, {sursa, destinatie}};
+            }
+        else
+            for (int i = 1; i <= nrMuchii; i++) {
+                fin >> sursa >> destinatie >> cost;
+                muchii[i] = {cost, {sursa, destinatie}};
+            }
+    }
 }
 
 Graf::~Graf() {
     delete[] adiacenta;
-    delete[] adiacenta2;
 }

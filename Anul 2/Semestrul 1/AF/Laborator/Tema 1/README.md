@@ -2,20 +2,20 @@
 
 ## Tema 1 
 Probleme: 
-- [x] BFS [(100p)](https://infoarena.ro/problema/bfs)
-- [x] DFS [(100p)](https://infoarena.ro/problema/dfs)
-- [x] Componente Biconexe [(100p)](https://infoarena.ro/problema/biconex)
-- [x] Componente Tare Conexe [(100p)](https://infoarena.ro/problema/ctc)
-- [x] Havel Hakimi [(Photo)](https://imgur.com/noJMXa9)
+- [x] BFS [(100p)](https://infoarena.ro/job_detail/2797664?action=view-source)
+- [x] DFS [(100p)](https://infoarena.ro/job_detail/2797669?action=view-source)
+- [x] Componente Biconexe [(100p)](https://infoarena.ro/job_detail/2797675?action=view-source)
+- [x] Componente Tare Conexe [(100p)](https://infoarena.ro/job_detail/2797676?action=view-source)
+- [x] Havel Hakimi cu functia sort(); pentru sortarea gradelor nodurilor[(Photo)](https://imgur.com/noJMXa9)
 - [x] Havel Hakimi cu Counting Sort pentru sortarea gradurilor nodurilor [(Photo)](https://imgur.com/noJMXa9)
-- [x] Sortare topologica [(100p)](https://infoarena.ro/problema/sortaret)
+- [x] Sortare topologica [(100p)](https://infoarena.ro/job_detail/2797552?action=view-source)
 - [x] Critical Connections in a Network [(success)](https://leetcode.com/problems/critical-connections-in-a-network/)
 - [x] RJ [(100p)](https://www.infoarena.ro/job_detail/2799509)
 - [x] Graf [(100p)](https://www.infoarena.ro/job_detail/2800679)
 
 ## Tema 2
 Probleme:
-- [x] APM
-- [x] disjoint 
-- [x] Dijkstra
-- [x] Bellman-Ford
+- [x] APM - Kruskal [(100p)](https://infoarena.ro/job_detail/2807085?action=view-source)
+- [x] disjoint [(100p)](https://infoarena.ro/job_detail/2807108?action=view-source)
+- [x] Dijkstra [(100p)](https://infoarena.ro/job_detail/2807148?action=view-source)
+- [x] Bellman-Ford [(100p)](https://infoarena.ro/job_detail/2807149?action=view-source)
