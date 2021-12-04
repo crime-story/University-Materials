@@ -17,12 +17,21 @@ void barrier_point() {
 
     if (count == nr_threads) {
         pthread_mutex_unlock(&mtx);
-        sem_post(&sem);
+		if (sem_post(&sem)) {
+			perror(NULL);
+			return errno;
+		}
     }
     else {
         pthread_mutex_unlock(&mtx);
-        sem_wait(&sem); // face -
-        sem_post(&sem); // face +
+        if (sem_wait(&sem)) { // face -
+			perror(NULL);
+			return errno;
+		}
+        if (sem_post(&sem)) { // face +
+			perror(NULL);
+			return errno;
+		}
     }
 }
 
