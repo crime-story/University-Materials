@@ -16,10 +16,10 @@ int functie(int n, int *shm_ptr, int index) {
 	shm_ptr[index] = n;
 	if (n != 1) {
 		if (n % 2 == 1) {
-			functie(3 * n + 1, shm_ptr, index + 1);
+			return functie(3 * n + 1, shm_ptr, index + 1);
 		}
 		else {
-			functie(n / 2, shm_ptr, index + 1);
+			return functie(n / 2, shm_ptr, index + 1);
 		}
 	}
 	else {
