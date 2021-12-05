@@ -10,7 +10,7 @@ int main() {
 		return errno;
 	else if (x == 0) {
 		char *argv[] = {"ls", NULL};
-		execve("/bin/ls", argv, NULL);
+		execve("/bin/ls", argv, NULL); // primul argument este locatia, al doilea argumentele cu care rulez programul
 	}
 	else {
 		printf("My PID=%d, Child PID=%d.\n", getpid(), x);
