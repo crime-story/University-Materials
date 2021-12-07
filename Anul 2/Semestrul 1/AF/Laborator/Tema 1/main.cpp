@@ -54,6 +54,8 @@ public:
 
     void rezolvaBellmanFord(int &nrMuchii);
 
+    vector<vector<int>> royFloyd(vector<vector<int>> &matrice);
+
     ~Graf();
 
 private:
@@ -327,6 +329,7 @@ void Graf::rezolvaMuchieCritica() {
 }
 
 void Graf::DFmuchieCritica(int nodPlecare, vector<int> &vizitat, vector<int> &niv_min, vector<int> &nivel){
+void Graf::DFmuchieCritica(int nodPlecare, vector<int> &vizitat, vector<int> &niv_min, vector<int> &nivel) {
     vizitat[nodPlecare] = 1;
     niv_min[nodPlecare] = nivel[nodPlecare]; // initializez nivelul minim cu nivelul nodului, nivel[1] = 1 la inceput
     for (auto &i: adiacenta[nodPlecare])
@@ -553,6 +556,22 @@ void Graf::rezolvaBellmanFord(int &nrMuchii) {
 
 }
 
+vector<vector<int>> Graf::royFloyd(vector<vector<int>> &matrice) {
+    adiacenta = new vector<int>[1]; // de sters
+    vector<vector<int>> distante = matrice;
+    for (int i = 1; i <= nrNoduri; i++)
+        for (int j = 1; j <= nrNoduri; j++)
+            if (matrice[i][j] == 0 && i != j)
+                distante[i][j] = 1005;
+    for (int k = 1; k <= nrNoduri; k++)
+        for (int i = 1; i <= nrNoduri; i++)
+            for (int j = 1; j <= nrNoduri; j++)
+                if (distante[i][j] > distante[i][k] + distante[k][j]) {
+                    distante[i][j] = distante[i][k] + distante[k][j];
+                }
+    return distante;
+}
+
 int main() {
     // Tema 1:
     /*
@@ -682,6 +701,34 @@ int main() {
     Graf g1(nrNoduri, true, true);
     g1.citire(nrMuchii);
     g1.rezolvaBellmanFord(nrMuchii);
+    */
+
+    /*
+    // Problema Roy-Floyd (100p)
+    // Link: https://infoarena.ro/problema/royfloyd
+    // Sursa: https://infoarena.ro/job_detail/2814187?action=view-source
+    int n;
+    fin >> n;
+    vector<vector<int>> matriceCosturi;
+    matriceCosturi.resize(n + 1);
+    for (int i = 1; i <= n; i++) {
+        matriceCosturi[i].resize(n + 1);
+        for (int j = 1; j <= n; j++) {
+            int cost;
+            fin >> cost;
+            matriceCosturi[i][j] = cost;
+        }
+    }
+    Graf g1(n);
+    vector<vector<int>> distante = g1.royFloyd(matriceCosturi);
+    for (int i = 1; i < distante.size(); i++) {
+        for (int j = 1; j < distante.size(); j++)
+            if (i != j)
+                fout << distante[i][j] << " ";
+            else
+                fout << 0 << " ";
+        fout << "\n";
+    }
     */
 
     fin.close();
