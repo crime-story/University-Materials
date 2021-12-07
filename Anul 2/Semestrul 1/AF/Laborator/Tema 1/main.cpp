@@ -13,8 +13,8 @@
 
 using namespace std;
 
-ifstream fin("royfloyd.in");
-ofstream fout("royfloyd.out");
+ifstream fin("bfs.in");
+ofstream fout("bfs.out");
 
 class Graf {
 private:
@@ -56,6 +56,8 @@ public:
 
     vector<vector<int>> royFloyd(vector<vector<int>> &matrice);
 
+    int rezolvaDiametruArbore();
+
     ~Graf();
 
 private:
@@ -83,6 +85,8 @@ private:
     void reuneste(int tataSursa, int tataDestinatie, vector<int> &tata, vector<int> &inaltime);
 
     void DFmuchieCritica(int nodPlecare, vector<int> &vizitat, vector<int> &niv_min, vector<int> &nivel);
+
+    vector<int> rezolvaBFS2(int nodPlecare);
 
 };
 
@@ -571,6 +575,32 @@ vector<vector<int>> Graf::royFloyd(vector<vector<int>> &matrice) {
     return distante;
 }
 
+vector<int> Graf::rezolvaBFS2(int nodPlecare) {
+    vector<int> vizitat(nrNoduri + 1, -1);
+    queue<int> coada;
+    coada.push(nodPlecare);
+    vizitat[coada.back()] = 1;
+    BFSrecursiv(coada, vizitat);
+    return vizitat;
+}
+
+int Graf::rezolvaDiametruArbore() {
+    vector<int> distante = rezolvaBFS2(1);
+
+    int diametruMaxim = -1, ultimulNod;
+    for (int i = 1; i <= nrNoduri; i++)
+        if (distante[i] > diametruMaxim) {
+            diametruMaxim = distante[i];
+            ultimulNod = i;
+        }
+    distante = rezolvaBFS2(ultimulNod);
+    diametruMaxim = -1;
+    for (int i = 1; i <= nrNoduri; i++)
+        if (distante[i] > diametruMaxim)
+            diametruMaxim = distante[i];
+    return diametruMaxim;
+}
+
 int main() {
     // Tema 1:
     /*
@@ -702,10 +732,10 @@ int main() {
     g1.rezolvaBellmanFord(nrMuchii);
     */
 
+    /*
     // Problema Roy-Floyd (100p)
     // Link: https://infoarena.ro/problema/royfloyd
     // Sursa: https://infoarena.ro/job_detail/2814187?action=view-source
-    /*
     int n;
     fin >> n;
     vector<vector<int>> matriceCosturi;
@@ -728,6 +758,17 @@ int main() {
                 fout << 0 << " ";
         fout << "\n";
     }
+    */
+
+    /*
+    // Problema Darb
+    // Link: https://infoarena.ro/problema/darb
+    // Sursa: https://infoarena.ro/job_detail/2814352?action=view-source
+    int nrNoduri;
+    fin >> nrNoduri;
+    Graf g1(nrNoduri, false, false);
+    g1.citire(nrNoduri);
+    fout << g1.rezolvaDiametruArbore();
     */
 
     fin.close();
