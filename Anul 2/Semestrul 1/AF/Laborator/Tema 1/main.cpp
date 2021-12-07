@@ -13,8 +13,8 @@
 
 using namespace std;
 
-ifstream fin("bfs.in");
-ofstream fout("bfs.out");
+ifstream fin("royfloyd.in");
+ofstream fout("royfloyd.out");
 
 class Graf {
 private:
@@ -328,7 +328,6 @@ void Graf::rezolvaMuchieCritica() {
     DFmuchieCritica(1, vizitat, niv_min, nivel);
 }
 
-void Graf::DFmuchieCritica(int nodPlecare, vector<int> &vizitat, vector<int> &niv_min, vector<int> &nivel){
 void Graf::DFmuchieCritica(int nodPlecare, vector<int> &vizitat, vector<int> &niv_min, vector<int> &nivel) {
     vizitat[nodPlecare] = 1;
     niv_min[nodPlecare] = nivel[nodPlecare]; // initializez nivelul minim cu nivelul nodului, nivel[1] = 1 la inceput
@@ -557,7 +556,7 @@ void Graf::rezolvaBellmanFord(int &nrMuchii) {
 }
 
 vector<vector<int>> Graf::royFloyd(vector<vector<int>> &matrice) {
-    adiacenta = new vector<int>[1]; // de sters
+    adiacenta = new vector<int>[1];
     vector<vector<int>> distante = matrice;
     for (int i = 1; i <= nrNoduri; i++)
         for (int j = 1; j <= nrNoduri; j++)
@@ -703,10 +702,10 @@ int main() {
     g1.rezolvaBellmanFord(nrMuchii);
     */
 
-    /*
     // Problema Roy-Floyd (100p)
     // Link: https://infoarena.ro/problema/royfloyd
     // Sursa: https://infoarena.ro/job_detail/2814187?action=view-source
+    /*
     int n;
     fin >> n;
     vector<vector<int>> matriceCosturi;
