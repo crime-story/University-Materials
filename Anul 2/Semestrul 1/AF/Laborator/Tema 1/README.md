@@ -19,3 +19,9 @@ Probleme:
 - [x] disjoint [(100p)](https://infoarena.ro/job_detail/2807108?action=view-source)
 - [x] Dijkstra [(100p)](https://infoarena.ro/job_detail/2807148?action=view-source)
 - [x] Bellman-Ford [(100p)](https://infoarena.ro/job_detail/2807149?action=view-source)
+
+## Tema 3
+Probleme:
+- [x] Roy-Floyd [(100p)](https://infoarena.ro/job_detail/2814187?action=view-source)
+- [x] MaxFlow [(100p)](https://infoarena.ro/job_detail/2814451?action=view-source
+- [x] Darb [(100p)](https://infoarena.ro/job_detail/2814352?action=view-source)
