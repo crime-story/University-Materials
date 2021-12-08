@@ -23,5 +23,5 @@ Probleme:
 ## Tema 3
 Probleme:
 - [x] Roy-Floyd [(100p)](https://infoarena.ro/job_detail/2814187?action=view-source)
-- [x] MaxFlow [(100p)](https://infoarena.ro/job_detail/2814451?action=view-source
+- [x] MaxFlow [(100p)](https://infoarena.ro/job_detail/2814451?action=view-source)
 - [x] Darb [(100p)](https://infoarena.ro/job_detail/2814352?action=view-source)
