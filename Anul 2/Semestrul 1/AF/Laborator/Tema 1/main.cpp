@@ -56,6 +56,8 @@ public:
 
     vector<vector<int>> royFloyd(vector<vector<int>> &matrice);
 
+    int rezolvaMaxFlow(int sursa, int destinatie, int &nrMuchii);
+
     int rezolvaDiametruArbore();
 
     ~Graf();
@@ -87,6 +89,10 @@ private:
     void DFmuchieCritica(int nodPlecare, vector<int> &vizitat, vector<int> &niv_min, vector<int> &nivel);
 
     vector<int> rezolvaBFS2(int nodPlecare);
+
+    int
+    maxFlowBFS(vector<vector<int>> &capacitati, int sursa, int destinatie, vector<int> &tati, vector<vector<int>> &flux,
+               vector<bool> &vizitat, vector<vector<int>> &grafRezidual);
 
 };
 
@@ -601,6 +607,80 @@ int Graf::rezolvaDiametruArbore() {
     return diametruMaxim;
 }
 
+int Graf::maxFlowBFS(vector<vector<int>> &capacitati, int sursa, int destinatie, vector<int> &tati,
+                     vector<vector<int>> &flux, vector<bool> &vizitat, vector<vector<int>> &grafRezidual) {
+    tati.assign(capacitati.size(), 0);
+    queue<int> coada;
+    coada.push(sursa);
+
+    tati[coada.back()] = -1;
+
+    vizitat.clear();
+    vizitat.resize(capacitati.size(), false);
+    vizitat[sursa] = true;
+
+    while (!coada.empty() && tati[destinatie] == 0) {
+        int nodPlecare = coada.front();
+        coada.pop();
+        for (auto &i: grafRezidual[nodPlecare]) { // daca nodul nu a fost vizitat si muchia este nesaturata
+            if (!vizitat[i] && capacitati[nodPlecare][i] > flux[nodPlecare][i]) {
+                coada.push(i);
+                tati[i] = nodPlecare;
+                vizitat[i] = true;
+            }
+        }
+    }
+    return tati[destinatie];
+}
+
+int Graf::rezolvaMaxFlow(int sursa, int destinatie, int &nrMuchii) {
+    adiacenta = new vector<int>[1]; // ds
+
+    vector<vector<pair<int, int>>> adiacentaMaxFlow(nrNoduri + 1);
+
+    for (int i = 1; i <= nrMuchii; i++) {
+        int sursa, destinatie, capacitate;
+        fin >> sursa >> destinatie >> capacitate;
+        adiacentaMaxFlow[sursa].push_back(make_pair(destinatie, capacitate));
+    }
+
+    vector<vector<int>> capacitati(nrNoduri + 1, vector<int>(nrNoduri + 1, 0));
+    vector<vector<int>> flux(nrNoduri + 1, vector<int>(nrNoduri + 1, 0));
+    vector<int> tati(nrNoduri + 1, 0);
+    vector<bool> vizitat(nrNoduri + 1, false);
+    vector<vector<int>> grafRezidual(nrNoduri + 1);
+
+    for (int i = 0; i < adiacentaMaxFlow.size(); ++i) {
+        for (int j = 0; j < adiacentaMaxFlow[i].size(); ++j) {
+            capacitati[i][adiacentaMaxFlow[i][j].first] = adiacentaMaxFlow[i][j].second;
+            grafRezidual[i].push_back(adiacentaMaxFlow[i][j].first);
+            grafRezidual[adiacentaMaxFlow[i][j].first].push_back(i);
+        }
+    }
+
+    int fluxMaxim = 0;
+    while (maxFlowBFS(capacitati, sursa, destinatie, tati, flux, vizitat, grafRezidual)) {
+        for (auto &i: grafRezidual[destinatie])
+            if (vizitat[i] && flux[i][destinatie] < capacitati[i][destinatie]) {
+                tati[destinatie] = i;
+                int fluxNou = INFINIT;
+                for (int j = destinatie; j != sursa; j = tati[j]) {
+                    int x = tati[j];
+                    fluxNou = min(fluxNou, capacitati[x][j] - flux[x][j]);
+                }
+                if (fluxNou > 0) { // urcam in arborele BFS pentru a actualiza capacitatiile
+                    for (int j = destinatie; j != sursa; j = tati[j]) {
+                        int x = tati[j];
+                        flux[x][j] += fluxNou;
+                        flux[j][x] -= fluxNou;
+                    }
+                    fluxMaxim += fluxNou;
+                }
+            }
+    }
+    return fluxMaxim;
+}
+
 int main() {
     // Tema 1:
     /*
@@ -732,6 +812,7 @@ int main() {
     g1.rezolvaBellmanFord(nrMuchii);
     */
 
+    // Tema 3:
     /*
     // Problema Roy-Floyd (100p)
     // Link: https://infoarena.ro/problema/royfloyd
@@ -758,6 +839,16 @@ int main() {
                 fout << 0 << " ";
         fout << "\n";
     }
+    */
+
+    /*
+    // Problema MaxFlow (100p)
+    // Link: https://infoarena.ro/problema/maxflow
+    // Sursa: https://infoarena.ro/job_detail/2814451?action=view-source
+    int nrNoduri, nrMuchii;
+    fin >> nrNoduri >> nrMuchii;
+    Graf g1(nrNoduri, true, true);
+    fout << g1.rezolvaMaxFlow(1, nrNoduri, nrMuchii);
     */
 
     /*
