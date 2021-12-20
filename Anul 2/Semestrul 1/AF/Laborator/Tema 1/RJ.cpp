@@ -1,4 +1,3 @@
-// Link sursa: https://www.infoarena.ro/job_detail/2799509
 #include <fstream>
 #include <queue>
 
