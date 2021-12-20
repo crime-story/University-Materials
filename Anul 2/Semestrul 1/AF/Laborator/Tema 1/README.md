@@ -25,3 +25,9 @@ Probleme:
 - [x] Roy-Floyd [(100p)](https://infoarena.ro/job_detail/2814187?action=view-source)
 - [x] MaxFlow [(100p)](https://infoarena.ro/job_detail/2814451?action=view-source)
 - [x] Darb [(100p)](https://infoarena.ro/job_detail/2814352?action=view-source)
+
+## Tema 4
+Probleme:
+- [x] Ciclu Eulerian [(100p)](https://infoarena.ro/job_detail/2820157?action=view-source)
+- [x] Ciclu hamiltonian de cost minim [(100p)](https://infoarena.ro/job_detail/2820206?action=view-source)
+- [x] Cuplaj maxim in graf bipartit [(100p)](https://infoarena.ro/job_detail/2820219?action=view-source)

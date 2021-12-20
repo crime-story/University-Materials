@@ -10,7 +10,7 @@
 #include <algorithm>
 #include <climits>
 
-#define INFINIT INT_MAX
+#define INFINIT 2e9
 
 using namespace std;
 
@@ -108,6 +108,12 @@ public:
     // returneaza lungimea celui mai lung lant dintr-un arbore
     int diametruArbore();
 
+    vector<int> cicluEulerian();
+
+    int cicluHamiltonian();
+
+    pair<int, vector<int>> cuplajMaxim(int &nrNoduriDreapta);
+
     // afiseaza lista de adiacenta
     // de exemplu
     // -> Nodul 2 este adiacent cu:
@@ -147,6 +153,12 @@ private:
                           vector<vector<int>> &flux, vector<bool> &vizitat, vector<vector<int>> &grafRezidual);
 
     vector<int> rezolvaBFS2(int nodPlecare);
+
+    void euler(int nodPlecare, vector<bool> &vizitat, vector<int> &ciclu);
+
+    bool BFShopcroftKarp(vector<int> &stanga, vector<int> &dreapta, vector<int> &distanta);
+
+    bool DFShopcroftKarp(int nodPlecare, vector<int> &stanga, vector<int> &dreapta, vector<int> &distanta);
 };
 
 void Graf::BFSrecursiv(queue<int> &coada, vector<int> &vizitat) {
@@ -690,6 +702,113 @@ int Graf::diametruArbore() {
     return diametruMaxim;
 }
 
+void Graf::euler(int nodPlecare, vector<bool> &vizitat, vector<int> &ciclu) {
+    stack<int> stiva;
+    stiva.push(nodPlecare);
+    while (!stiva.empty()) {
+        int nodCurent = stiva.top();
+        if (listaDeAdiacenta[nodCurent].size()) {
+            int id = listaDeAdiacenta[nodCurent].back().cost;
+            int vecin = listaDeAdiacenta[nodCurent].back().destinatie;
+            listaDeAdiacenta[nodCurent].pop_back();
+            if (!vizitat[id]) {
+                vizitat[id] = true;
+                stiva.push(vecin);
+            }
+
+        } else {
+            stiva.pop();
+            ciclu.push_back(nodCurent);
+        }
+    }
+}
+
+vector<int> Graf::cicluEulerian() {
+    vector<int> ciclu;
+    vector<bool> vizitat(nrMuchii + 1, false);
+    for (int i = 1; i <= nrNoduri; i++)
+        if (listaDeAdiacenta[i].size() % 2 == 1) {
+            ciclu.push_back(-1);
+            return ciclu;
+        }
+    euler(1, vizitat, ciclu);
+    return ciclu;
+}
+
+int Graf::cicluHamiltonian() {
+    int cost = INFINIT;
+    vector<vector<int>> C(1 << nrNoduri, vector<int>(nrNoduri + 1, INFINIT));
+    C[1][0] = 0;
+    for (int i = 0; i < (1 << nrNoduri); i++)
+        for (int j = 0; j < nrNoduri; j++)
+            if (i & (1 << j))
+                for (auto &k: listaDeAdiacenta[j]) {
+                    int vecin = k.destinatie;
+                    int costVecin = k.cost;
+                    if (i & (1 << vecin))
+                        C[i][j] = min(C[i][j], C[i ^ (1 << j)][vecin] + costVecin);
+                }
+    for (auto &i: listaDeAdiacenta[0])
+        cost = min(cost, C[(1 << nrNoduri) - 1][i.destinatie] + i.cost);
+    return cost;
+}
+
+bool Graf::BFShopcroftKarp(vector<int> &stanga, vector<int> &dreapta, vector<int> &distanta) {
+    queue<int> coada;
+    for (int i = 1; i < stanga.size(); i++) {
+        if (!stanga[i]) {
+            distanta[i] = 0;
+            coada.push(i);
+        } else {
+            distanta[i] = INFINIT;
+        }
+    }
+    distanta[0] = INFINIT;
+    while (!coada.empty()) {
+        int x = coada.front();
+        coada.pop();
+        if (distanta[x] < distanta[0]) {
+            for (auto &i: listaDeAdiacenta[x]) {
+                if (distanta[dreapta[i.destinatie]] == INFINIT) {
+                    distanta[dreapta[i.destinatie]] = distanta[x] + 1;
+                    coada.push(dreapta[i.destinatie]);
+                }
+            }
+        }
+    }
+    return (distanta[0] != INFINIT);
+}
+
+bool Graf::DFShopcroftKarp(int nodPlecare, vector<int> &stanga, vector<int> &dreapta, vector<int> &distanta) {
+    if (nodPlecare) {
+        for (auto &i: listaDeAdiacenta[nodPlecare]) {
+            if (distanta[dreapta[i.destinatie]] == distanta[nodPlecare] + 1) {
+                if (DFShopcroftKarp(dreapta[i.destinatie], stanga, dreapta, distanta)) {
+                    dreapta[i.destinatie] = nodPlecare;
+                    stanga[nodPlecare] = i.destinatie;
+                    return true;
+                }
+            }
+        }
+        distanta[nodPlecare] = INFINIT;
+        return false;
+    }
+    return true;
+}
+
+pair<int, vector<int>> Graf::cuplajMaxim(int &nrNoduriDreapta) {
+    vector<int> stanga(nrNoduri + 1, 0), dreapta(nrNoduriDreapta + 1, 0);
+    vector<int> distanta(nrNoduri + 1);
+    int rezultat = 0;
+    while (BFShopcroftKarp(stanga, dreapta, distanta)) {
+        for (int i = 1; i <= nrNoduri; ++i) {
+            if (!stanga[i] && DFShopcroftKarp(i, stanga, dreapta, distanta)) {
+                rezultat++;
+            }
+        }
+    }
+    return make_pair(rezultat, stanga);
+}
 
 // --- Functii apelate din main() pentru a rezolva fiecare problema -- //
 void rezolvaBFS() {
@@ -934,7 +1053,7 @@ void rezolvaMaxFlow() {
 }
 
 void rezolvaDarb() {
-    // Problema Darb
+    // Problema Darb (100p)
     // Link: https://infoarena.ro/problema/darb
     // Sursa: https://infoarena.ro/job_detail/2814352?action=view-source
     int nrMuchii;
@@ -947,12 +1066,67 @@ void rezolvaDarb() {
     fout.close();
 }
 
+void rezolvaCicluEulerian() {
+    // Problema Ciclu Eulerian (100p)
+    // Link: https://infoarena.ro/problema/ciclueuler
+    // Sursa: https://infoarena.ro/job_detail/2820157?action=view-source
+    int nrNoduri, nrMuchii;
+    fin >> nrNoduri >> nrMuchii;
+    Graf g1(nrNoduri, nrMuchii, false, false, false, false);
+    g1.citire();
+    vector<int> rez = g1.cicluEulerian();
+    if (rez[0] == -1)
+        fout << -1;
+    else {
+        for (auto &i: rez)
+            fout << i << " ";
+    }
+    fin.close();
+    fout.close();
+}
+
+void rezolvaHamilton() {
+    // Problema Ciclu hamiltonian de cost minim (100p)
+    // Link: https://infoarena.ro/problema/hamilton
+    // Sursa: https://infoarena.ro/job_detail/2820206?action=view-source
+    int nrNoduri, nrMuchii;
+    fin >> nrNoduri >> nrMuchii;
+    Graf g1(nrNoduri, nrMuchii, true, true, false, false);
+    g1.citire();
+    int rez = g1.cicluHamiltonian();
+    if (rez == INFINIT)
+        fout << "Nu exista solutie";
+    else
+        fout << rez;
+    fin.close();
+    fout.close();
+}
+
+void rezolvaCuplaj() {
+    // Problema Cuplaj maxim in graf bipartit (100p)
+    // Link: https://infoarena.ro/problema/cuplaj
+    // Sursa: https://infoarena.ro/job_detail/2820219?action=view-source
+    int nrNoduriStanga, nrNoduriDreapta, nrMuchii;
+    fin >> nrNoduriStanga >> nrNoduriDreapta >> nrMuchii;
+    Graf g1(nrNoduriStanga, nrMuchii, true, false, false, false);
+    g1.citire();
+    pair<int, vector<int>> rez = g1.cuplajMaxim(nrNoduriDreapta);
+    fout << rez.first << "\n";
+    for (int i = 1; i <= nrNoduriStanga; i++)
+        if (rez.second[i])
+            fout << i << " " << rez.second[i] << "\n";
+
+    fin.close();
+    fout.close();
+}
+
 int main() {
-    int optiune = 14;
+    int optiune = 18;
     // Meniu
     // Pentru tema 1: tastele 1-8
     // Pentru tema 2: tastele 9-12
     // Pentru tema 3: tastele 12-15
+    // Pentru tema 4: tastele 16-18
     switch (optiune) {
         case 1:
             rezolvaBFS();
@@ -999,6 +1173,15 @@ int main() {
         case 15:
             rezolvaDarb();
             break;
+        case 16:
+            rezolvaCicluEulerian();
+            break;
+        case 17:
+            rezolvaHamilton();
+            break;
+        case 18:
+            rezolvaCuplaj();
+            break;
     }
     return 0;
 }
@@ -1019,7 +1202,7 @@ void Graf::citire() {
         if (arePonderi)
             fin >> cost;
         else
-            cost = 0;
+            cost = i + 1;
         if (areCapacitati)
             fin >> capacitate;
         else
