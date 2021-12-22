@@ -108,10 +108,13 @@ public:
     // returneaza lungimea celui mai lung lant dintr-un arbore
     int diametruArbore();
 
+    // returneaza un ciclu eulerian daca exista unul
     vector<int> cicluEulerian();
 
+    // returneaza costul minim
     int cicluHamiltonian();
 
+    // returneaza o perechere formata din cuplajul maxim si un vector format din elementele care il alcatuiesc
     pair<int, vector<int>> cuplajMaxim(int &nrNoduriDreapta);
 
     // afiseaza lista de adiacenta
@@ -152,7 +155,7 @@ private:
     static int BFSmaxFlow(vector<vector<int>> &capacitati, int sursa, int destinatie, vector<int> &tati,
                           vector<vector<int>> &flux, vector<bool> &vizitat, vector<vector<int>> &grafRezidual);
 
-    vector<int> rezolvaBFS2(int nodPlecare);
+    vector<int> BFSdiametruArbore(int nodPlecare);
 
     void euler(int nodPlecare, vector<bool> &vizitat, vector<int> &ciclu);
 
@@ -197,15 +200,14 @@ void Graf::DFSrecursiv(int &nodPlecare, vector<int> &vizitat) {
 }
 
 int Graf::numarComponenteConexe() {
-    vector<int> nivel(nrNoduri + 1, 0);
     vector<int> vizitat(nrNoduri + 1, 0);
-    nivel[1] = 0;
     int nr = 0;
-    for (int i = 1; i <= nrNoduri; i++)
+    for (int i = 1; i <= nrNoduri; i++) {
         if (vizitat[i] == 0) {
             nr++;
             DFSrecursiv(i, vizitat);
         }
+    }
     return nr;
 }
 
@@ -227,7 +229,7 @@ void Graf::biconex(int nodPlecare, int precedent, int k, stack<pair<int, int>> &
                 if (niv_min[vecin] >= vizitat[nodPlecare]) {
                     // daca un vecin are nivelul minim mai mare sau egal decat nivelul tatalui sau
                     // (vizitat este pe pos de nivel din muchia critica, i.e. nivelul din arborele DF),
-                    // inseamna ca nu face parte dintr-un ciclu, deci am gasit o componenta biconexa
+                    // inseamna ca are puncte de articulatie, deci am gasit o componenta biconexa
                     set<int> aux;
                     int aux1, aux2;
                     do {
@@ -568,24 +570,20 @@ vector<int> Graf::bellmanFord() {
     coada2.push(1); // introduc in coada nodulStart
     apartCoada[1] = 1; //
     distante[1] = 0; // distanta pana la nodulStart este 0
-
     while (!coada2.empty() && !cicluNegativ) {
         int nod = coada2.front();
         coada2.pop();
         apartCoada[nod] = 0;
-
         for (auto &i: listaDeAdiacenta[nod])
             if (distante[nod] + i.cost < distante[i.destinatie]) {
                 distante[i.destinatie] = distante[nod] + i.cost;
                 vizitat[i.destinatie]++;
-
                 if (vizitat[i.destinatie] >= nrNoduri) {
                     // daca am vizitat un nod adiacent cu mine de mai multe ori decat numarul de noduri
                     // inseamna ca avem un ciclu negativ
                     cicluNegativ = true;
                     break;
                 }
-
                 if (!apartCoada[i.destinatie]) {
                     coada2.push(i.destinatie);
                     apartCoada[i.destinatie] = 1;
@@ -609,6 +607,9 @@ vector<vector<int>> Graf::royFloyd(vector<vector<int>> &matrice) {
                 if (distante[i][j] > distante[i][k] + distante[k][j]) {
                     distante[i][j] = distante[i][k] + distante[k][j];
                 }
+    // pentru neorientate
+    // for (j = i+1)
+    //      adaug un if-ul ala de sus asta distante[j][i] = distante [i][j]
     return distante;
 }
 
@@ -652,7 +653,6 @@ int Graf::maxFlow(int sursa, int destinatie) {
             grafRezidual[listaDeAdiacenta[i][j].destinatie].push_back(i);
         }
     }
-
     int fluxMaxim = 0;
     while (BFSmaxFlow(capacitati, sursa, destinatie, tati, flux, vizitat, grafRezidual)) {
         for (auto &i: grafRezidual[destinatie])
@@ -676,7 +676,7 @@ int Graf::maxFlow(int sursa, int destinatie) {
     return fluxMaxim;
 }
 
-vector<int> Graf::rezolvaBFS2(int nodPlecare) {
+vector<int> Graf::BFSdiametruArbore(int nodPlecare) {
     vector<int> vizitat(nrNoduri + 1, -1);
     queue<int> coada;
     coada.push(nodPlecare);
@@ -686,15 +686,14 @@ vector<int> Graf::rezolvaBFS2(int nodPlecare) {
 }
 
 int Graf::diametruArbore() {
-    vector<int> distante = rezolvaBFS2(1);
-
+    vector<int> distante = BFSdiametruArbore(1);
     int diametruMaxim = -1, ultimulNod;
     for (int i = 1; i <= nrNoduri; i++)
         if (distante[i] > diametruMaxim) {
             diametruMaxim = distante[i];
             ultimulNod = i;
         }
-    distante = rezolvaBFS2(ultimulNod);
+    distante = BFSdiametruArbore(ultimulNod);
     diametruMaxim = -1;
     for (int i = 1; i <= nrNoduri; i++)
         if (distante[i] > diametruMaxim)
@@ -841,6 +840,9 @@ void rezolvaDFS() {
 }
 
 void rezolvaComponenteBiconexe() {
+    // Problema Componente Biconexe (100p)
+    // Link: https://infoarena.ro/problema/biconex
+    // Sursa: https://infoarena.ro/job_detail/2797675?action=view-source
     int nrNoduri, nrMuchii;
     fin >> nrNoduri >> nrMuchii;
     Graf g1(nrNoduri, nrMuchii, false, false, false, false);
@@ -857,6 +859,9 @@ void rezolvaComponenteBiconexe() {
 }
 
 void rezolvaComponenteTareConexe() {
+    // Problema CTC (Componente Tare Conexe) (100p)
+    // Link: https://infoarena.ro/problema/ctc
+    // Sursa: https://infoarena.ro/job_detail/2797676?action=view-source
     int nrNoduri, nrMuchii;
     fin >> nrNoduri >> nrMuchii;
     Graf g1(nrNoduri, nrMuchii, true, false, false, false);
@@ -1058,7 +1063,7 @@ void rezolvaDarb() {
     // Sursa: https://infoarena.ro/job_detail/2814352?action=view-source
     int nrMuchii;
     fin >> nrMuchii;
-    Graf g1(0, nrMuchii, false, false, false, false);
+    Graf g1(nrMuchii, nrMuchii, false, false, false, false);
     g1.citire();
     fout << g1.diametruArbore();
 
@@ -1121,7 +1126,7 @@ void rezolvaCuplaj() {
 }
 
 int main() {
-    int optiune = 18;
+    int optiune = 15;
     // Meniu
     // Pentru tema 1: tastele 1-8
     // Pentru tema 2: tastele 9-12
