@@ -5,6 +5,7 @@
 ### Partea 1:
 Probleme:
 - [x] muzeu [(100p)](https://www.infoarena.ro/job_detail/2824355?action=view-source)
+- [x] srevni [(100p)](https://www.infoarena.ro/job_detail/2824712?action=view-source)
 
 ### Partea 2:
 Probleme:
