@@ -255,8 +255,8 @@ END;
 /
 
 -- Exercitiul 9
--- Sa se afiseze suma de cantitate de ingrediente oferite de un producator citit de la tastatura
--- la toate produsele din fiecare comanda
+-- Sa se afiseze ce cantitate ingrediente contine fiecare produs, din fiecare comanda,
+-- furnizate de un producator citit de la tastatura.
 
 CREATE OR REPLACE PROCEDURE mai_multe_ingrediente_producator(my_id_comanda IN comanda.id_comanda%TYPE, my_id_produs IN produs.id_produs%TYPE, my_id_producator IN producator.id_producator%TYPE, my_numar_produse_comanda continut_comanda.numar_produse%TYPE)
 IS
