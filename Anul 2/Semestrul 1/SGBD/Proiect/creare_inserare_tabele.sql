@@ -375,7 +375,7 @@ insert into angajat (id_angajat, id_restaurant, nume, prenume, data_angajare)
 values (id_angajat.nextval, 2, 'Bontea', 'Sorin', to_date('02-03-21', 'dd-mm-yy')); --20
 
 insert into angajat (id_angajat, id_restaurant, nume, prenume)
-values (21, 1, 'Daniel', 'Andrei'); --21
+values (id_angajat.nextval, 1, 'Daniel', 'Andrei'); --21
 
 
 -- PENTRU TABELUL BUCATAR --
@@ -784,8 +784,8 @@ END;
 
 -- Exercitiul 7
 -- Sa se afiseze pentru fiecare bucatar numele si prenumele acestuia, daca a preparat vreun produs de cand s-a angajat.
--- Daca a preparat minim un produs se va afisa date corespunzatoare legate de acesta (numele produsului, descrierea acestuia si
--- cat a durat sa il prepare)
+-- Daca a preparat minim un produs se vor afisa date corespunzatoare legate de acesta (numele produsului, descrierea acestuia si
+-- cat a durat sa il prepare).
 
 CREATE OR REPLACE PROCEDURE afis_durata_preparare_produs
 IS TYPE refcursor IS REF CURSOR;
@@ -859,10 +859,10 @@ END;
 
 -- Exercitiul 8
 -- Sa se afiseze profitul generat de un client citit de la tastatura, de-a lungul timpului,
--- Daca aceasta a beneficiat de reduceri de-a lungul timpului se va afisa valoarea totala a acestor reduceri.
+-- Daca acesta a beneficiat de reduceri de-a lungul timpului se va afisa valoarea totala a acestor reduceri.
 -- Daca profitul adus de-a lungul timpului este unul negativ inseamna ca clientul a beneficiat de prea multe reduceri
 -- si se va afisa un mesaj corespunzator.
--- De asemenea se va afisa  profitul maxim oferit de un client si profitul obtinut de companie de-a lungul timpului.
+-- De asemenea se va afisa  profitul maxim oferit de un client si profitul obtinut de companie pana la momentul actual.
 
 CREATE OR REPLACE FUNCTION profit_client (my_id_client IN client.id_client%TYPE)
 RETURN PLS_INTEGER IS
@@ -872,8 +872,8 @@ RETURN PLS_INTEGER IS
     v_nr_telefon_client         client.nr_telefon%TYPE;
     v_profit_maxim_companie     PLS_INTEGER := 0;
     v_profit_maxim_client       PLS_INTEGER := 0;
-    v_benef_red                 BINARY_INTEGER :=0;
-    v_valoare_red               PLS_INTEGER :=0;
+    v_benef_red                 BINARY_INTEGER := 0;
+    v_valoare_red               PLS_INTEGER := 0;
     invalid                     EXCEPTION;
     v_exista                    PLS_INTEGER := 0;
     t                           tab_ind;
@@ -945,7 +945,7 @@ END;
 
 -- Exercitiul 9
 -- Sa se afiseze ce cantitate ingrediente contine fiecare produs, din fiecare comanda,
--- furnizate de un producator citit de la tastatura.
+-- furnizat de un producator citit de la tastatura.
 
 CREATE OR REPLACE PROCEDURE mai_multe_ingrediente_producator(my_id_comanda IN comanda.id_comanda%TYPE, my_id_produs IN produs.id_produs%TYPE, my_id_producator IN producator.id_producator%TYPE, my_numar_produse_comanda continut_comanda.numar_produse%TYPE)
 IS
@@ -1037,6 +1037,9 @@ END;
 /
 
 -- Exercitiul 10
+-- Sa se creeze un Trigger care nu permite clientilor sa plaseze comenzi de Craciun, 25 decembrie si de Anul Nou, 1 ianurie; 
+-- astfel incat inainte de a insera in tabelul comanda sa se arunce o eroarea daca ziua este una din cele mentionate anterior.
+
 CREATE OR REPLACE TRIGGER trig_vacanta BEFORE
     INSERT ON comanda
 DECLARE
@@ -1050,7 +1053,7 @@ END;
 /
 
 insert into comanda (id_comanda, id_client, id_factura, pret)
-values (id_comanda.nextval, 1, 4, 50); --1
+values (id_comanda.nextval, 1, 4, 50);
 
 -- Exercitiul 11
 CREATE OR REPLACE TRIGGER trig_produs_in_meniu FOR
@@ -1104,6 +1107,9 @@ values (4, 3, 2); --produs care se afla in mai multe meniuri
 
 delete from continut_comanda
 where id_produs = 4 and id_comanda = 3;
+
+-- Un client nu poate aștepta mai mult decât 300 minute pentru ca comanda sa să fie preparată. 
+-- Dacă timpul de prepare este mai mare decât 300 minute să se arunce o eroare la inserarea în tabelul preparare.
 
 CREATE OR REPLACE TRIGGER trig_timp_prep BEFORE
     INSERT OR UPDATE OF durata ON preparare
@@ -1475,8 +1481,6 @@ BEGIN
     afis_cantitate_ingredient_producator_produs(v_id_producator);
 END;
 /
-
--- Exercitiul 10
 
 -- Exercitiul 14
 CREATE OR REPLACE PACKAGE pachet_robertto AS
