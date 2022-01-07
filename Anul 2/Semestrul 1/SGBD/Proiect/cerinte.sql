@@ -683,3 +683,50 @@ END;
 /
 
 -- Exercitiul 10
+
+-- Exercitiul 14
+CREATE OR REPLACE PACKAGE pachet_robertto AS
+    FUNCTION gaseste_client_pret_preferential(my_client_id client.id_client%TYPE) RETURN BOOLEAN;
+END pachet_robertto;
+/
+
+CREATE OR REPLACE PACKAGE BODY pachet_robertto
+IS
+    -- Verifica daca un client mai poate beneficia de o reducere pentru comanda sa
+    FUNCTION gaseste_client_pret_preferential(my_client_id client.id_client%TYPE) 
+    RETURN BOOLEAN
+    IS gasit PLS_INTEGER := 0;
+    BEGIN
+        SELECT 1 INTO gasit
+        FROM client cli, comanda cmd, factura f
+        WHERE my_client_id = cmd.id_client
+        AND cmd.id_factura = f.id_factura
+        AND f.detalii LIKE UPPER('%card%')
+        AND EXTRACT (MONTH FROM cmd.data) IN (1, 5, 12)
+        AND f.valoare > 80;
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            RETURN FALSE;
+        WHEN TOO_MANY_ROWS THEN
+            RETURN TRUE;
+    END gaseste_client_pret_preferential;
+END pachet_robertto;
+/
+
+-- Sa se verifice daca un client citit de la tastatura poate beneficia de o reducere pentru comenzile plasate de acesta
+-- Criteriile pentru a putea beneficia de o reducere de 10% din pretul normal al comenzii sunt:
+--      -> sa fi achitat comanda respectiva folosind cardul
+--      -> luna in care a plasat comanda sa fie Ianurie, Mai, Decembrie
+--      -> sa aiba o valoare de peste 80 lei
+
+DECLARE
+    v_id_client_citit   client.id_client%TYPE := &client_id;
+    ok                  BOOLEAN;
+BEGIN
+    ok := pachet_robertto.gaseste_client_pret_preferential(v_id_client_citit);
+    IF ok THEN
+        DBMS_OUTPUT.PUT_LINE('Clientul cu id-ul dat este eligibil pentru un pret promotional la momentul actual!');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Clientul cu id-ul dat NU este eligibil pentru un pret promotional la momentul actual!');
+    END IF;
+END;
