@@ -29,7 +29,7 @@ pthread_t *stack_of_finished_threads;   /// we call pthread_join "on the go"
 int max_nr_of_elements_in_finished_threads_stack;
 int nr_of_elements_in_finished_threads_stack;
 
-void *consultatie(void *v_patie;nt) {
+void *consultatie(void *v_patient) {
     patient_t *patient = (patient_t *) v_patient;
     time_t arrive_time = time(NULL) - time0;
     if (sem_wait(&doctors)) {      /// I wait for a doctor to consult me
