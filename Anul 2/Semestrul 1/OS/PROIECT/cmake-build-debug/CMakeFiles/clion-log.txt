@@ -1,0 +1,4 @@
+/home/reksio/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/home/reksio/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/ninja/linux/ninja -G Ninja /home/reksio/CLionProjects/untitled
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/reksio/CLionProjects/untitled/cmake-build-debug
