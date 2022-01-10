@@ -1,0 +1,1 @@
+# Aici sunt poze cu rularea programului.
