@@ -45,8 +45,8 @@ namespace proiectASP.Migrations
                     b.Property<string>("RestaurantId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("YearsOfExperience")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("YearsOfExperience")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -85,8 +85,8 @@ namespace proiectASP.Migrations
                     b.Property<string>("ProductId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Price")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<float>("Price")
+                        .HasColumnType("real");
 
                     b.HasKey("RestaurantId", "ProductId");
 
@@ -109,8 +109,11 @@ namespace proiectASP.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Weight")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("Weight")
+                        .HasColumnType("real");
 
                     b.HasKey("Id");
 

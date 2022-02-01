@@ -13,6 +13,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using proiectASP.Contexts;
+using proiectASP.Managers;
+using proiectASP.Repositories;
 
 namespace proiectASP
 {
@@ -35,7 +37,24 @@ namespace proiectASP
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "proiectASP", Version = "v1" });
             });
 
-            services.AddDbContext<AppDbContext>(options => options.UseSqlServer("Data Source = localhost\\SQLEXPRESS; Initial Catalog = bazaDate; Integrated Security = SSPI; MultipleActiveResultSets = True"));
+            services.AddDbContext<AppDbContext>(options => options
+                .UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()))
+                .UseSqlServer("Data Source = localhost\\SQLEXPRESS; Initial Catalog = bazaDate; Integrated Security = SSPI; MultipleActiveResultSets = True"));
+            
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(options =>
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+            services.AddTransient<ILocationsRepository, LocationsRepository>();
+            //services.AddScoped<ILocationsRepository, LocationsRepository>();
+            //services.AddSingleton<ILocationsRepository, LocationsRepository>();
+            services.AddTransient<ILocationsManager, LocationsManager>();
+
+            services.AddTransient<IRestaurantsRepository, RestaurantsRepository>();
+            services.AddTransient<IRestaurantsManager, RestaurantsManager>();
+
+            services.AddTransient<IProductsRepository, ProductsRepository>();
+            services.AddTransient<IProductsManager, ProductsManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace proiectASP.Entities
+namespace proiectASP.Models
 {
-    public class Product
+    public class ProductModel
     {
         public string Id { get; set; }
         public string Name { get; set; }
@@ -13,6 +13,5 @@ namespace proiectASP.Entities
         public DateTime DateOfPreparation { get; set; }
         public DateTime DateOfExpiration { get; set; }
         public string Description { get; set; }
-        public ICollection<Menu> Menus { get; set; }
     }
 }

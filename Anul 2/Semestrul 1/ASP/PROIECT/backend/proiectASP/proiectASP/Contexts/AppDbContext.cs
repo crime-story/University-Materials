@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using proiectASP.Entities;
 
 namespace proiectASP.Contexts
@@ -18,6 +19,16 @@ namespace proiectASP.Contexts
         public DbSet<Menu> Menus { get; set; }
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
+        // configuration before Dependency Injection
+        /*
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder
+                .UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()))
+                .UseSqlServer(
+                    "Data Source = localhost\\SQLEXPRESS; Initial Catalog = bazaDate; Integrated Security = SSPI; MultipleActiveResultSets = True");
+        }
+        */
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Location>()

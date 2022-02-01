@@ -11,6 +11,6 @@ namespace proiectASP.Entities
         public Restaurant Restaurant { get; set; }
         public string ProductId { get; set; }
         public Product Product { get; set; }
-        public string Price { get; set; }
+        public float Price { get; set; }
     }
 }
