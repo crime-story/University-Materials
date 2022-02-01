@@ -10,9 +10,13 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using proiectASP.Contexts;
+using proiectASP.Entities;
 using proiectASP.Managers;
 using proiectASP.Repositories;
 
@@ -40,7 +44,40 @@ namespace proiectASP
             services.AddDbContext<AppDbContext>(options => options
                 .UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()))
                 .UseSqlServer("Data Source = localhost\\SQLEXPRESS; Initial Catalog = bazaDate; Integrated Security = SSPI; MultipleActiveResultSets = True"));
-            
+
+            services.AddIdentity<User, Role>()
+                .AddEntityFrameworkStores<AppDbContext>();
+
+            services
+                .AddAuthentication(options =>
+                {
+
+                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer("AuthScheme", options =>
+                {
+                    options.SaveToken = true;
+                    var secret = Configuration.GetSection("Jwt").GetSection("SecretKey").Get<String>();
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        ValidateLifetime = true,
+                        RequireExpirationTime = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret)),
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
+                        ClockSkew = TimeSpan.Zero
+                    };
+                });
+
+            services.AddAuthorization(opt =>
+            {
+                opt.AddPolicy("BasicUser", policy => policy.RequireRole("BasicUser").RequireAuthenticatedUser().AddAuthenticationSchemes("AuthScheme").Build());
+                opt.AddPolicy("Admin", policy => policy.RequireRole("Admin").RequireAuthenticatedUser().AddAuthenticationSchemes("AuthScheme").Build());
+
+            });
+
             services.AddControllersWithViews()
                 .AddNewtonsoftJson(options =>
                     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
@@ -55,6 +92,9 @@ namespace proiectASP
 
             services.AddTransient<IProductsRepository, ProductsRepository>();
             services.AddTransient<IProductsManager, ProductsManager>();
+
+            services.AddTransient<IAuthenticationManager, AuthenticationManager>();
+            services.AddTransient<ITokenManager, TokenManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

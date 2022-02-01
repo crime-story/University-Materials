@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -9,7 +10,8 @@ using proiectASP.Entities;
 
 namespace proiectASP.Contexts
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<User, Role, string, IdentityUserClaim<string>,
+        UserRole, IdentityUserLogin<string>, IdentityRoleClaim<string>, IdentityUserToken<string>>
     {
         // Relation 1 - 1 for Location <-> Restaurant
         public DbSet<Location> Locations { get; set; }
@@ -31,6 +33,8 @@ namespace proiectASP.Contexts
         */
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            base.OnModelCreating(builder);
+
             builder.Entity<Location>()
                 .HasOne(a => a.Restaurant)
                 .WithOne(aa => aa.Location);

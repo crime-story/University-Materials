@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using proiectASP.Managers;
 using proiectASP.Models;
 
@@ -21,6 +22,7 @@ namespace proiectASP.Controllers
         }
 
         [HttpGet("getAll")]
+        [Authorize(Policy = "BasicUser")]
         public async Task<IActionResult> GetProducts()
         {
             var products = manager.GetProducts();
@@ -29,6 +31,7 @@ namespace proiectASP.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Policy = "BasicUser")]
         public async Task<IActionResult> GetProductById([FromRoute] string id)
         {
             var product = manager.GetProductById(id);
@@ -37,6 +40,7 @@ namespace proiectASP.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> Create([FromBody] ProductModel productModel)
         {
             manager.Create(productModel);
@@ -45,6 +49,7 @@ namespace proiectASP.Controllers
         }
 
         [HttpPut]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> Update([FromBody] ProductModel productModel)
         {
             manager.Update(productModel);
@@ -53,6 +58,7 @@ namespace proiectASP.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> Delete([FromRoute] string id)
         {
             manager.Delete(id);

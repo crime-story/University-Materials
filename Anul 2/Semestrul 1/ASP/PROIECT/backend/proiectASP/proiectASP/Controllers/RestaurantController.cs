@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using proiectASP.Models;
 
 namespace proiectASP.Controllers
@@ -28,6 +29,7 @@ namespace proiectASP.Controllers
         }
 
         [HttpGet("GetWithEmployees")]
+        [Authorize(Policy = "BasicUser")]
         public async Task<IActionResult> GetRestaurantsWithEmployees()
         {
             var restaurantsWithEmployees = manager.GetRestaurantsWithEmployees();
@@ -36,6 +38,7 @@ namespace proiectASP.Controllers
         }
         
         [HttpGet("{id}")]
+        [Authorize(Policy = "BasicUser")]
         public async Task<IActionResult> GetRestaurantsById([FromRoute] string id)
         {
             var restaurant = manager.GetRestaurantById(id);
@@ -44,6 +47,7 @@ namespace proiectASP.Controllers
         }
 
         [HttpGet("filter")]
+        [Authorize(Policy = "BasicUser")]
         public async Task<IActionResult> GetRestaurantsByNumberOfEmployees([FromRoute] int minEmployees, int maxEmployees)
         {
             var restaurantsByMenuPrice = manager.GetRestaurantByNumberOfEmployees(minEmployees, maxEmployees);
@@ -52,6 +56,7 @@ namespace proiectASP.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> Create([FromBody] RestaurantModel restaurantModel)
         {
             manager.Create(restaurantModel);
@@ -60,6 +65,7 @@ namespace proiectASP.Controllers
         }
 
         [HttpPut]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> Update([FromBody] RestaurantModel restaurantModel)
         {
             manager.Update(restaurantModel);
@@ -68,6 +74,7 @@ namespace proiectASP.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> Delete([FromRoute] string id)
         {
             manager.Delete(id);
