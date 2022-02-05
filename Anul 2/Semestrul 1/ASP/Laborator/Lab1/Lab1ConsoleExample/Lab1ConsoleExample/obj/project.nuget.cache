@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "GUpN1jdoH1U0DEHL+t0R4onzqonAAUbSxaa/lQykf+RQs11ALWAZChy/mLyFqRIW6Ge5zvmwF2mpuMRE1fdKkg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\lucia\\source\\repos\\Lab1ConsoleExample\\Lab1ConsoleExample\\Lab1ConsoleExample.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\lucia\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "RYMiMW2mpmm7QWH3czwdub97dJEPR/X2yxZp0dAh5k7b6866PQvSXLt9hNzWwDvB+Fd1w2xBsSMxOZuloBSIzA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\lucia\\source\\repos\\TourOfHeroes\\TourOfHeroes\\TourOfHeroes.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\lucia\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\lucia\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\lucia\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
+    "C:\\Users\\lucia\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
+    "C:\\Users\\lucia\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",
+    "C:\\Users\\lucia\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.6.3\\swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512"
+  ],
+  "logs": []
+}
