@@ -114,6 +114,8 @@ class Elev:
 def porneste_simulare(lists_of_activities):
     numar_elevi = int(input("Introduceti numarul de elevi: "))
     numar_ore =  int(input("Introduceti numarul de ore pentru elevi: "))
+    copy = numar_ore
+    
     for i in range(numar_elevi):
         elev = Elev()
         ora_start = 9
@@ -167,6 +169,7 @@ def porneste_simulare(lists_of_activities):
         if word == "gata":
             break
         elif word == "continua":
+            numar_ore = copy
             continue
 
 
