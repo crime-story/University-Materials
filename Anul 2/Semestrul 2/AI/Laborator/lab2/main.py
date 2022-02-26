@@ -1,7 +1,7 @@
-import cProfile
-from queue import Queue
-import numpy as np
-from collections import Counter
+import cProfile, random
+from queue import Queue, LifoQueue
+from collections import Counter, deque
+
 
 """
 ncalls: numărul de apeluri
@@ -97,24 +97,24 @@ class Graph:  # graful problemei
 ##############################################################################################
 
 # pozitia i din vectorul de noduri da si numarul liniei/coloanei corespunzatoare din matricea de adiacenta
-noduri = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]
-
-m = [
-    [0, 1, 0, 1, 1, 0, 0, 0, 0, 0],
-    [1, 0, 1, 0, 0, 1, 0, 0, 0, 0],
-    [0, 1, 0, 0, 0, 1, 0, 1, 0, 0],
-    [1, 0, 0, 0, 0, 0, 1, 0, 0, 0],
-    [1, 0, 0, 0, 0, 0, 0, 1, 0, 0],
-    [0, 1, 1, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-    [0, 0, 1, 0, 1, 0, 0, 0, 1, 1],
-    [0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 1, 0, 0]
-]
-
-start = "a"
-scopuri = ["f", "j"]
-gr = Graph(noduri, m, start, scopuri)
+# noduri = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]
+#
+# m = [
+#     [0, 1, 0, 1, 1, 0, 0, 0, 0, 0],
+#     [1, 0, 1, 0, 0, 1, 0, 0, 0, 0],
+#     [0, 1, 0, 0, 0, 1, 0, 1, 0, 0],
+#     [1, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+#     [1, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+#     [0, 1, 1, 0, 0, 0, 0, 0, 0, 0],
+#     [0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+#     [0, 0, 1, 0, 1, 0, 0, 0, 1, 1],
+#     [0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+#     [0, 0, 0, 0, 0, 0, 0, 1, 0, 0]
+# ]
+#
+# start = "a"
+# scopuri = ["f", "j"]
+# gr = Graph(noduri, m, start, scopuri)
 
 
 #### algoritm BF
@@ -204,6 +204,83 @@ def df(nodCurent, nrSolutiiCautate):
 # df(a)->df(b)->df(c)
 #############################################
 
+def dfs_nerecursiv_lista(nodCurent, nrSolutiiCautate):
+    stiva = []
+    vizitat = []
+    stiva.append(nodCurent)
+    while len(stiva) > 0:
+        print("Stiva actuala: " + "->".join(stiva[-1].obtineDrum()))
+        for i in gr.genereazaSuccesori(stiva[-1]):
+            if i.info not in vizitat:
+                vizitat.append(i.info)
+                stiva.append(i)
+                break # se da break cand se adauga un nod nou
+        else: # daca n-am gasit niciun succesor
+            if gr.testeaza_scop(stiva[-1]):
+                print("Solutie: ", end="")
+                stiva[-1].afisDrum()
+                print("\n----------------\n")
+                # input()
+                nrSolutiiCautate -= 1
+                if nrSolutiiCautate == 0:
+                    return nrSolutiiCautate
+            while len(vizitat) > 0 and vizitat[-1] != stiva[-1].info:
+                # scoate din vizitat copiii nodului pe care il scoatem acum, doar ca nu si nodul actual
+                # pentru ca e la randul lui copilul altui nod
+                vizitat.pop()
+            stiva.pop()
+
+def dfs_nerecursiv_deque(nodCurent, nrSolutiiCautate):
+    stiva = deque()
+    vizitat = []
+    stiva.append(nodCurent)
+    while len(stiva) > 0:
+        print("Stiva actuala: " + "->".join(stiva[-1].obtineDrum()))
+        for i in gr.genereazaSuccesori(stiva[-1]):
+            if i.info not in vizitat:
+                vizitat.append(i.info)
+                stiva.append(i)
+                break
+        else: # daca n-am gasit niciun succesor
+            if gr.testeaza_scop(stiva[-1]):
+                print("Solutie: ", end="")
+                stiva[-1].afisDrum()
+                print("\n----------------\n")
+                # input()
+                nrSolutiiCautate -= 1
+                if nrSolutiiCautate == 0:
+                    return nrSolutiiCautate
+            while len(vizitat) > 0 and vizitat[-1] != stiva[-1].info:
+                # scoate din vizitat copiii nodului pe care il scoatem acum, doar ca nu si nodul actual
+                # pentru ca e la randul lui copilul altui nod
+                vizitat.pop()
+            stiva.pop()
+
+def dfs_nerecursiv_lifo_queue(nodCurent, nrSolutiiCautate):
+    stiva = LifoQueue()
+    vizitat = []
+    stiva.put(nodCurent)
+    while not stiva.empty():
+        print("Stiva actuala: " + "->".join(stiva.queue[-1].obtineDrum()))
+        for i in gr.genereazaSuccesori(stiva.queue[-1]):
+            if i.info not in vizitat:
+                vizitat.append(i.info)
+                stiva.put(i)
+                break
+        else: # daca n-am gasit niciun succesor
+            if gr.testeaza_scop(stiva.queue[-1]):
+                print("Solutie: ", end="")
+                stiva.queue[-1].afisDrum()
+                print("\n----------------\n")
+                # input()
+                nrSolutiiCautate -= 1
+                if nrSolutiiCautate == 0:
+                    return nrSolutiiCautate
+            while len(vizitat) > 0 and vizitat[-1] != stiva.queue[-1].info:
+                # scoate din vizitat copiii nodului pe care il scoatem acum, doar ca nu si nodul actual
+                # pentru ca e la randul lui copilul altui nod
+                vizitat.pop()
+            stiva.get()
 
 def dfi(nodCurent, adancime, nrSolutiiCautate, dict):
     print("Stiva actuala: " + "->".join(nodCurent.obtineDrum()))
@@ -212,12 +289,13 @@ def dfi(nodCurent, adancime, nrSolutiiCautate, dict):
         print("Solutie: ", end="")
         nodCurent.afisDrum()
         print("\n----------------\n")
-        input()
+        # input()
         nrSolutiiCautate -= 1
         if nrSolutiiCautate == 0:
             return nrSolutiiCautate
     if adancime > 1:
         lSuccesori = gr.genereazaSuccesori(nodCurent)
+
         print("Nodul expandat:" + str(nodCurent))
         for sc in lSuccesori:
             if nrSolutiiCautate != 0:
@@ -231,9 +309,13 @@ def depth_first_iterativ(gr, nrSolutiiCautate=1):
     dict = []
     # dict = [0] * gr.nrNoduri
     for i in range(1, gr.nrNoduri + 1):
-
         if nrSolutiiCautate == 0:
-            print(Counter(dict))
+            var = Counter(dict)
+            for j in noduri:
+                if j not in dict:
+                    var[j] = 0
+            print(var)
+
             return
 
         print("**************\nAdancime maxima: ", i)
@@ -253,19 +335,55 @@ Mai jos puteti comenta si decomenta apelurile catre algoritmi. Pentru moment e a
 
 # depth_first(gr, nrSolutiiCautate=5)
 
+
+# dfs_nerecursiv_lista(NodParcurgere(gr.noduri.index(gr.start), gr.start, None), nrSolutiiCautate=5)
+# cProfile.run("dfs_nerecursiv_lista(NodParcurgere(gr.noduri.index(gr.start), gr.start, None), nrSolutiiCautate=5)")
+
+# dfs_nerecursiv_deque(NodParcurgere(gr.noduri.index(gr.start), gr.start, None), nrSolutiiCautate=5)
+# cProfile.run("dfs_nerecursiv_deque(NodParcurgere(gr.noduri.index(gr.start), gr.start, None), nrSolutiiCautate=5)")
+
+# dfs_nerecursiv_lifo_queue(NodParcurgere(gr.noduri.index(gr.start), gr.start, None), nrSolutiiCautate=5)
+# cProfile.run("dfs_nerecursiv_lifo_queue(NodParcurgere(gr.noduri.index(gr.start), gr.start, None), nrSolutiiCautate=5)")
+
+
+
 # cProfile.run("depth_first(gr, nrSolutiiCautate=5)")
 ##################################################
 
 # depth_first_iterativ(gr, nrSolutiiCautate=4)
 
-# n = 5
-# nodes = ["a", "b", "c", "d", "e"]
-# # for i in range(n):
-# #     node = input()
-# #     nodes.append(node)
-# adjacency_matrix = np.random.randint(0, 2, (n, n))
-# print(adjacency_matrix)
-# start2 = nodes[0]
-# scopuri2 = ["f", "j"]
-# gr2 = Graph(nodes, adjacency_matrix, start2, scopuri2)
-# DFS_iterativ(gr2, nrSolutiiCautate=5)
+n = 20
+nodes = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t"]
+
+adjacency_matrix = [[0 for i in range(n)] for i in range(n)]
+m = 200
+
+for i in range(m):
+    a = random.randint(0,n-1)
+    b = random.randint(0,n-1)
+    adjacency_matrix[a][b] = adjacency_matrix[b][a] = 1
+
+print("Matricea de adiacenta:")
+for i in range(n):
+    print(adjacency_matrix[i])
+
+print("\nNoduri scope:")
+
+scopes = []
+
+for i in range(5):
+    scope = random.choice(nodes)
+    scopes.append(scope)
+
+print(scopes, "\n")
+
+gr = Graph(nodes, adjacency_matrix, "a", scopes)
+
+# dfs_nerecursiv_lista(NodParcurgere(gr.noduri.index(gr.start), gr.start, None), nrSolutiiCautate=5)
+# cProfile.run("dfs_nerecursiv_lista(NodParcurgere(gr.noduri.index(gr.start), gr.start, None), nrSolutiiCautate=5)")
+
+# dfs_nerecursiv_deque(NodParcurgere(gr.noduri.index(gr.start), gr.start, None), nrSolutiiCautate=5)
+# cProfile.run("dfs_nerecursiv_deque(NodParcurgere(gr.noduri.index(gr.start), gr.start, None), nrSolutiiCautate=5)")
+
+# dfs_nerecursiv_lifo_queue(NodParcurgere(gr.noduri.index(gr.start), gr.start, None), nrSolutiiCautate=5)
+# cProfile.run("dfs_nerecursiv_lifo_queue(NodParcurgere(gr.noduri.index(gr.start), gr.start, None), nrSolutiiCautate=5)")
