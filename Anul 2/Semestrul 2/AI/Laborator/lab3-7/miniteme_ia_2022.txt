@@ -1,0 +1,107 @@
+
+Laborator 2:
+
+1. (Lab:2, Acasa:1) Îmbunătățire BF astfel incat sa afișeze un drum-solutie chiar in momentul in care se adauga nodul scop in coada (sa nu mai astepte sa ajungă să fie primul in coada). 
+
+2. (Lab:3, Acasa:1) Implementati BF folosind un obiect de tip Queue din Python si afisati toate solutiile. Scoateti apelurile de tip input din programul dat la laborator. Comparati cu cProfile programul vostru  si cel dat la laborator. Ce structura e mai eficienta? Observatie: daca diferentele de timp sunt prea mici, mariti numarul de noduri si de muchii in matricea de adiacenta.
+
+3.(Lab:2, Acasa:1) Sa se afiseze la DF la fiecare expandare nodul expandat si stiva actuala si textul "se intoarce ->" pentru fiecare eliminare de nod din stiva. 
+De exemplu, fragment din afisare:
+Stiva: a->b->c
+Se expandeaza c
+Stiva: a->b->c->f
+Solutie: a->b->c->f
+
+Se intoarce ->
+Se expandeaza c
+
+Stiva: a->b->c->h
+
+
+
+4.(Lab:4, Acasa:2) Generati un graf aleator cu un numar mai mare de noduri (dar nu foarte mare), de exemplu N=20 noduri si un numar mare (dar nu foarte mare) de muchii/arce, de exemplu M=200. Nodul 0 va fi nodul start. Alegeti aleator S noduri scop (de exemplu S=5).
+Implementati algorimul DF in mod nerecursiv folosind o stiva. Folositi in implementare:
+a) o lista pe post de stiva
+b) deque din modulul collections
+c) LifoQueue din modulul queue
+-eventual inca un mod propriu de rezolvare
+
+Folositi cProfiler pentru a analiza performanta pentru cele 3 moduri de implementare, impreuna cu cel de la laborator. Care este cel mai eficient?
+
+5. (Lab:2, Acasa:1) La afisarea solutiei pt DFI, afisati pentru fiecare nod din graf de cate ori a fost extins in total (practic din cate iteratii a facut parte). Puteti folosi un dictionar sau Counter.
+-----------------------------------------
+
+Laborator 3:
+
+6. (Lab:2, Acasa:1) La A*: schimbati algoritmul astfel incat să avem pentru fiecare nod un cost asociat, pus intr-un vector de costuri, de exemplu, costuri=[10,20,5, ... etc.]. Costul de pe pozitia i corespunde nodului de pe pozitia i din lista de noduri. Nu vom mai avea o matrice de costuri pentru muchii, deoarece costul se aplica cand intram intr-un nod (toate arcele care intra in nodul i au asociat costul lui i, de pe pozitia i, din vectorul de noduri). De exemplu, daca nodul c are costul 8, atunci a->c, e->c au ambele asociate costul 8.
+
+7. (Lab:1, Acasa:1) Pentru A*, la adăugarea în coadă, realizați și ordonarea dupa g, in ordine descrescatoare, pentru f-uri egale
+
+8. (Lab:3, Acasa:1) Implementare A* cu o structura de tip PriorityQueue (din modulul queue: https://docs.python.org/3/library/queue.html). Pentru ca această structură să funcționeze, obiectele din coadă au nevoie de o relație de ordine definită pentru ele, deci definiți un minim de operatori (__lt__, __eq__). Ordonarea trebuie făcută crescător după f, iar, pentru f-uri egale, descrescător după g. 
+Comparați cu cProfiler performanța funcției voastre față de cea dată în laborator.
+
+9. (Lab:2, Acasa:1) Pentru A* optimizat. Afisati la fiecare inlocuire in cozile open, respectiv closed (cand nodul e sters din closed si adaugat succesorul in open), ce nod a fost inlocuit si de catre cine. Afisati la final, dupa solutie, numarul de noduri inlocuite in open si numarul de noduri inlocuite in closed.
+
+10. (Lab:4, Acasa:2) Implementați A* optimizat (cel cu listele open si closed) folosind pentru coadă o structura de tip PriorityQueue (pe baza lui heapq, așa cum e indicat la: https://programmathically.com/priority-queue-and-heapq-in-python/). Avem nevoie de propria implementare deoarece dorim sa înlocuim nodurile cu aceeași informație din listă dar cu cost mai mare (ștergerea și înlocuirea cu succesorul de cost mai mic e necesară pentru a nu ajunge coada prea mare în memorie, plină cu noduri inutile). Pentru ca această structură să funcționeze, obiectele din coadă au nevoie de o relație de ordine definită pentru ele, deci definiți un minim de operatori (__lt__, __eq__). Ordonarea trebuie făcută crescător după f, iar, pentru f-uri egale, descrescător după g.
+Pentru lista closed în care trebuie să găsiți rapid un nod după informație, folosiți un dicționar având drept chei chiar informațiile (sau un id) pentru noduri. 
+Comparați cu cProfiler performanța funcției voastre față de cea dată în laborator.
+
+11. (Lab:2, Acasa:1) La afisarea solutiei pt A* iterativ, afisati timpul pana la obtinerea unei solutii (calculat de la inceputul programului, deci pentru soluția 2 va fi timpul de aflare al soluției 1 + timpul care a trecut între afișările soluției 1 și soluției 2) si pentru fiecare nod parcurs de cate ori a fost extins in total (practic din cate iteratii a facut parte) (ca la DFI).
+
+
+
+======================================================
+12. (Lab:2, Acasa:1) Modificati euristicile admisibile 1 si 2 pentru problema blocurilor, astfel incat sa ia in considerare si costul blocului de mutat (cel care nu e la locul lui) - adica pentru un bloc care nu e bine plasat sa se adune costului lui efetiv la h, nu costul minim 1.
+
+13. (Lab:3, Acasa:2) Să se modifice problema blocurilor astfel încât să consideram ca o stare este scop dacă
+ toate stivele din ea sunt de înălțimi egale (indiferent ce avem pe stive). Se va implemeta și o funcție care
+ verifică dacă din starea inițială e posibil să ajungem la o stare finală. Modificați și euristica în mod corespunzător
+  pentru noul criteriu de stare finală.
+
+14. (Lab:3, Acasa:2) Să se modifice problema blocurilor astfel încât să consideram ca o stare este scop
+daca drumul până la acea stare trece prin toate starile precizate dupa "stari_finale" o singura data
+(nu neapărat în ordinea dată în fișier), și se termina cu o stare scop (pentru a testa problema puneți
+întâi ca stări finale 2-3 stări nu foarte depărtate între ele). Gasiti o euristica admisibila
+(diferita de cele date deja) potrivită pentru problema blocurilor modificată în modul precizat.
+În cazul în care timpul de execuție este mare, revedeți euristica și rulați programul și cu cProfiler
+pentru a identifica funcțiile neperformante.
+
+15. (Lab:4, Acasa:3)  Pentru problema blocurilor data la laborator, scrieti o functie care verifica daca fisierul de intrare dat la problema blocurilor este valid (ofera toate informatiile) si afisati un mesaj de eroare in caz ca nu, oprind apoi programul. Daca fisierul este valid ca structura, verificati daca din starea initiala data se poate ajunge la starile finale precizate. Daca nu se poate ajunge, afisati mesajul "Problema nu are solutii".
+Cazuri in care nu se poate ajunge la starile finale: 
+- toate starile finale au alta mutime de blocuri decat cea initiala
+- toate starile finale au alt numar de stive decat starea initiala
+- starea intiala si cele finale au doar 1 stiva si nicio stare finala nu e egala cu cea initiala
+- starea initiala are doua stive si nicio stare finala nu are proprietatea ca are doar 2 stive si concatenand in varful stivei 1 stiva 2 inversata obtinem acelasi rezultat pe care l-am obtine si pentru starea initiala facand aceeasi operatie. De exemplu, starea initiala= [["a","b","c"], ["e","d"]], si starea finala [["a"], ["e","d","c","b"]] sunt ok, dar starea finala [["a","c","b"], ["e","d"]] nu este ok.
+
+
+16. (Lab:4, Acasa:2) Să se modifice problema canibalilor si misionarilor considerând un nou tip de stare scop.
+Se considera ca scopul canibalilor si misionarilor este doar sa viziteze fiecare malul drept,
+sa stea minim o zi (o zi=un drum cu barca dus-intors) si apoi sa se intoarca pe acelasi mal.
+(Este necesară o rezolvare completa cu modificarea funcției de generare de succesori, a celei
+de testare a scopului și a celei de calculare a euristicii).
+
+
+17. (Lab:4, Acasa:2) Modificați problema canibalilor și misionarilor astfel încât scopul să fie doar
+sa mutam misionarii pe un mal rămânând toti canibalii pe celălalt? Modificati testul pentru starea scop si euristica.
+
+
+18. (Lab:2, Acasa:1) Pentru problema 8-puzzle implementați o euristica in care numărați câte plăcuțe nu sunt la locul lor
+(deoarece pentru fiecare astfel de plăcuță avem măcar o mutare de realizat). Comparați timpul de rulare
+pentru această euristică cu timpul de rulare pentru euristica din laborator.
+
+19. (Lab:1, Acasa:1) Implementați o euristică neadmisibilă pentru 8-puzzle.
+
+20 -
+
+
+----------- Următoarele au deadline până pe 3 aprilie; se vor prezenta odată cu tema 1 
+
+
+21. (Lab:1, Acasa:1) Calculati estimarea scorului (pentru x si 0) folosind varianta cu ponderi pe pozitiile ocupate.
+De exemplu, pozitia din mijloc ar avea ponderea cea mai mare fiindca atingi o line, coloana si cele 2 diagonale.
+Dati ponderi pentru cele 9 poziti si calculati scorul ca fiind suma ponderilor pentru
+locurile ocupate de MAX - suma ponderilor pentru locurile ocupate de MIN
+
+22. (Lab:2, Acasa:1) Sa se implementeze varianta misere a jocului x si 0 (pierde primul jucator care formeaza o linie, coloana sau diagonala de 3 simboluri identice). Se vor modifica atât funcția final() cât și estimeaza_scor(). 
+
+23. (Lab:2, Acasa:1) Marcati pe tabla de joc (pe interfata grafica) cu o alta culoare celulele pentru configuratia castigatoare (de exemplu, daca s-a format o configuratie cu 3 de x, celule in care se afla valorile x au background diferit de alb, de exemplu verde)
