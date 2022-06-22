@@ -1,0 +1,320 @@
+Solution:
+Step 1:
+mihai
+
+The route of the ticket:
+mihai
+
+The cost of the road (f = g + h): 1
+Real Cost (g): 0
+Estimate Cost (h): True
+Length of the road: 1
+Time: 0.0s
+
+----------------
+The total number of nodes calculated: 1
+The maximum number of nodes in the memory: 0
+
+
+BFS DONE!
+
+Solution:
+Step 1:
+mihai
+
+The route of the ticket:
+mihai
+
+The cost of the road (f = g + h): 1
+Real Cost (g): 0
+Estimate Cost (h): True
+Length of the road: 1
+Time: 0.0s
+
+----------------
+The total number of nodes calculated: 1
+The maximum number of nodes in the memory: 0
+The total number of nodes calculated: 1
+The maximum number of nodes in the memory: 0
+
+
+DFS DONE!
+
+Solution:
+Step 1:
+mihai
+
+The route of the ticket:
+mihai
+
+The cost of the road (f = g + h): 1
+Real Cost (g): 0
+Estimate Cost (h): True
+Length of the road: 1
+Time: 0.0s
+
+----------------
+The total number of nodes calculated: 1
+The maximum number of nodes in the memory: 0
+The total number of nodes calculated: 1
+The maximum number of nodes in the memory: 0
+
+
+DFI DONE!
+
+Solution:
+Step 1:
+mihai
+
+The route of the ticket:
+mihai
+
+The cost of the road (f = g + h): 1
+Real Cost (g): 0
+Estimate Cost (h): True
+Length of the road: 1
+Time: 0.0s
+
+----------------
+The total number of nodes calculated: 1
+The maximum number of nodes in the memory: 0
+The total number of nodes calculated: 1
+The maximum number of nodes in the memory: 0
+
+
+A STAR WITH ORDINARY HEURISTIC DONE!
+
+Solution:
+Step 1:
+mihai
+
+The route of the ticket:
+mihai
+
+The cost of the road (f = g + h): 0
+Real Cost (g): 0
+Estimate Cost (h): 0
+Length of the road: 1
+Time: 0.0s
+
+----------------
+The total number of nodes calculated: 1
+The maximum number of nodes in the memory: 0
+The total number of nodes calculated: 1
+The maximum number of nodes in the memory: 0
+
+
+A STAR WITH MANHATTAN HEURISTIC DONE!
+
+Solution:
+Step 1:
+mihai
+
+The route of the ticket:
+mihai
+
+The cost of the road (f = g + h): 0.0
+Real Cost (g): 0
+Estimate Cost (h): 0.0
+Length of the road: 1
+Time: 0.0s
+
+----------------
+The total number of nodes calculated: 1
+The maximum number of nodes in the memory: 0
+The total number of nodes calculated: 1
+The maximum number of nodes in the memory: 0
+
+
+A STAR WITH EUCLIDIAN HEURISTIC DONE!
+
+Solution:
+Step 1:
+mihai
+
+The route of the ticket:
+mihai
+
+The cost of the road (f = g + h): 1200
+Real Cost (g): 0
+Estimate Cost (h): 1200
+Length of the road: 1
+Time: 0.0s
+
+----------------
+The total number of nodes calculated: 1
+The maximum number of nodes in the memory: 0
+The total number of nodes calculated: 1
+The maximum number of nodes in the memory: 0
+
+
+A STAR WITH UNACCEPTABLE HEURISTIC DONE!
+
+Solution:
+Step 1:
+mihai
+
+The route of the ticket:
+mihai
+
+The cost of the road (f = g + h): 1
+Real Cost (g): 0
+Estimate Cost (h): True
+Length of the road: 1
+Time: 0.0s
+
+----------------
+The total number of nodes calculated: 1
+The maximum number of nodes in the memory: 0
+The total number of nodes calculated: 1
+The maximum number of nodes in the memory: 0
+
+
+A STAR OPT WITH ORDINARY HEURISTIC DONE!
+
+Solution:
+Step 1:
+mihai
+
+The route of the ticket:
+mihai
+
+The cost of the road (f = g + h): 0
+Real Cost (g): 0
+Estimate Cost (h): 0
+Length of the road: 1
+Time: 0.0s
+
+----------------
+The total number of nodes calculated: 1
+The maximum number of nodes in the memory: 0
+The total number of nodes calculated: 1
+The maximum number of nodes in the memory: 0
+
+
+A STAR OPT WITH MANHATTAN HEURISTIC DONE!
+
+Solution:
+Step 1:
+mihai
+
+The route of the ticket:
+mihai
+
+The cost of the road (f = g + h): 0.0
+Real Cost (g): 0
+Estimate Cost (h): 0.0
+Length of the road: 1
+Time: 0.0s
+
+----------------
+The total number of nodes calculated: 1
+The maximum number of nodes in the memory: 0
+The total number of nodes calculated: 1
+The maximum number of nodes in the memory: 0
+
+
+A STAR OPT WITH EUCLIDIAN HEURISTIC DONE!
+
+Solution:
+Step 1:
+mihai
+
+The route of the ticket:
+mihai
+
+The cost of the road (f = g + h): 1200
+Real Cost (g): 0
+Estimate Cost (h): 1200
+Length of the road: 1
+Time: 0.0s
+
+----------------
+The total number of nodes calculated: 1
+The maximum number of nodes in the memory: 0
+The total number of nodes calculated: 1
+The maximum number of nodes in the memory: 0
+
+
+A STAR OPT WITH UNACCEPTABLE HEURISTIC DONE!
+
+Solution:
+Step 1:
+mihai
+
+The route of the ticket:
+mihai
+
+The cost of the road (f = g + h): 1
+Real Cost (g): 0
+Estimate Cost (h): True
+Length of the road: 1
+Time: 0.0s
+
+----------------
+The total number of nodes calculated: 1
+The maximum number of nodes in the memory: 0
+
+
+IDA STAR WITH ORDINARY HEURISTIC DONE!
+
+Solution:
+Step 1:
+mihai
+
+The route of the ticket:
+mihai
+
+The cost of the road (f = g + h): 0
+Real Cost (g): 0
+Estimate Cost (h): 0
+Length of the road: 1
+Time: 0.0s
+
+----------------
+The total number of nodes calculated: 1
+The maximum number of nodes in the memory: 0
+
+
+IDA STAR WITH MANHATTAN HEURISTIC DONE!
+
+Solution:
+Step 1:
+mihai
+
+The route of the ticket:
+mihai
+
+The cost of the road (f = g + h): 0.0
+Real Cost (g): 0
+Estimate Cost (h): 0.0
+Length of the road: 1
+Time: 0.0s
+
+----------------
+The total number of nodes calculated: 1
+The maximum number of nodes in the memory: 0
+
+
+IDA STAR WITH EUCLIDIAN HEURISTIC DONE!
+
+Solution:
+Step 1:
+mihai
+
+The route of the ticket:
+mihai
+
+The cost of the road (f = g + h): 1200
+Real Cost (g): 0
+Estimate Cost (h): 1200
+Length of the road: 1
+Time: 0.0s
+
+----------------
+The total number of nodes calculated: 1
+The maximum number of nodes in the memory: 0
+
+
+IDA STAR WITH UNACCEPTABLE HEURISTIC DONE!
+

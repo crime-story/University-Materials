@@ -1,0 +1,8 @@
+a c
+b d
+stari_finale
+a
+b d c
+---
+#
+a b d c a

@@ -1,0 +1,998 @@
+Solution:
+Step 1:
+ionel
+
+Step 2:
+alina
+
+Step 3:
+diana
+
+Step 4:
+costin
+
+Step 5:
+simona
+
+Step 6:
+razvan
+
+Step 7:
+andrei
+
+Step 8:
+alex
+
+Step 9:
+2
+
+Step 10:
+8
+
+Step 11:
+9
+
+Step 12:
+10
+
+Step 13:
+11
+
+Step 14:
+5
+
+Step 15:
+maria
+
+Step 16:
+gabi
+
+Step 17:
+dorel
+
+Step 18:
+elena
+
+Step 19:
+gigel
+
+Step 20:
+tamara
+
+Step 21:
+dragos
+
+The route of the ticket:
+ionel > alina V diana V costin V simona V razvan V andrei V alex V 2 V 8 >> 9 > 10 >> 11 ^ 5 ^ maria > gabi ^ dorel ^ elena < gigel ^ tamara > dragos
+
+The cost of the road (f = g + h): 17
+Real Cost (g): 17
+Estimate Cost (h): False
+Length of the road: 21
+Time: 20.96s
+
+----------------
+The total number of nodes calculated: 1795887
+The maximum number of nodes in the memory: 1096865
+
+
+BFS DONE!
+
+Solution:
+Step 1:
+ionel
+
+Step 2:
+alina
+
+Step 3:
+diana
+
+Step 4:
+costin
+
+Step 5:
+simona
+
+Step 6:
+razvan
+
+Step 7:
+andrei
+
+Step 8:
+alex
+
+Step 9:
+2
+
+Step 10:
+8
+
+Step 11:
+9
+
+Step 12:
+3
+
+Step 13:
+ela
+
+Step 14:
+oana
+
+Step 15:
+radu
+
+Step 16:
+dana
+
+Step 17:
+anda
+
+Step 18:
+bogdan
+
+Step 19:
+cristian
+
+Step 20:
+patricia
+
+Step 21:
+victor
+
+Step 22:
+nicoleta
+
+Step 23:
+4
+
+Step 24:
+10
+
+Step 25:
+11
+
+Step 26:
+5
+
+Step 27:
+maria
+
+Step 28:
+gabi
+
+Step 29:
+dorel
+
+Step 30:
+elena
+
+Step 31:
+gigel
+
+Step 32:
+tamara
+
+Step 33:
+dora
+
+Step 34:
+nadia
+
+Step 35:
+carmen
+
+Step 36:
+monica
+
+Step 37:
+mihai
+
+Step 38:
+marin
+
+Step 39:
+dragos
+
+The route of the ticket:
+ionel > alina V diana V costin V simona V razvan V andrei V alex V 2 V 8 >> 9 ^ 3 ^ ela ^ oana ^ radu ^ dana ^ anda > bogdan V cristian V patricia V victor V nicoleta V 4 V 10 >> 11 ^ 5 ^ maria > gabi ^ dorel ^ elena < gigel ^ tamara ^ dora ^ nadia ^ carmen > monica V mihai V marin V dragos
+
+The cost of the road (f = g + h): 35
+Real Cost (g): 35
+Estimate Cost (h): False
+Length of the road: 39
+Time: 0.001s
+
+----------------
+The total number of nodes calculated: 101
+The maximum number of nodes in the memory: 38
+
+
+DFS DONE!
+
+Solution:
+Step 1:
+ionel
+
+Step 2:
+alina
+
+Step 3:
+diana
+
+Step 4:
+costin
+
+Step 5:
+simona
+
+Step 6:
+razvan
+
+Step 7:
+andrei
+
+Step 8:
+alex
+
+Step 9:
+2
+
+Step 10:
+8
+
+Step 11:
+9
+
+Step 12:
+10
+
+Step 13:
+11
+
+Step 14:
+5
+
+Step 15:
+maria
+
+Step 16:
+gabi
+
+Step 17:
+dorel
+
+Step 18:
+elena
+
+Step 19:
+gigel
+
+Step 20:
+tamara
+
+Step 21:
+dragos
+
+The route of the ticket:
+ionel > alina V diana V costin V simona V razvan V andrei V alex V 2 V 8 >> 9 > 10 >> 11 ^ 5 ^ maria > gabi ^ dorel ^ elena < gigel ^ tamara > dragos
+
+The cost of the road (f = g + h): 17
+Real Cost (g): 17
+Estimate Cost (h): False
+Length of the road: 21
+Time: 26.2698s
+
+----------------
+The total number of nodes calculated: 2979438
+The maximum number of nodes in the memory: 20
+
+
+DFI DONE!
+
+TIMEOUT!!!
+The total number of nodes calculated: 5785486
+The maximum number of nodes in the memory: 3364216
+
+
+A STAR WITH ORDINARY HEURISTIC DONE!
+
+Solution:
+Step 1:
+ionel
+
+Step 2:
+alina
+
+Step 3:
+diana
+
+Step 4:
+costin
+
+Step 5:
+simona
+
+Step 6:
+razvan
+
+Step 7:
+andrei
+
+Step 8:
+alex
+
+Step 9:
+viorel
+
+Step 10:
+1
+
+Step 11:
+2
+
+Step 12:
+8
+
+Step 13:
+9
+
+Step 14:
+10
+
+Step 15:
+11
+
+Step 16:
+12
+
+Step 17:
+6
+
+Step 18:
+gabi
+
+Step 19:
+dorel
+
+Step 20:
+elena
+
+Step 21:
+gigel
+
+Step 22:
+tamara
+
+Step 23:
+dragos
+
+The route of the ticket:
+ionel > alina V diana V costin V simona V razvan V andrei V alex < viorel V 1 > 2 V 8 >> 9 > 10 >> 11 > 12 ^ 6 ^ gabi ^ dorel ^ elena < gigel ^ tamara > dragos
+
+The cost of the road (f = g + h): 17
+Real Cost (g): 17
+Estimate Cost (h): 0
+Length of the road: 23
+Time: 1.3643s
+
+----------------
+The total number of nodes calculated: 80622
+The maximum number of nodes in the memory: 40524
+
+
+A STAR WITH MANHATTAN HEURISTIC DONE!
+
+Solution:
+Step 1:
+ionel
+
+Step 2:
+alina
+
+Step 3:
+diana
+
+Step 4:
+costin
+
+Step 5:
+simona
+
+Step 6:
+luiza
+
+Step 7:
+mihnea
+
+Step 8:
+razvan
+
+Step 9:
+andrei
+
+Step 10:
+alex
+
+Step 11:
+2
+
+Step 12:
+1
+
+Step 13:
+7
+
+Step 14:
+8
+
+Step 15:
+9
+
+Step 16:
+10
+
+Step 17:
+11
+
+Step 18:
+12
+
+Step 19:
+6
+
+Step 20:
+gabi
+
+Step 21:
+dorel
+
+Step 22:
+elena
+
+Step 23:
+gigel
+
+Step 24:
+tamara
+
+Step 25:
+dragos
+
+The route of the ticket:
+ionel > alina V diana V costin V simona < luiza V mihnea > razvan V andrei V alex V 2 < 1 V 7 > 8 >> 9 > 10 >> 11 > 12 ^ 6 ^ gabi ^ dorel ^ elena < gigel ^ tamara > dragos
+
+The cost of the road (f = g + h): 17.0
+Real Cost (g): 17
+Estimate Cost (h): 0.0
+Length of the road: 25
+Time: 1.7952s
+
+----------------
+The total number of nodes calculated: 102865
+The maximum number of nodes in the memory: 56417
+
+
+A STAR WITH EUCLIDIAN HEURISTIC DONE!
+
+TIMEOUT!!!
+The total number of nodes calculated: 4263386
+The maximum number of nodes in the memory: 1434622
+
+
+A STAR WITH UNACCEPTABLE HEURISTIC DONE!
+
+Solution:
+Step 1:
+ionel
+
+Step 2:
+alina
+
+Step 3:
+diana
+
+Step 4:
+costin
+
+Step 5:
+simona
+
+Step 6:
+razvan
+
+Step 7:
+andrei
+
+Step 8:
+alex
+
+Step 9:
+viorel
+
+Step 10:
+1
+
+Step 11:
+2
+
+Step 12:
+8
+
+Step 13:
+9
+
+Step 14:
+10
+
+Step 15:
+11
+
+Step 16:
+12
+
+Step 17:
+6
+
+Step 18:
+gabi
+
+Step 19:
+dorel
+
+Step 20:
+elena
+
+Step 21:
+gigel
+
+Step 22:
+tamara
+
+Step 23:
+dragos
+
+The route of the ticket:
+ionel > alina V diana V costin V simona V razvan V andrei V alex < viorel V 1 > 2 V 8 >> 9 > 10 >> 11 > 12 ^ 6 ^ gabi ^ dorel ^ elena < gigel ^ tamara > dragos
+
+The cost of the road (f = g + h): 17
+Real Cost (g): 17
+Estimate Cost (h): False
+Length of the road: 23
+Time: 0.015926837921142578s
+
+----------------
+The total number of nodes calculated: 773
+The maximum number of nodes in the memory: 196
+
+
+A STAR OPT WITH ORDINARY HEURISTIC DONE!
+
+Solution:
+Step 1:
+ionel
+
+Step 2:
+alina
+
+Step 3:
+diana
+
+Step 4:
+costin
+
+Step 5:
+simona
+
+Step 6:
+luiza
+
+Step 7:
+mihnea
+
+Step 8:
+razvan
+
+Step 9:
+andrei
+
+Step 10:
+alex
+
+Step 11:
+2
+
+Step 12:
+8
+
+Step 13:
+9
+
+Step 14:
+10
+
+Step 15:
+11
+
+Step 16:
+12
+
+Step 17:
+6
+
+Step 18:
+gabi
+
+Step 19:
+dorel
+
+Step 20:
+elena
+
+Step 21:
+gigel
+
+Step 22:
+tamara
+
+Step 23:
+dragos
+
+The route of the ticket:
+ionel > alina V diana V costin V simona < luiza V mihnea > razvan V andrei V alex V 2 V 8 >> 9 > 10 >> 11 > 12 ^ 6 ^ gabi ^ dorel ^ elena < gigel ^ tamara > dragos
+
+The cost of the road (f = g + h): 17
+Real Cost (g): 17
+Estimate Cost (h): 0
+Length of the road: 23
+Time: 0.000997304916381836s
+
+----------------
+The total number of nodes calculated: 63
+The maximum number of nodes in the memory: 57
+
+
+A STAR OPT WITH MANHATTAN HEURISTIC DONE!
+
+Solution:
+Step 1:
+ionel
+
+Step 2:
+alina
+
+Step 3:
+diana
+
+Step 4:
+costin
+
+Step 5:
+simona
+
+Step 6:
+razvan
+
+Step 7:
+andrei
+
+Step 8:
+alex
+
+Step 9:
+2
+
+Step 10:
+8
+
+Step 11:
+9
+
+Step 12:
+10
+
+Step 13:
+11
+
+Step 14:
+12
+
+Step 15:
+6
+
+Step 16:
+gabi
+
+Step 17:
+dorel
+
+Step 18:
+elena
+
+Step 19:
+gigel
+
+Step 20:
+tamara
+
+Step 21:
+dragos
+
+The route of the ticket:
+ionel > alina V diana V costin V simona V razvan V andrei V alex V 2 V 8 >> 9 > 10 >> 11 > 12 ^ 6 ^ gabi ^ dorel ^ elena < gigel ^ tamara > dragos
+
+The cost of the road (f = g + h): 17.0
+Real Cost (g): 17
+Estimate Cost (h): 0.0
+Length of the road: 21
+Time: 0.003989458084106445s
+
+----------------
+The total number of nodes calculated: 215
+The maximum number of nodes in the memory: 119
+
+
+A STAR OPT WITH EUCLIDIAN HEURISTIC DONE!
+
+Solution:
+Step 1:
+ionel
+
+Step 2:
+alina
+
+Step 3:
+diana
+
+Step 4:
+costin
+
+Step 5:
+simona
+
+Step 6:
+razvan
+
+Step 7:
+andrei
+
+Step 8:
+alex
+
+Step 9:
+viorel
+
+Step 10:
+1
+
+Step 11:
+7
+
+Step 12:
+8
+
+Step 13:
+9
+
+Step 14:
+10
+
+Step 15:
+11
+
+Step 16:
+5
+
+Step 17:
+maria
+
+Step 18:
+gabi
+
+Step 19:
+dorel
+
+Step 20:
+elena
+
+Step 21:
+gigel
+
+Step 22:
+tamara
+
+Step 23:
+dragos
+
+The route of the ticket:
+ionel > alina V diana V costin V simona V razvan V andrei V alex < viorel V 1 V 7 > 8 >> 9 > 10 >> 11 ^ 5 ^ maria > gabi ^ dorel ^ elena < gigel ^ tamara > dragos
+
+The cost of the road (f = g + h): 3025
+Real Cost (g): 17
+Estimate Cost (h): 3008
+Length of the road: 23
+Time: 0.015957355499267578s
+
+----------------
+The total number of nodes calculated: 452
+The maximum number of nodes in the memory: 247
+
+
+A STAR OPT WITH UNACCEPTABLE HEURISTIC DONE!
+
+TIMEOUT!!!
+The total number of nodes calculated: 9617440
+The maximum number of nodes in the memory: 32
+
+
+IDA STAR WITH ORDINARY HEURISTIC DONE!
+
+Solution:
+Step 1:
+ionel
+
+Step 2:
+alina
+
+Step 3:
+diana
+
+Step 4:
+costin
+
+Step 5:
+simona
+
+Step 6:
+razvan
+
+Step 7:
+andrei
+
+Step 8:
+alex
+
+Step 9:
+2
+
+Step 10:
+8
+
+Step 11:
+9
+
+Step 12:
+10
+
+Step 13:
+11
+
+Step 14:
+5
+
+Step 15:
+maria
+
+Step 16:
+gabi
+
+Step 17:
+dorel
+
+Step 18:
+elena
+
+Step 19:
+gigel
+
+Step 20:
+tamara
+
+Step 21:
+dragos
+
+The route of the ticket:
+ionel > alina V diana V costin V simona V razvan V andrei V alex V 2 V 8 >> 9 > 10 >> 11 ^ 5 ^ maria > gabi ^ dorel ^ elena < gigel ^ tamara > dragos
+
+The cost of the road (f = g + h): 17
+Real Cost (g): 17
+Estimate Cost (h): 0
+Length of the road: 21
+Time: 1.0712s
+
+----------------
+The total number of nodes calculated: 116657
+The maximum number of nodes in the memory: 24
+
+
+IDA STAR WITH MANHATTAN HEURISTIC DONE!
+
+Solution:
+Step 1:
+ionel
+
+Step 2:
+alina
+
+Step 3:
+diana
+
+Step 4:
+costin
+
+Step 5:
+simona
+
+Step 6:
+razvan
+
+Step 7:
+andrei
+
+Step 8:
+alex
+
+Step 9:
+2
+
+Step 10:
+8
+
+Step 11:
+9
+
+Step 12:
+10
+
+Step 13:
+11
+
+Step 14:
+5
+
+Step 15:
+maria
+
+Step 16:
+gabi
+
+Step 17:
+dorel
+
+Step 18:
+elena
+
+Step 19:
+gigel
+
+Step 20:
+tamara
+
+Step 21:
+dragos
+
+The route of the ticket:
+ionel > alina V diana V costin V simona V razvan V andrei V alex V 2 V 8 >> 9 > 10 >> 11 ^ 5 ^ maria > gabi ^ dorel ^ elena < gigel ^ tamara > dragos
+
+The cost of the road (f = g + h): 17.0
+Real Cost (g): 17
+Estimate Cost (h): 0.0
+Length of the road: 21
+Time: 14.6498s
+
+----------------
+The total number of nodes calculated: 1518234
+The maximum number of nodes in the memory: 25
+
+
+IDA STAR WITH EUCLIDIAN HEURISTIC DONE!
+
+TIMEOUT!!!
+The total number of nodes calculated: 7844680
+The maximum number of nodes in the memory: 35
+
+
+IDA STAR WITH UNACCEPTABLE HEURISTIC DONE!
+

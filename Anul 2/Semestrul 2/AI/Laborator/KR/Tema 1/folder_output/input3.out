@@ -1,0 +1,1071 @@
+Solution:
+Step 1:
+alin
+
+Step 2:
+gigel
+
+Step 3:
+miruna
+
+Step 4:
+gigel
+
+Step 5:
+miruna
+
+Step 6:
+gigel
+
+Step 7:
+gigel
+
+Step 8:
+gigel
+
+Step 9:
+gigel
+
+Step 10:
+gigel
+
+Step 11:
+miruna
+
+Step 12:
+gigel
+
+Step 13:
+miruna
+
+Step 14:
+gigel
+
+Step 15:
+miruna
+
+Step 16:
+george
+
+Step 17:
+silviu
+
+Step 18:
+laura
+
+The route of the ticket:
+alin > gigel V miruna ^ gigel V miruna ^ gigel # gigel # gigel # gigel # gigel V miruna ^ gigel V miruna ^ gigel V miruna V george >> silviu > laura
+
+The cost of the road (f = g + h): 12
+Real Cost (g): 12
+Estimate Cost (h): False
+Length of the road: 18
+Time: 19.3483s
+
+----------------
+The total number of nodes calculated: 1458232
+The maximum number of nodes in the memory: 872483
+
+
+BFS DONE!
+
+Solution:
+Step 1:
+alin
+
+Step 2:
+gigel
+
+Step 3:
+miruna
+
+Step 4:
+george
+
+Step 5:
+sergiu
+
+Step 6:
+sergiu
+
+Step 7:
+sergiu
+
+Step 8:
+sergiu
+
+Step 9:
+sergiu
+
+Step 10:
+sergiu
+
+Step 11:
+sergiu
+
+Step 12:
+sergiu
+
+Step 13:
+sergiu
+
+Step 14:
+sergiu
+
+Step 15:
+sergiu
+
+Step 16:
+costel
+
+Step 17:
+florin
+
+Step 18:
+simona
+
+Step 19:
+silviu
+
+Step 20:
+laura
+
+The route of the ticket:
+alin > gigel V miruna V george < sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu V costel > florin >> simona ^ silviu > laura
+
+The cost of the road (f = g + h): 6
+Real Cost (g): 6
+Estimate Cost (h): False
+Length of the road: 20
+Time: 0.004s
+
+----------------
+The total number of nodes calculated: 565
+The maximum number of nodes in the memory: 19
+
+
+DFS DONE!
+
+Solution:
+Step 1:
+alin
+
+Step 2:
+gigel
+
+Step 3:
+miruna
+
+Step 4:
+gigel
+
+Step 5:
+miruna
+
+Step 6:
+gigel
+
+Step 7:
+gigel
+
+Step 8:
+gigel
+
+Step 9:
+gigel
+
+Step 10:
+gigel
+
+Step 11:
+miruna
+
+Step 12:
+gigel
+
+Step 13:
+miruna
+
+Step 14:
+gigel
+
+Step 15:
+miruna
+
+Step 16:
+george
+
+Step 17:
+silviu
+
+Step 18:
+laura
+
+The route of the ticket:
+alin > gigel V miruna ^ gigel V miruna ^ gigel # gigel # gigel # gigel # gigel V miruna ^ gigel V miruna ^ gigel V miruna V george >> silviu > laura
+
+The cost of the road (f = g + h): 12
+Real Cost (g): 12
+Estimate Cost (h): False
+Length of the road: 18
+Time: 19.2805s
+
+----------------
+The total number of nodes calculated: 2453996
+The maximum number of nodes in the memory: 17
+
+
+DFI DONE!
+
+Solution:
+Step 1:
+alin
+
+Step 2:
+gigel
+
+Step 3:
+miruna
+
+Step 4:
+andreea
+
+Step 5:
+sergiu
+
+Step 6:
+sergiu
+
+Step 7:
+sergiu
+
+Step 8:
+sergiu
+
+Step 9:
+sergiu
+
+Step 10:
+sergiu
+
+Step 11:
+sergiu
+
+Step 12:
+sergiu
+
+Step 13:
+sergiu
+
+Step 14:
+sergiu
+
+Step 15:
+sergiu
+
+Step 16:
+george
+
+Step 17:
+silviu
+
+Step 18:
+laura
+
+The route of the ticket:
+alin > gigel V miruna < andreea V sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu > george >> silviu > laura
+
+The cost of the road (f = g + h): 4
+Real Cost (g): 4
+Estimate Cost (h): False
+Length of the road: 18
+Time: 0.018s
+
+----------------
+The total number of nodes calculated: 1553
+The maximum number of nodes in the memory: 875
+
+
+A STAR WITH ORDINARY HEURISTIC DONE!
+
+Solution:
+Step 1:
+alin
+
+Step 2:
+gigel
+
+Step 3:
+miruna
+
+Step 4:
+andreea
+
+Step 5:
+sergiu
+
+Step 6:
+sergiu
+
+Step 7:
+sergiu
+
+Step 8:
+sergiu
+
+Step 9:
+sergiu
+
+Step 10:
+sergiu
+
+Step 11:
+sergiu
+
+Step 12:
+sergiu
+
+Step 13:
+sergiu
+
+Step 14:
+sergiu
+
+Step 15:
+sergiu
+
+Step 16:
+george
+
+Step 17:
+silviu
+
+Step 18:
+laura
+
+The route of the ticket:
+alin > gigel V miruna < andreea V sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu > george >> silviu > laura
+
+The cost of the road (f = g + h): 4
+Real Cost (g): 4
+Estimate Cost (h): 0
+Length of the road: 18
+Time: 0.002s
+
+----------------
+The total number of nodes calculated: 131
+The maximum number of nodes in the memory: 83
+
+
+A STAR WITH MANHATTAN HEURISTIC DONE!
+
+Solution:
+Step 1:
+alin
+
+Step 2:
+gigel
+
+Step 3:
+miruna
+
+Step 4:
+andreea
+
+Step 5:
+sergiu
+
+Step 6:
+sergiu
+
+Step 7:
+sergiu
+
+Step 8:
+sergiu
+
+Step 9:
+sergiu
+
+Step 10:
+sergiu
+
+Step 11:
+sergiu
+
+Step 12:
+sergiu
+
+Step 13:
+sergiu
+
+Step 14:
+sergiu
+
+Step 15:
+sergiu
+
+Step 16:
+george
+
+Step 17:
+silviu
+
+Step 18:
+laura
+
+The route of the ticket:
+alin > gigel V miruna < andreea V sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu > george >> silviu > laura
+
+The cost of the road (f = g + h): 4.0
+Real Cost (g): 4
+Estimate Cost (h): 0.0
+Length of the road: 18
+Time: 0.001s
+
+----------------
+The total number of nodes calculated: 135
+The maximum number of nodes in the memory: 85
+
+
+A STAR WITH EUCLIDIAN HEURISTIC DONE!
+
+Solution:
+Step 1:
+alin
+
+Step 2:
+gigel
+
+Step 3:
+miruna
+
+Step 4:
+gigel
+
+Step 5:
+alin
+
+Step 6:
+andreea
+
+Step 7:
+andreea
+
+Step 8:
+andreea
+
+Step 9:
+andreea
+
+Step 10:
+andreea
+
+Step 11:
+miruna
+
+Step 12:
+gigel
+
+Step 13:
+miruna
+
+Step 14:
+andreea
+
+Step 15:
+sergiu
+
+Step 16:
+george
+
+Step 17:
+silviu
+
+Step 18:
+laura
+
+The route of the ticket:
+alin > gigel V miruna ^ gigel < alin V andreea # andreea # andreea # andreea # andreea > miruna ^ gigel V miruna < andreea V sergiu > george >> silviu > laura
+
+The cost of the road (f = g + h): 1213
+Real Cost (g): 8
+Estimate Cost (h): 1205
+Length of the road: 18
+Time: 31.2023s
+
+----------------
+The total number of nodes calculated: 1658762
+The maximum number of nodes in the memory: 799972
+
+
+A STAR WITH UNACCEPTABLE HEURISTIC DONE!
+
+Solution:
+Step 1:
+alin
+
+Step 2:
+gigel
+
+Step 3:
+miruna
+
+Step 4:
+andreea
+
+Step 5:
+sergiu
+
+Step 6:
+sergiu
+
+Step 7:
+sergiu
+
+Step 8:
+sergiu
+
+Step 9:
+sergiu
+
+Step 10:
+sergiu
+
+Step 11:
+sergiu
+
+Step 12:
+sergiu
+
+Step 13:
+sergiu
+
+Step 14:
+sergiu
+
+Step 15:
+sergiu
+
+Step 16:
+george
+
+Step 17:
+silviu
+
+Step 18:
+laura
+
+The route of the ticket:
+alin > gigel V miruna < andreea V sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu > george >> silviu > laura
+
+The cost of the road (f = g + h): 4
+Real Cost (g): 4
+Estimate Cost (h): False
+Length of the road: 18
+Time: 0.003989458084106445s
+
+----------------
+The total number of nodes calculated: 255
+The maximum number of nodes in the memory: 50
+
+
+A STAR OPT WITH ORDINARY HEURISTIC DONE!
+
+Solution:
+Step 1:
+alin
+
+Step 2:
+gigel
+
+Step 3:
+miruna
+
+Step 4:
+andreea
+
+Step 5:
+sergiu
+
+Step 6:
+sergiu
+
+Step 7:
+sergiu
+
+Step 8:
+sergiu
+
+Step 9:
+sergiu
+
+Step 10:
+sergiu
+
+Step 11:
+sergiu
+
+Step 12:
+sergiu
+
+Step 13:
+sergiu
+
+Step 14:
+sergiu
+
+Step 15:
+sergiu
+
+Step 16:
+george
+
+Step 17:
+silviu
+
+Step 18:
+laura
+
+The route of the ticket:
+alin > gigel V miruna < andreea V sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu > george >> silviu > laura
+
+The cost of the road (f = g + h): 4
+Real Cost (g): 4
+Estimate Cost (h): 0
+Length of the road: 18
+Time: 0.0009987354278564453s
+
+----------------
+The total number of nodes calculated: 70
+The maximum number of nodes in the memory: 27
+
+
+A STAR OPT WITH MANHATTAN HEURISTIC DONE!
+
+Solution:
+Step 1:
+alin
+
+Step 2:
+gigel
+
+Step 3:
+miruna
+
+Step 4:
+andreea
+
+Step 5:
+sergiu
+
+Step 6:
+sergiu
+
+Step 7:
+sergiu
+
+Step 8:
+sergiu
+
+Step 9:
+sergiu
+
+Step 10:
+sergiu
+
+Step 11:
+sergiu
+
+Step 12:
+sergiu
+
+Step 13:
+sergiu
+
+Step 14:
+sergiu
+
+Step 15:
+sergiu
+
+Step 16:
+george
+
+Step 17:
+silviu
+
+Step 18:
+laura
+
+The route of the ticket:
+alin > gigel V miruna < andreea V sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu > george >> silviu > laura
+
+The cost of the road (f = g + h): 4.0
+Real Cost (g): 4
+Estimate Cost (h): 0.0
+Length of the road: 18
+Time: 0.000997304916381836s
+
+----------------
+The total number of nodes calculated: 41
+The maximum number of nodes in the memory: 41
+
+
+A STAR OPT WITH EUCLIDIAN HEURISTIC DONE!
+
+Solution:
+Step 1:
+alin
+
+Step 2:
+andreea
+
+Step 3:
+sergiu
+
+Step 4:
+george
+
+Step 5:
+florin
+
+Step 6:
+costel
+
+Step 7:
+sergiu
+
+Step 8:
+costel
+
+Step 9:
+sergiu
+
+Step 10:
+costel
+
+Step 11:
+sergiu
+
+Step 12:
+costel
+
+Step 13:
+sergiu
+
+Step 14:
+costel
+
+Step 15:
+sergiu
+
+Step 16:
+george
+
+Step 17:
+silviu
+
+Step 18:
+laura
+
+The route of the ticket:
+alin V andreea V sergiu > george V florin < costel ^ sergiu V costel ^ sergiu V costel ^ sergiu V costel ^ sergiu V costel ^ sergiu > george >> silviu > laura
+
+The cost of the road (f = g + h): 1219
+Real Cost (g): 14
+Estimate Cost (h): 1205
+Length of the road: 18
+Time: 0.005984067916870117s
+
+----------------
+The total number of nodes calculated: 111
+The maximum number of nodes in the memory: 22
+
+
+A STAR OPT WITH UNACCEPTABLE HEURISTIC DONE!
+
+Solution:
+Step 1:
+alin
+
+Step 2:
+gigel
+
+Step 3:
+miruna
+
+Step 4:
+andreea
+
+Step 5:
+sergiu
+
+Step 6:
+sergiu
+
+Step 7:
+sergiu
+
+Step 8:
+sergiu
+
+Step 9:
+sergiu
+
+Step 10:
+sergiu
+
+Step 11:
+sergiu
+
+Step 12:
+sergiu
+
+Step 13:
+sergiu
+
+Step 14:
+sergiu
+
+Step 15:
+sergiu
+
+Step 16:
+george
+
+Step 17:
+silviu
+
+Step 18:
+laura
+
+The route of the ticket:
+alin > gigel V miruna < andreea V sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu > george >> silviu > laura
+
+The cost of the road (f = g + h): 4
+Real Cost (g): 4
+Estimate Cost (h): False
+Length of the road: 18
+Time: 0.0369s
+
+----------------
+The total number of nodes calculated: 4912
+The maximum number of nodes in the memory: 20
+
+
+IDA STAR WITH ORDINARY HEURISTIC DONE!
+
+Solution:
+Step 1:
+alin
+
+Step 2:
+gigel
+
+Step 3:
+miruna
+
+Step 4:
+andreea
+
+Step 5:
+sergiu
+
+Step 6:
+sergiu
+
+Step 7:
+sergiu
+
+Step 8:
+sergiu
+
+Step 9:
+sergiu
+
+Step 10:
+sergiu
+
+Step 11:
+sergiu
+
+Step 12:
+sergiu
+
+Step 13:
+sergiu
+
+Step 14:
+sergiu
+
+Step 15:
+sergiu
+
+Step 16:
+george
+
+Step 17:
+silviu
+
+Step 18:
+laura
+
+The route of the ticket:
+alin > gigel V miruna < andreea V sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu > george >> silviu > laura
+
+The cost of the road (f = g + h): 4
+Real Cost (g): 4
+Estimate Cost (h): 0
+Length of the road: 18
+Time: 0.001s
+
+----------------
+The total number of nodes calculated: 69
+The maximum number of nodes in the memory: 17
+
+
+IDA STAR WITH MANHATTAN HEURISTIC DONE!
+
+Solution:
+Step 1:
+alin
+
+Step 2:
+gigel
+
+Step 3:
+miruna
+
+Step 4:
+andreea
+
+Step 5:
+sergiu
+
+Step 6:
+sergiu
+
+Step 7:
+sergiu
+
+Step 8:
+sergiu
+
+Step 9:
+sergiu
+
+Step 10:
+sergiu
+
+Step 11:
+sergiu
+
+Step 12:
+sergiu
+
+Step 13:
+sergiu
+
+Step 14:
+sergiu
+
+Step 15:
+sergiu
+
+Step 16:
+george
+
+Step 17:
+silviu
+
+Step 18:
+laura
+
+The route of the ticket:
+alin > gigel V miruna < andreea V sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu # sergiu > george >> silviu > laura
+
+The cost of the road (f = g + h): 4.0
+Real Cost (g): 4
+Estimate Cost (h): 0.0
+Length of the road: 18
+Time: 0.002s
+
+----------------
+The total number of nodes calculated: 133
+The maximum number of nodes in the memory: 17
+
+
+IDA STAR WITH EUCLIDIAN HEURISTIC DONE!
+
+Solution:
+Step 1:
+alin
+
+Step 2:
+gigel
+
+Step 3:
+miruna
+
+Step 4:
+gigel
+
+Step 5:
+miruna
+
+Step 6:
+andreea
+
+Step 7:
+andreea
+
+Step 8:
+andreea
+
+Step 9:
+andreea
+
+Step 10:
+andreea
+
+Step 11:
+alin
+
+Step 12:
+gigel
+
+Step 13:
+miruna
+
+Step 14:
+andreea
+
+Step 15:
+sergiu
+
+Step 16:
+george
+
+Step 17:
+silviu
+
+Step 18:
+laura
+
+The route of the ticket:
+alin > gigel V miruna ^ gigel V miruna < andreea # andreea # andreea # andreea # andreea ^ alin > gigel V miruna < andreea V sergiu > george >> silviu > laura
+
+The cost of the road (f = g + h): 1213
+Real Cost (g): 8
+Estimate Cost (h): 1205
+Length of the road: 18
+Time: 8.243s
+
+----------------
+The total number of nodes calculated: 808687
+The maximum number of nodes in the memory: 28
+
+
+IDA STAR WITH UNACCEPTABLE HEURISTIC DONE!
+
