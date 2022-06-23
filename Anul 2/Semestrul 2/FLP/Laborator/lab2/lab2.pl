@@ -34,6 +34,21 @@ fib2(N, Xn, Xn1) :- N > 1,
     fib2(N1, Xn1, Xn2),
     Xn is Xn1 + Xn2.
 
+/*
+% Varianta de la Gabi
+
+fib1(0, _, X, X).
+fib1(N, A, B, X) :-
+    N > 0,
+    Prev is A+B,
+    N1 is N-1,
+    fib1(N1, B, Prev, X).
+
+fib2(N, X) :-
+fib1(N, 0, 1, X).
+
+*/
+
 %Ex2
 square(X,Symbol):-
   square1(X,X,Symbol).
