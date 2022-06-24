@@ -112,7 +112,28 @@ remove_duplicates([Head | Tail], Result) :-
 remove_duplicates([Head | Tail], [Head | Result]) :-
     remove_duplicates(Tail, Result).
 
+/*
+% Gabi
+
+remove_duplicates([], []).
+remove_duplicates([H | T], R) :-
+    member(H, T),
+    remove_duplicates(T, R).
+remove_duplicates([H | T], [H | R]) :-
+    remove_duplicates(T, R).
+*/
+
 %Ex8
 replace(_, _, [], []).
 replace(O, R, [O|T], [R|T2]) :- replace(O, R, T, T2).
 replace(O, R, [H|T], [H|T2]) :- dif(H,O), replace(O, R, T, T2).
+
+/*
+% Gabi
+
+replace([], _, _, []).
+replace([X | T1], X, Y, [Y | T2]) :-
+    replace(T1, X, Y, T2).
+replace([H | T1], X, Y, [H | T2]) :-
+    replace(T1, X, Y, T2).
+*/
