@@ -1,0 +1,37 @@
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+  
+    .form-section {
+      width: 60%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      text-align: center;
+  
+      .title {
+        font-size: 24px;
+        font-weight: bold;
+        color: #777777
+      }
+  
+      .form {
+        .mat-form-field {
+          width: 100%;
+        }
+      }
+    }
+  
+    .message-section {
+      width: 40%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: aliceblue;
+    }
+  }

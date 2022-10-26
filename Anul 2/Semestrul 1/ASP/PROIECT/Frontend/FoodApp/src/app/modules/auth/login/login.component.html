@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="form-section">
+      <h1 class="title">
+        Welcome! This is my project. You have to login to proceed.
+      </h1>
+      <form [formGroup]="loginForm" class="form">
+        <mat-form-field appearance="outline">
+          <mat-label>Username</mat-label>
+          <input matInput placeholder="Username" formControlName="username" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput placeholder="Password" type="password" formControlName="password" />
+        </mat-form-field>
+      </form>
+      <button mat-raised-button (click)="login()">
+        Login
+      </button>
+      <p class="bottomText">Not registred? Go for 
+        <button mat-raised-button (click)="signup()" class ="signupButton"> 
+          Signup 
+        </button>
+      </p>
+    </div>
+    <div class="message-section">
+      <p>
+        Message
+      </p>
+    </div>
+  </div>

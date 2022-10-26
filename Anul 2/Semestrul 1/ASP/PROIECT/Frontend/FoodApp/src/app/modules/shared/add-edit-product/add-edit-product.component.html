@@ -1,0 +1,41 @@
+<div class="container">
+    <h1 class="title">
+        {{ title }}
+    </h1>
+
+    <form [formGroup]="productForm" class="form">
+        <mat-form-field appearance="outline">
+            <mat-label>Id</mat-label>
+            <input matInput placeholder="Id" formControlName="id"/>
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Name" formControlName="name"/>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Weight</mat-label>
+            <input matInput placeholder="Weight" formControlName="weight"/>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>DateOfPreparation</mat-label>
+            <input matInput placeholder="DateOfPreparation" formControlName="dateOfPreparation"/>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>DateOfExpiration</mat-label>
+            <input matInput placeholder="DateOfExpiration" formControlName="dateOfExpiration"/>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <input matInput placeholder="Description" formControlName="description"/>
+        </mat-form-field>
+    </form>
+
+    <button mat-raised-button (click)="!data ? addProduct() : editProduct()" appHoverBtn>
+        Save
+    </button>
+</div>

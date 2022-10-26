@@ -1,0 +1,74 @@
+<!-- <button mat-raised-button (click)="logout()">
+    Logout
+</button>
+<p>
+    Logged User: {{ loggedUser.username }}
+</p>
+
+<app-child [messageFromParent]="parentMessage"
+ (messageFromChild)="receiveMessage($event)"
+></app-child> -->
+
+<div class="container">
+  <h1 class="title">Locations</h1>
+  <table
+    mat-table
+    [dataSource]="locations"
+    class="mat-elevation-z8 demo-table table"
+  >
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+    
+    <ng-container matColumnDef="country">
+      <th mat-header-cell *matHeaderCellDef>Country</th>
+      <td mat-cell *matCellDef="let element">{{ element.country }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="city">
+      <th mat-header-cell *matHeaderCellDef>City</th>
+      <td mat-cell *matCellDef="let element">{{ element.city }}</td>
+    </ng-container>
+
+    
+    <ng-container matColumnDef="street">
+      <th mat-header-cell *matHeaderCellDef>Street</th>
+      <td mat-cell *matCellDef="let element">{{ element.street }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef>Delete</th>
+      <td mat-cell *matCellDef="let element" (click)="deleteLocation(element.id)">
+        <mat-icon>
+          delete
+        </mat-icon>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="info">
+      <th mat-header-cell *matHeaderCellDef>Profile</th>
+      <td mat-cell *matCellDef="let element" (click)="goToLocationInformations(element.city)">
+        <mat-icon>
+          info
+        </mat-icon>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef>Edit</th>
+      <td mat-cell *matCellDef="let element" (click)="editLocation(element)">
+        <mat-icon>
+          edit
+        </mat-icon>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <button mat-raised-button (click)="addNewLocation()" class="add-button">
+    Add Location
+  </button>
+</div>

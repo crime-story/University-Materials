@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="form-section">
+      <h1 class="title">Welcome my Food Delivery app</h1>
+      <form [formGroup]="signupForm" class="form">
+        <mat-form-field appearance="outline">
+          <mat-label> Email </mat-label>
+          <input matInput placeholder = "Email" formControlName="email" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label> Username </mat-label>
+            <input matInput placeholder="Username" formControlName="username" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label> Password </mat-label>
+            <input matInput placeholder="Password" type="password" formControlName="password" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label> Verify Password</mat-label>
+            <input matInput placeholder="Password" type="password" formControlName="verifyPassword" />
+        </mat-form-field>
+      </form>
+      <button mat-raised-button (click)="signup()" class="demo-button">
+        Sign Up
+      </button>
+    </div>
+  </div>
