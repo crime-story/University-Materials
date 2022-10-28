@@ -1,0 +1,12 @@
+﻿  C:freeglut.dll
+  C:glew32.dll
+  C:glew32s.dll
+  3 File(s) copied
+  C:glfw3.dll
+  C:glfw3dll.dll
+  C:glfw3_mt.dll
+  3 File(s) copied
+  C:SOIL.dll
+  1 File(s) copied
+  01_02_newOpenGL.cpp
+LINK : fatal error LNK1168: cannot open C:\Users\Robertto_Popescu\OneDrive - Dell Technologies\Documents\LaboratoareGL\Laborator1\x64\Debug\Laborator1.exe for writing
