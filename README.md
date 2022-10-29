@@ -22,6 +22,7 @@ Here you can find all my courses, assignments and projects completed during my B
 - [Structuri de Date](https://github.com/crime-story/University-Materials/tree/main/Anul%201/Semestrul%202/Structuri%20de%20date) 📌
 - [Tehnici Web](https://github.com/crime-story/University-Materials/tree/main/Anul%201/Semestrul%202/Tehnici%20web) 📌
 
+---
 ### Anul 2
 #### Semestrul 1:
 - [Algoritmi Fundamentali](https://github.com/crime-story/University-Materials/tree/main/Anul%202/Semestrul%201/AF) 📌
