@@ -4,7 +4,7 @@ Resources for Faculty of Mathematics and Computer Science (University of Buchare
 Here you can find all my courses, assignments and projects completed during my Bachelor degree in **Computer Science** (2020-2023). :fire: 💻
 
 ## Contents of this Repository
-### Anul 1
+### Anul 1 🤔
 #### Semestrul 1:
 - [Arhitectura Sistemelor de Calcul](https://github.com/crime-story/University-Materials/tree/main/Anul%201/Semestrul%201/ASC) 📌
 - [Calcul Diferential si Integral](https://github.com/crime-story/University-Materials/tree/main/Anul%201/Semestrul%201/CDI) 📌
@@ -23,7 +23,7 @@ Here you can find all my courses, assignments and projects completed during my B
 - [Tehnici Web](https://github.com/crime-story/University-Materials/tree/main/Anul%201/Semestrul%202/Tehnici%20web) 📌
 
 ---
-### Anul 2
+### Anul 2 😄
 #### Semestrul 1:
 - [Algoritmi Fundamentali](https://github.com/crime-story/University-Materials/tree/main/Anul%202/Semestrul%201/AF) 📌
 - [Dezvoltarea Aplicatiilor Web](https://github.com/crime-story/University-Materials/tree/main/Anul%202/Semestrul%201/ASP) 📌
@@ -41,7 +41,7 @@ Here you can find all my courses, assignments and projects completed during my B
 - [Retele de Calculatoare](https://github.com/crime-story/University-Materials/tree/main/Anul%202/Semestrul%202/Retele) 📌
 
 ---
-### Anul 3
+### Anul 3 😫
 #### Semestrul 1:
 - [Calculabilitate si Complexitate](https://github.com/crime-story/University-Materials/tree/main/Anul%203/Semestrul%201/Calculabilitate%20si%20Complexitate) 📌
 - [Frontend Avansat](https://github.com/crime-story/University-Materials/tree/main/Anul%203/Semestrul%201/Frontend%20Avansat) 📌
