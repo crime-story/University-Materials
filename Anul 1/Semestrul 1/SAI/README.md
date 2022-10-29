@@ -1,0 +1,1 @@
+# Structuri Algebrice in Informatica
