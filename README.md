@@ -26,7 +26,7 @@ Here you can find all my courses, assignments and projects completed during my B
 ### Anul 2 😄
 #### Semestrul 1:
 - [Algoritmi Fundamentali](https://github.com/crime-story/University-Materials/tree/main/Anul%202/Semestrul%201/AF) 📌
-- [Dezvoltarea Aplicatiilor Web](https://github.com/crime-story/University-Materials/tree/main/Anul%202/Semestrul%201/ASP) 📌
+- [Dezvoltarea Aplicatiilor Web in .NET](https://github.com/crime-story/University-Materials/tree/main/Anul%202/Semestrul%201/ASP) 📌
 - [Engleza](https://github.com/crime-story/University-Materials/tree/main/Anul%202/Semestrul%201/Engleza) 📌
 - [Sisteme de Operare](https://github.com/crime-story/University-Materials/tree/main/Anul%202/Semestrul%201/OS) 📌
 - [Programare Functionala](https://github.com/crime-story/University-Materials/tree/main/Anul%202/Semestrul%201/ProgFunc) 📌
