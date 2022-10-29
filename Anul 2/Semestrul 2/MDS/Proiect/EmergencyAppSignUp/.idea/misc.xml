@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Amalia-Alexandra/Desktop/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/first_page_guide.xml" value="0.1" />
+        <entry key="..\:/Users/Amalia-Alexandra/Desktop/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/second_page_guide.xml" value="0.1" />
+        <entry key="..\:/Users/Amalia-Alexandra/Desktop/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/third_page_guide.xml" value="0.1" />
+        <entry key="..\:/Users/Amalia-Alexandra/Documents/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/drawable/background_shape.xml" value="0.1895" />
+        <entry key="..\:/Users/Amalia-Alexandra/Documents/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/drawable/bg_btn.xml" value="0.1895" />
+        <entry key="..\:/Users/Amalia-Alexandra/Documents/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/drawable/bottom_shape.xml" value="0.1895" />
+        <entry key="..\:/Users/Amalia-Alexandra/Documents/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/drawable/ic_age.xml" value="0.1895" />
+        <entry key="..\:/Users/Amalia-Alexandra/Documents/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/drawable/ic_attachment.xml" value="0.1895" />
+        <entry key="..\:/Users/Amalia-Alexandra/Documents/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/drawable/ic_back.xml" value="0.1895" />
+        <entry key="..\:/Users/Amalia-Alexandra/Documents/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/drawable/ic_camera.xml" value="0.1895" />
+        <entry key="..\:/Users/Amalia-Alexandra/Documents/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/drawable/ic_edit.xml" value="0.1895" />
+        <entry key="..\:/Users/Amalia-Alexandra/Documents/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/drawable/ic_email.xml" value="0.1895" />
+        <entry key="..\:/Users/Amalia-Alexandra/Documents/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/activity_assistants_list_for_users.xml" value="0.2" />
+        <entry key="..\:/Users/Amalia-Alexandra/Documents/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/activity_chat.xml" value="0.1" />
+        <entry key="..\:/Users/Amalia-Alexandra/Documents/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/activity_emergency_phone_numbers.xml" value="0.1" />
+        <entry key="..\:/Users/Amalia-Alexandra/Documents/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/activity_login.xml" value="0.176" />
+        <entry key="..\:/Users/Amalia-Alexandra/Documents/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/Amalia-Alexandra/Documents/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/activity_map.xml" value="0.1" />
+        <entry key="..\:/Users/Amalia-Alexandra/Documents/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/activity_profile.xml" value="0.1" />
+        <entry key="..\:/Users/Amalia-Alexandra/Documents/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/content_map.xml" value="0.1" />
+        <entry key="..\:/Users/rober/AndroidStudioProjects/EmergencyAppSignUp/app/src/main/res/layout/activity_login.xml" value="0.5541666666666667" />
+        <entry key="..\:/Users/rober/AndroidStudioProjects/EmergencyAppSignUp/app/src/main/res/layout/activity_profile.xml" value="0.5541666666666667" />
+        <entry key="..\:/Users/rober/AndroidStudioProjects/EmergencyAppSignUp/app/src/main/res/layout/activity_sign_up.xml" value="0.5541666666666667" />
+        <entry key="..\:/Users/rober/Documents/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/drawable/bg_btn.xml" value="0.371" />
+        <entry key="..\:/Users/rober/Documents/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/drawable/bottom_shpe.xml" value="0.2" />
+        <entry key="..\:/Users/rober/Documents/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/drawable/ic_edit.xml" value="0.294" />
+        <entry key="..\:/Users/rober/Documents/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/drawable/ic_email.xml" value="0.187" />
+        <entry key="..\:/Users/rober/Documents/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/drawable/ic_person.xml" value="0.187" />
+        <entry key="..\:/Users/rober/Documents/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/drawable/receive_drawable.xml" value="0.2895" />
+        <entry key="..\:/Users/rober/Documents/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/drawable/send_drawable.xml" value="0.2895" />
+        <entry key="..\:/Users/rober/Documents/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout-v31/activity_chat.xml" value="0.3999094202898551" />
+        <entry key="..\:/Users/rober/Documents/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/activity_assistants_list_for_users.xml" value="0.5020833333333333" />
+        <entry key="..\:/Users/rober/Documents/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/activity_chat.xml" value="0.3999094202898551" />
+        <entry key="..\:/Users/rober/Documents/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/activity_login.xml" value="0.29347826086956524" />
+        <entry key="..\:/Users/rober/Documents/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/activity_main.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/rober/Documents/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/activity_profile.xml" value="0.5" />
+        <entry key="..\:/Users/rober/Documents/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/activity_profile_edit.xml" value="0.37552083333333336" />
+        <entry key="..\:/Users/rober/Documents/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/activity_sign_up.xml" value="0.5" />
+        <entry key="..\:/Users/rober/Documents/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/delete_layout.xml" value="0.415625" />
+        <entry key="..\:/Users/rober/Documents/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/receive_msg.xml" value="0.415625" />
+        <entry key="..\:/Users/rober/Documents/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/send_msg.xml" value="0.415625" />
+        <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/drawable/background_shape.xml" value="0.1795" />
+        <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/drawable/bg_btn.xml" value="0.127" />
+        <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/drawable/bottom_shpe.xml" value="0.127" />
+        <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/drawable/ic_attachment.xml" value="0.184" />
+        <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/drawable/ic_camera.xml" value="0.1795" />
+        <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/drawable/ic_send.xml" value="0.1795" />
+        <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/drawable/receive_drawable.xml" value="0.127" />
+        <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/drawable/send_drawable.xml" value="0.127" />
+        <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout-v31/activity_chat.xml" value="0.25" />
+        <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/activity_assistants_list_for_users.xml" value="0.23854166666666668" />
+        <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/activity_chat.xml" value="0.2" />
+        <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/activity_emergency_phone_numbers.xml" value="0.264" />
+        <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/activity_forgot_password.xml" value="0.20833333333333334" />
+        <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/activity_login.xml" value="0.264" />
+        <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/activity_main.xml" value="0.17119565217391305" />
+        <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/activity_map.xml" value="0.17119565217391305" />
+        <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/activity_permissions.xml" value="0.23489583333333333" />
+        <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/activity_profile.xml" value="0.264" />
+        <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/activity_profile_edit.xml" value="0.22239583333333332" />
+        <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/activity_sign_up.xml" value="0.264" />
+        <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/activity_user_list.xml" value="0.264" />
+        <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/content_map.xml" value="0.23489583333333333" />
+        <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/delete_layout.xml" value="0.2" />
+        <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/dialog_forgot_password.xml" value="0.4" />
+        <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/forgot_password.xml" value="0.1096757852077001" />
+        <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/fragment_first.xml" value="0.23489583333333333" />
+        <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/fragment_second.xml" value="0.23489583333333333" />
+        <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/item_profile.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/phone_number_item.xml" value="0.4" />
+        <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/receive_msg.xml" value="0.22418478260869565" />
+        <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/second_page_guide.xml" value="0.1" />
+        <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/send_msg.xml" value="0.1" />
+        <entry key="..\:/Users/voicu/OneDrive/Documente/GitHub/EmergencyApp/EmergencyAppSignUp/app/src/main/res/layout/third_page_guide.xml" value="0.33274021352313166" />
+        <entry key="app/src/main/res/drawable/ic_location_pin_svgrepo_com.xml" value="0.217" />
+        <entry key="app/src/main/res/layout/activity_assistants_list_for_users.xml" value="0.246875" />
+        <entry key="app/src/main/res/layout/activity_chat.xml" value="0.246875" />
+        <entry key="app/src/main/res/layout/activity_emergency_phone_numbers.xml" value="0.43690496751965" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.246875" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.26950836181640625" />
+        <entry key="app/src/main/res/layout/activity_map.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_permissions.xml" value="0.298768310546875" />
+        <entry key="app/src/main/res/layout/activity_profile.xml" value="0.2388458854884" />
+        <entry key="app/src/main/res/layout/activity_profile_edit.xml" value="0.246875" />
+        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.1766304347826087" />
+        <entry key="app/src/main/res/layout/content_map.xml" value="0.1307830810546875" />
+        <entry key="app/src/main/res/layout/delete_layout.xml" value="0.246875" />
+        <entry key="app/src/main/res/layout/dialog_forgot_password.xml" value="0.246875" />
+        <entry key="app/src/main/res/layout/first_page_guide.xml" value="0.24583333333333332" />
+        <entry key="app/src/main/res/layout/fragment_first.xml" value="0.246875" />
+        <entry key="app/src/main/res/layout/fragment_second.xml" value="0.246875" />
+        <entry key="app/src/main/res/layout/item_profile.xml" value="0.246875" />
+        <entry key="app/src/main/res/layout/receive_msg.xml" value="0.246875" />
+        <entry key="app/src/main/res/layout/second_page_guide.xml" value="0.24583333333333332" />
+        <entry key="app/src/main/res/layout/send_msg.xml" value="0.246875" />
+        <entry key="app/src/main/res/layout/third_page_guide.xml" value="0.24583333333333332" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

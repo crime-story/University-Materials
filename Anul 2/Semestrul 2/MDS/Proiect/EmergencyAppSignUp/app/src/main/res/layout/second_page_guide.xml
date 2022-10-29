@@ -1,0 +1,54 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ccffff"
+    tools:context=".GuidePage2">
+
+    <TextView
+        android:id="@+id/titleLabelTv"
+        android:layout_width="214dp"
+        android:layout_height="206dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/map" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="300dp"
+        android:padding="10dp"
+        android:text="We got you!"
+        android:textColor="#6666ff"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="350dp"
+        android:padding="10dp"
+        android:text="         Open the map and you will see\nyour actual location and places around! "
+        android:textColor="#6666ff"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/ThirdPageButtonSkip"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="600dp"
+        android:text="Skip" />
+
+    <Button
+        android:id="@+id/ThirdPageButton"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="260dp"
+        android:layout_marginTop="600dp"
+        android:text="Next" />
+</RelativeLayout>

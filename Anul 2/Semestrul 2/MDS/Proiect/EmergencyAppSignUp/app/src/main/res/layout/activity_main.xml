@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@drawable/backgroundimg_main"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="130dp"
+        android:padding="10dp"
+        android:text="HOME"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/profileBtn"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="10dp"
+        android:text="Profile" />
+
+    <Button
+        android:id="@+id/mapBtn"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_above="@id/profileBtn"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="10dp"
+        android:text="Map" />
+
+    <Button
+        android:id="@+id/phoneNumbersBtn"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/profileBtn"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="10dp"
+        android:text="Urgent call" />
+
+    <Button
+        android:id="@+id/assistantsListBtn"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/phoneNumbersBtn"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="10dp"
+        android:text="Assistants" />
+
+</RelativeLayout>

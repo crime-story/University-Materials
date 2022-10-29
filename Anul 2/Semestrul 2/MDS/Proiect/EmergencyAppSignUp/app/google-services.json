@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "142377670314",
+    "project_id": "emergencyapp-3a6bd",
+    "storage_bucket": "emergencyapp-3a6bd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142377670314:android:af35f0409559006fc4e2d3",
+        "android_client_info": {
+          "package_name": "com.lifeSavers.emergencyappsignup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "142377670314-kinomc84psvl2j72c217ibfdevd3i7l2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lifeSavers.emergencyappsignup",
+            "certificate_hash": "1edeadab6a70e55053ac05f4b24f557d94a7d431"
+          }
+        },
+        {
+          "client_id": "142377670314-an505ir7vlh6t0k30hbmgp6ntinegb2d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNrWUhzcqzn_ACn2gH8XEUEAGC1pSuR-4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "142377670314-an505ir7vlh6t0k30hbmgp6ntinegb2d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

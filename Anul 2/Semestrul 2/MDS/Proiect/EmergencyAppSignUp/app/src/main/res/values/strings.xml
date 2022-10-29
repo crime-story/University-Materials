@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">EmergencyAppSignUp</string>
+    <!-- make signup bold-->
+    <string name="no_account">No account? <b>Sign Up</b></string>
+    <string name="create_a_new_account">Create a New Account</string>
+    <string name="name">Name</string>
+    <string name="signup">Sign Up</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="date_of_birth">Year of Birth</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="login_to_your_account">Login to your account</string>
+    <string name="email">Email</string>
+    <string name="login">Login</string>
+    <string name="year_of_birth">Year of Birth</string>
+    <string name="title_activity_map">MapActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="forgot_password"><b>Forgot Password?</b></string>
+    <string name="enter_your_email_here">Enter your email here.</string>
+</resources>

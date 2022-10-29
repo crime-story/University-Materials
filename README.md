@@ -37,6 +37,7 @@ Here you can find all my courses, assignments and projects completed during my B
 - [Algoritmi Avansati](https://github.com/crime-story/University-Materials/tree/main/Anul%202/Semestrul%202/AA) 📌
 - [Inteligenta Artificiala](https://github.com/crime-story/University-Materials/tree/main/Anul%202/Semestrul%202/AI) 📌
 - [Fundamentele Limbajelor de Programare](https://github.com/crime-story/University-Materials/tree/main/Anul%202/Semestrul%202/FLP) 📌
+- [Metode de Dezvoltare Software](https://github.com/crime-story/University-Materials/tree/main/Anul%202/Semestrul%202/MDS) 📌
 - [Programare Avansata pe Obiecte](https://github.com/crime-story/University-Materials/tree/main/Anul%202/Semestrul%202/PAO) 📌
 - [Retele de Calculatoare](https://github.com/crime-story/University-Materials/tree/main/Anul%202/Semestrul%202/Retele) 📌
 
