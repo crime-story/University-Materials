@@ -22,5 +22,32 @@ Here you can find all my courses, assignments and projects completed during my B
 - [Structuri de Date](https://github.com/crime-story/University-Materials/tree/main/Anul%201/Semestrul%202/Structuri%20de%20date) 📌
 - [Tehnici Web](https://github.com/crime-story/University-Materials/tree/main/Anul%201/Semestrul%202/Tehnici%20web) 📌
 
+---
 ### Anul 2
 #### Semestrul 1:
+- [Algoritmi Fundamentali](https://github.com/crime-story/University-Materials/tree/main/Anul%202/Semestrul%201/AF) 📌
+- [Dezvoltarea Aplicatiilor Web](https://github.com/crime-story/University-Materials/tree/main/Anul%202/Semestrul%201/ASP) 📌
+- [Engleza](https://github.com/crime-story/University-Materials/tree/main/Anul%202/Semestrul%201/Engleza) 📌
+- [Sisteme de Operare](https://github.com/crime-story/University-Materials/tree/main/Anul%202/Semestrul%201/OS) 📌
+- [Programare Functionala](https://github.com/crime-story/University-Materials/tree/main/Anul%202/Semestrul%201/ProgFunc) 📌
+- [Sisteme de Gestiune a Bazelor de Date](https://github.com/crime-story/University-Materials/tree/main/Anul%202/Semestrul%201/SGBD) 📌
+- [Probabilitati si Statistica](https://github.com/crime-story/University-Materials/tree/main/Anul%202/Semestrul%201/Statistica) 📌
+
+#### Semestrul 2:
+- [Algoritmi Avansati](https://github.com/crime-story/University-Materials/tree/main/Anul%202/Semestrul%202/AA) 📌
+- [Inteligenta Artificiala](https://github.com/crime-story/University-Materials/tree/main/Anul%202/Semestrul%202/AI) 📌
+- [Fundamentele Limbajelor de Programare](https://github.com/crime-story/University-Materials/tree/main/Anul%202/Semestrul%202/FLP) 📌
+- [Programare Avansata pe Obiecte](https://github.com/crime-story/University-Materials/tree/main/Anul%202/Semestrul%202/PAO) 📌
+- [Retele de Calculatoare](https://github.com/crime-story/University-Materials/tree/main/Anul%202/Semestrul%202/Retele) 📌
+
+---
+### Anul 3
+#### Semestrul 1:
+- [Calculabilitate si Complexitate](https://github.com/crime-story/University-Materials/tree/main/Anul%203/Semestrul%201/Calculabilitate%20si%20Complexitate) 📌
+- [Frontend Avansat](https://github.com/crime-story/University-Materials/tree/main/Anul%203/Semestrul%201/Frontend%20Avansat) 📌
+- [Grafica pe Calculator](https://github.com/crime-story/University-Materials/tree/main/Anul%203/Semestrul%201/Grafica) 📌
+- [Inginerie Software](https://github.com/crime-story/University-Materials/tree/main/Anul%203/Semestrul%201/Inginerie%20Software) 📌
+- [Securitatea Sistemelor Informatice](https://github.com/crime-story/University-Materials/tree/main/Anul%203/Semestrul%201/Securitate) 📌
+
+#### Semestrul 2:
+- Coming soon 😄
