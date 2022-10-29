@@ -1,7 +1,7 @@
 # University-Materials
 Resources for Faculty of Mathematics and Computer Science (University of Bucharest)
 
-Here you can find all my courses, assignments and projects completed during my Bachelor degree in **Computer Science** (2020-2023). :fire: 💻
+Here you can find all my courses, homeworks and projects completed during my Bachelor degree in **Computer Science** (2020-2023). :fire: 💻
 
 ## Contents of this Repository
 ### Anul 1 🤔
