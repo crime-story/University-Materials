@@ -11,7 +11,7 @@ Here you can find all my courses, homeworks and projects completed during my Bac
 - [Logica Matematica si Computationala](https://github.com/crime-story/University-Materials/tree/main/Anul%201/Semestrul%201/LMC) 📌
 - [Programarea Algoritmilor](https://github.com/crime-story/University-Materials/tree/main/Anul%201/Semestrul%201/PA) 📌
 - [Structuri Algebrice in Informatica](https://github.com/crime-story/University-Materials/tree/main/Anul%201/Semestrul%201/SAI) 📌
-- [Gandire Critica in Informatica](https://github.com/crime-story/University-Materials/tree/main/Anul%201/Semestrul%201/SAI) 📌
+- [Gandire Critica in Informatica](https://github.com/crime-story/University-Materials/tree/main/Anul%201/Semestrul%201/GCEA) 📌
 
 #### Semestrul 2:
 - [Algebra Liniara si Geometrie](https://github.com/crime-story/University-Materials/tree/main/Anul%201/Semestrul%202/Alg%20si%20Geometrie) 📌
