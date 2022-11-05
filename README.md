@@ -47,6 +47,7 @@ Here you can find all my courses, homeworks and projects completed during my Bac
 - [Calculabilitate si Complexitate](https://github.com/crime-story/University-Materials/tree/main/Anul%203/Semestrul%201/Calculabilitate%20si%20Complexitate) 📌
 - [Frontend Avansat](https://github.com/crime-story/University-Materials/tree/main/Anul%203/Semestrul%201/Frontend%20Avansat) 📌
 - [Grafica pe Calculator](https://github.com/crime-story/University-Materials/tree/main/Anul%203/Semestrul%201/Grafica) 📌
+- [Introducere in Programarea  Jocurilor pe Calculator](https://github.com/crime-story/University-Materials/tree/main/Anul%203/Semestrul%201/Jocuri) 📌
 - [Inginerie Software](https://github.com/crime-story/University-Materials/tree/main/Anul%203/Semestrul%201/Inginerie%20Software) 📌
 - [Securitatea Sistemelor Informatice](https://github.com/crime-story/University-Materials/tree/main/Anul%203/Semestrul%201/Securitate) 📌
 
