@@ -1,0 +1,7 @@
+dimensiunea populaţiei: 20
+domeniul de definiţie al funcţiei: -1 2
+parametri pentru functia de maximizat (coeficientii polinomului de grad 2): 1 3 7
+precizia cu care se lucrează (cu care se discretizează intervalul): 6
+probabilitatea de recombinare (crossover, încrucişare): 0.25
+probabilitatea de mutaţie: 0.01
+numărul de etape ale algoritmului: 20
