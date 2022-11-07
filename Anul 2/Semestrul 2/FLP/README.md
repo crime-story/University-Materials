@@ -1,1 +1,1 @@
-# FLP
+# Fundamentele Limbajelor de Programare - Prolog
