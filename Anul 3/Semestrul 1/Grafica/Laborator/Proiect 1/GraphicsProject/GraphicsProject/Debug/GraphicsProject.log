@@ -1,0 +1,17 @@
+﻿  C:freeglut.dll
+  C:glew32.dll
+  C:glew32s.dll
+  3 File(s) copied
+  C:glfw3.dll
+  C:glfw3dll.dll
+  C:glfw3_mt.dll
+  3 File(s) copied
+  C:SOIL.dll
+  1 File(s) copied
+  proiectGrafica.cpp
+C:\Users\rober\Drive\Documents\GitHub\Proiect-Grafica\GraphicsProject\GraphicsProject\proiectGrafica.cpp(35,20): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\rober\Drive\Documents\GitHub\Proiect-Grafica\GraphicsProject\GraphicsProject\proiectGrafica.cpp(38,142): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\rober\Drive\Documents\GitHub\Proiect-Grafica\GraphicsProject\GraphicsProject\proiectGrafica.cpp(38,156): warning C4305: 'initializing': truncation from 'double' to 'float'
+  GraphicsProject.vcxproj -> C:\Users\rober\Drive\Documents\GitHub\Proiect-Grafica\GraphicsProject\Debug\GraphicsProject.exe
+  0 File(s) copied
+  0 File(s) copied
