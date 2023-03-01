@@ -1,0 +1,23 @@
+\contentsline {chapter}{\numberline {1}Introducere}{2}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Modul de organizare al echipei}{2}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Obiectivele proiectului}{2}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Vizionarea proiectului}{2}{section.1.3}%
+\contentsline {chapter}{\numberline {2}Desenarea obiectelor}{3}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Prezentarea tablei de joc}{3}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Cum a fost construită tabla de joc}{3}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Cod sursă}{4}{section.2.3}%
+\contentsline {chapter}{\numberline {3}Adăugarea translațiilor}{18}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Prezentarea Translației 1}{18}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Cod sursă}{18}{subsection.3.1.1}%
+\contentsline {section}{\numberline {3.2}Prezentarea Translației 2}{20}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Cod sursă}{21}{subsection.3.2.1}%
+\contentsline {section}{\numberline {3.3}Prezentarea Translației 3}{22}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Cod sursă}{22}{subsection.3.3.1}%
+\contentsline {chapter}{\numberline {4}Afișarea câștigătorului}{23}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Prezentarea înainte de translația finală}{23}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Cod sursă}{23}{subsection.4.1.1}%
+\contentsline {section}{\numberline {4.2}Prezentare după translație}{26}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Cod sursă}{26}{subsection.4.2.1}%
+\contentsline {chapter}{\numberline {5}Codul Sursă Complet}{27}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Codul pentru Shader}{50}{chapter.6}%
+\contentsline {chapter}{\numberline {7}Referințe}{51}{chapter.7}%
