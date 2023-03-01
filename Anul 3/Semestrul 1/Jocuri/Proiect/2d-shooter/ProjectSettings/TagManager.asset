@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Wall
+  - Enemy
+  - Bullet
+  - Item
+  - Enemy Bullet
+  - Coins
+  - Chests
+  - Charged Shot
+  - Bouncy Shot
+  - Repeating Shot
+  - Homing Shot
+  - Triple Shot
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Walls
+  - Water
+  - UI
+  - Enemies
+  - Player
+  - Bullets
+  - Enemy Bullets
+  - Objects
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Background
+    uniqueID: 851412831
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 2298602449
+    locked: 0
+  - name: UI
+    uniqueID: 166035625
+    locked: 0

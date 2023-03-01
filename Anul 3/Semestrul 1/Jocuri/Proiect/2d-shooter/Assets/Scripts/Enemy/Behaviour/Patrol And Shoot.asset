@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db8090918379c4af1bda99f04a12f10c, type: 3}
+  m_Name: Patrol And Shoot
+  m_EditorClassIdentifier: 
+  targetTag: Player
+  patrol: {fileID: 11400000, guid: 82c79f30757664853bd0412c3d1d91ee, type: 2}
+  activatedBehaviour: {fileID: 11400000, guid: 2a0bec557df1f4328a52147ebe6c6617, type: 2}
