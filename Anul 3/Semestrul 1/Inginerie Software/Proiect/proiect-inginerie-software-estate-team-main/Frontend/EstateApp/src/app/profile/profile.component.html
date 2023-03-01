@@ -1,0 +1,44 @@
+<app-menu></app-menu>
+<mat-card id="profileContainer">
+    <mat-progress-bar *ngIf="waitLogout" mode="indeterminate"></mat-progress-bar>
+    <div id="profile">
+        <div id="userContainer">
+            <mat-card id="imageContainer">
+            <img src='{{userData.profileURL}}'>
+            </mat-card>
+            <mat-card id="userData">
+                <div id="title">
+                    Hi {{userData.fullName}}!
+                </div>
+                <div class="userField">
+                    Username: {{userData.username}}
+                </div>
+                <div class="userField">
+                    Age: {{userData.age}}
+                </div>
+                <div class="userField">
+                    Residence: {{userData.residence}}
+                </div>
+                <div class="userField">
+                    Description: {{userData.description}}
+                </div>
+                <div id="buttons">
+                    <div>
+                        <button mat-raised-button color="primary" (click)="edit()"><mat-icon>edit</mat-icon>Edit account</button>
+                        <button id="logout" mat-raised-button color="primary" (click)="logout()"><mat-icon>exit_to_app</mat-icon>Logout</button>
+                    </div>
+                    <button id="delete" mat-raised-button color="primary" (click)="deleteAccount()"><mat-icon>delete_forever</mat-icon>Delete account</button>
+                </div>
+            </mat-card>
+        </div>
+        <div id="cards">
+            <mat-card *ngIf='role == "Owner"' id="operations" (click)="createNewEstate()">
+                Post a new Estate
+            </mat-card>
+            <mat-card *ngIf='role == "Owner"' id="viewYourEstates" (click)="viewYourEstates()">
+                View your estates
+            </mat-card>
+        </div>
+    </div>
+</mat-card>
+

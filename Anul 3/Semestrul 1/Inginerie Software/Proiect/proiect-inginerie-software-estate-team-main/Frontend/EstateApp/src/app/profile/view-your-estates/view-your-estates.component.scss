@@ -1,0 +1,51 @@
+p{
+    margin-left: 50px;
+    font-size: 20px;
+    margin-top: 10px;
+}
+.estateCard{
+    width: 90%;
+    height: 220px;
+    margin-left: 5%;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    background-color: #7C4DFF;
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+mat-icon{
+    margin-left: 100px;
+}
+.editStatus{
+    width: 110px;
+    font-size: 10px;
+    height: 20px;
+}
+.estateContent{
+    display: flex;
+    flex-direction: row;
+    font-size: 13px;
+}
+.access{
+    width: 100px;
+    font-size: 10px;
+    height: 20px;
+    margin-left: 3px;
+}
+mat-card-title{
+    margin-left: 75px;
+}
+.estateDetails{
+    margin-top: 0px;
+}
+img{
+    margin-left: 50px;
+    margin-right: 30px;
+    width: 250px;
+    height: 150px;
+}
+.estateCard:hover{
+    background-color: #5123cf;
+    scale: 1.04;
+}

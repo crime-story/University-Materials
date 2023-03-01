@@ -1,0 +1,42 @@
+<div *ngIf="waitingSuccess" id="container">
+    <mat-icon>check_circle</mat-icon>
+    <div id="text">Update successfuly</div>
+</div>
+<mat-progress-bar *ngIf="!waitingUpdate && !waitingSuccess" mode="indeterminate"></mat-progress-bar>
+<form *ngIf="!waitingSuccess" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <mat-card-header>
+        <mat-card-title id="title">Update profile data:</mat-card-title>
+    </mat-card-header>
+    <div class="registerForm">
+        <mat-form-field class="registerFormField">
+            <mat-label>Full Name</mat-label>
+            <input matInput formControlName="fullName" [(ngModel)]="userData.fullName">
+            <mat-error *ngIf="registerForm.controls['fullName'].hasError('required')">Name is required</mat-error>
+        </mat-form-field>
+        <mat-form-field class="registerFormField">
+            <mat-label>Residence</mat-label>
+            <input matInput formControlName="residence" [(ngModel)]="userData.residence">
+            <mat-error *ngIf="registerForm.controls['residence'].hasError('required')">Residence is required</mat-error>
+        </mat-form-field>
+        <div id="age">
+            <div>Age:</div>
+            <mat-slider min="0" max="100" step="1" showTickMarks discrete>
+                <input formControlName="age" matSliderThumb [(ngModel)]="userData.age">
+            </mat-slider>
+        </div>
+        <mat-form-field class="registerFormField">
+            <mat-label>Profile url: </mat-label>
+            <input matInput formControlName="profileURL" [(ngModel)]="userData.profileURL"> 
+        </mat-form-field>
+        <mat-form-field class="registerFormField">
+            <mat-label>Description</mat-label>
+            <textarea formControlName="description" [(ngModel)]="userData.description" matInput #message maxlength="256" placeholder="Ex. I am a person..."></textarea>
+            <mat-hint align="end">{{message.value.length}} / 200</mat-hint>
+            <mat-error *ngIf="registerForm.controls['description'].hasError('required')">Description is required</mat-error>
+        </mat-form-field>
+        
+    </div>
+    <div class="registerButtons">
+        <button mat-raised-button color="primary">Update</button>
+    </div>
+</form>

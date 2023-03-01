@@ -1,0 +1,20 @@
+# For .NET 6.0
+# Build outputs
+bin/
+obj/
+
+# Visual Studio files
+*.suo
+*.user
+*.sln.docstates
+*.cache
+
+# NuGet packages
+*.nupkg
+
+# For Angular
+# node modules
+node_modules/
+
+# build outputs
+dist/

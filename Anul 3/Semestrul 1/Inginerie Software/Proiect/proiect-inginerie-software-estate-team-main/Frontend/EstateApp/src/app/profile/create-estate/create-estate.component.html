@@ -1,0 +1,57 @@
+<form [formGroup]="postEstateForm" (ngSubmit)="onSubmit()">
+    <mat-card-header>
+        <mat-card-title>Post a new estate</mat-card-title>
+    </mat-card-header>
+    <div class="postEstateForm">
+        <mat-form-field class="postEstateField">
+            <mat-label>Surface</mat-label>
+            <input type="number" formControlName="surface" matInput>
+            <mat-icon id="surface">crop</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="postEstateField">
+            <mat-label>Number of Rooms</mat-label>
+            <input type="number" formControlName="rooms" matInput>
+        </mat-form-field>
+        <mat-form-field class="postEstateField">
+            <mat-label>Price</mat-label>
+            <input type="number"formControlName="price" matInput>
+            <mat-icon id="price">attach_money</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="postEstateField">
+            <mat-label>Sector</mat-label>
+            <input type="number"formControlName="sector" matInput>
+        </mat-form-field>
+        <mat-form-field class="postEstateField">
+            <mat-label>Neighborhood</mat-label>
+            <input type="text"formControlName="neighborhood" matInput>
+        </mat-form-field>
+        <mat-form-field class="postEstateField">
+            <mat-label>Address</mat-label>
+            <input type="text"formControlName="address" matInput>
+        </mat-form-field>
+        <mat-form-field class="postEstateField">
+            <mat-label>Description</mat-label>
+            <input type="text"formControlName="description" matInput>
+        </mat-form-field>
+        <mat-button-toggle-group formControlName="status" name="favoriteColor" aria-label="Favorite Color">
+            <mat-label>Status:</mat-label>
+            <mat-button-toggle value="enable">Enable</mat-button-toggle>
+            <mat-button-toggle value="disable">Disable</mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+
+    <mat-card id="postImg">
+        <mat-card-title>Add some images</mat-card-title>
+            <mat-label>URL</mat-label>
+            <input type="file" id="url" accept="image/png, image/gif, image/jpeg" (change)="uploadImage($event)">
+        <mat-card-content id="images">
+            <div style="position: relative;" *ngFor="let image of images">
+                <img src='{{image}}'>
+                <a class="remove-image" style="display: inline;" (click)="deleteImage(image)">&#215;</a>
+            </div>
+        </mat-card-content>
+    </mat-card>
+    <div class="loginButtons">
+        <button id="post" mat-raised-button color="primary">Post</button>
+    </div>
+</form>

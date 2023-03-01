@@ -1,0 +1,79 @@
+.estatesList{
+    width: 80vw;
+    margin-left: 10vw;
+    margin-top: 50px;
+    height: auto;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(229,229,229, 0.85)
+}
+.estateCard{
+    width: 70vw;
+    background-color: #283593;
+    color: white;
+    margin-left: 5vw;
+    height: 250px;
+    display: flex;
+    flex-direction: row;
+    margin-top: 40px;
+}
+.estateCard:hover{
+    scale: 1.05;
+}
+.estateImage{
+    width: 300px;
+    height: 150px;
+    margin-top: 50px;
+    margin-left: 50px;
+}
+.estateData{
+    margin-left: 100px;
+    margin-top: 50px;
+    height: 150px;
+    width: 30vw;
+    color: black;
+    padding-top: 30px;
+    div{
+        margin-left: 30px;
+        font-size: 20px;
+        margin-top: 2px;
+    }
+}
+#pagination{
+    width: 15vw;
+    margin-left: 41.5vw;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+#back{
+    height: 50px;
+    width: 50px;
+    background-color: white;
+    border-radius: 10px;
+    border-style: none;
+    padding-left: 15px;
+}
+#front{
+    height: 50px;
+    width: 50px;
+    background-color: white;
+    border-radius: 10px;
+    border-style: none;
+    padding-left: 10px;
+}
+#actualPage{
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 50px;
+    width: 50px;
+    background-color: white;
+    border-radius: 10px;
+    border-style: none;
+    padding-left: 10px;
+    font-size: 20px;
+}

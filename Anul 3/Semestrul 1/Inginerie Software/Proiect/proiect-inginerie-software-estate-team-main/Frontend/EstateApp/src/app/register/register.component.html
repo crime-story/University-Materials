@@ -1,0 +1,64 @@
+<mat-card class="registerCard">
+    <mat-progress-bar *ngIf="waitingLog" mode="indeterminate"></mat-progress-bar>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <mat-card-header>
+        <mat-card-title>Register</mat-card-title>
+    </mat-card-header>
+    <div class="registerForm">
+        <mat-form-field class="registerFormField">
+            <mat-label>Email</mat-label>
+            <input formControlName="email" matInput placeholder="Ex. pat@example.com">
+            <mat-icon id="email"> email</mat-icon>
+            <mat-error *ngIf="registerForm.controls['email'].hasError('required')">Email is required</mat-error>
+        </mat-form-field>
+        <mat-label id="accountType">Select the account type:</mat-label>
+        <mat-radio-group formControlName="role" aria-label="Select an option">
+            <mat-radio-button value="User" color="primary">Regular User</mat-radio-button>
+            <mat-radio-button value="Owner" color="primary">Estate Owner</mat-radio-button>
+          </mat-radio-group>
+        <mat-form-field class="registerFormField">
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+            <mat-icon  mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </mat-icon>
+            <mat-error *ngIf="registerForm.controls['password'].hasError('required')">Password is required</mat-error>
+            <mat-error *ngIf="registerForm.controls['password'].hasError('minlength')">Password must have at least 5 characters</mat-error>
+        </mat-form-field>
+        <mat-form-field class="registerFormField">
+            <mat-label>Full Name</mat-label>
+            <input matInput formControlName="fullName">
+            <mat-error *ngIf="registerForm.controls['fullName'].hasError('required')">Name is required</mat-error>
+        </mat-form-field>
+        <mat-form-field class="registerFormField">
+            <mat-label>Residence</mat-label>
+            <input matInput formControlName="residence">
+            <mat-error *ngIf="registerForm.controls['residence'].hasError('required')">Residence is required</mat-error>
+        </mat-form-field>
+        <div id="age">
+            <div>Age:</div>
+            <mat-slider min="0" max="100" step="1" showTickMarks discrete>
+                <input formControlName="age" matSliderThumb>
+            </mat-slider>
+        </div>
+        <div id="urlInput">
+            <mat-label>Profile Image</mat-label>
+            <input type="file" (change)="profileImage($event)" accept="image/png, image/gif, image/jpeg" formControlName="profileURL">
+        </div>
+        <img *ngIf="hasImage" src="default" id="profileImage">
+        <mat-form-field class="registerFormField">
+            <mat-label>Description</mat-label>
+            <textarea formControlName="description" matInput #message maxlength="256" placeholder="Ex. I am a person..."></textarea>
+            <mat-hint align="end">{{message.value.length}} / 200</mat-hint>
+            <mat-error *ngIf="registerForm.controls['description'].hasError('required')">Description is required</mat-error>
+        </mat-form-field>
+        <mat-checkbox [checked]="checkedValue" color="primary" (click)="changeValue()">Accept terms and conditions!</mat-checkbox>
+        <p id="terms" (click)="openTerms($event)">Terms and Conditions</p>
+        
+    </div>
+    <div class="registerButtons">
+        <button [disabled]="!checkedValue" mat-raised-button color="primary">Register</button>
+        <a href="http://localhost:4200/login" id="login">Or Login</a>
+    </div>
+    </form>
+</mat-card>

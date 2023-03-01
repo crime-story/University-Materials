@@ -1,0 +1,34 @@
+p{
+    text-align: center;
+    font-size: 20px;
+    margin-top: 30px;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    mat-form-field{
+        width: 200px;
+        margin-left: 11vw;
+    }
+    button{
+        width: 100px;
+        margin-left: 15vw;
+    }
+}
+#container{
+    display: flex;
+    flex-direction: row;
+    padding-top: 100px;
+}
+mat-icon{
+    transform: scale(1.6);
+    margin-left: 13vw;
+    color: green;
+}
+#text{
+    margin-left: 20px;
+    font-size: 15px;
+    color: green;
+}

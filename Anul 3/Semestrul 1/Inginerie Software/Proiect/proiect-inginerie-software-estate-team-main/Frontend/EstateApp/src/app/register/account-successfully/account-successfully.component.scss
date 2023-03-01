@@ -1,0 +1,15 @@
+#container{
+    display: flex;
+    flex-direction: row;
+    padding-top: 20px;
+}
+mat-icon{
+    transform: scale(1.6);
+    margin-left: 30px;
+    color: green;
+}
+#text{
+    margin-left: 20px;
+    font-size: 15px;
+    color: green;
+}

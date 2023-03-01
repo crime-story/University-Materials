@@ -1,0 +1,21 @@
+<div *ngIf="deleteSuccess" id="container">
+    <mat-icon>check_circle</mat-icon>
+    <div id="text">Logout successfuly</div>
+</div>
+<div *ngIf="!deleteSuccess">
+    <mat-progress-bar *ngIf="waitDelete" mode="indeterminate"></mat-progress-bar>
+    <p>
+        To delete your account please enter the password:
+    </p>
+    <form [formGroup]="deleteAccountForm" (ngSubmit)="onSubmit()">
+        <mat-form-field class="registerFormField">
+            <mat-label>
+                Password
+            </mat-label>
+            <input matInput formControlName="password">
+            <mat-error *ngIf="deleteAccountForm.controls['password'].hasError('required')">Password required</mat-error>
+        </mat-form-field>
+        <mat-checkbox [checked]="checkedValue" color="primary" (click)="changeValue()">You accept to delete your account and to lose all of your data!</mat-checkbox>
+        <button [disabled]="!checkedValue || deleteAccountForm.controls['password'].hasError('required')" mat-raised-button color="primary">Register</button>
+    </form>
+</div>

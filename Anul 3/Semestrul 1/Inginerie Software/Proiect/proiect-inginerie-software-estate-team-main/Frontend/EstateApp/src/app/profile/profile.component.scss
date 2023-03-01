@@ -1,0 +1,95 @@
+#profileContainer{
+    top: 50px;
+    left: 15vw;
+    width: 70vw;
+    height: auto;
+    margin-bottom: 100px;
+    background-color: rgba(229,229,229, 0.85)
+}
+#profileContainer::before{
+    opacity: 0.8;
+}
+#imageContainer{
+    width: 300px;
+    height: 300px;
+    top: 70px;
+    left: 70px;
+    opacity: 2;
+}
+#userContainer{
+    display: flex;
+    flex-direction: row;
+    opacity: 2;
+}
+#operations{
+    width: 350px;
+    height: 150px;
+    margin-left: 70px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    background-color: #283593;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    user-select: none;
+    opacity: 2;
+}
+#cards{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+#viewYourEstates{
+    width: 350px;
+    height: 150px;
+    margin-bottom: 50px;
+    margin-left: 50px;
+    margin-top: 50px;
+    background-color: #283593;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    user-select: none;
+}
+#viewYourEstates:hover{
+    scale: 1.1;
+}
+#operations:hover{
+    scale: 1.1;
+}
+#title{
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 25px;
+    margin-top: 30px;
+}
+.userField{
+    margin-left: 30px;
+    text-align: start;
+}
+#buttons{
+    border-style: none;
+    margin-left: 70px;
+    margin-top: 20px
+}
+#delete{
+    margin-left: 45px;
+}
+button{
+    margin-top: 5px;
+}
+#logout{
+    margin-left: 5px;
+}
+#userData{
+    border-style: groove;
+    width: 400px;
+    height: 300px;
+    margin-left: 130px;
+    margin-top: 70px;
+    display: flex;
+    flex-direction: column;
+    font-size: large;
+}
