@@ -52,4 +52,7 @@ Here you can find all my courses, homeworks and projects completed during my Bac
 - [Securitatea Sistemelor Informatice](https://github.com/crime-story/University-Materials/tree/main/Anul%203/Semestrul%201/Securitate) 📌
 
 #### Semestrul 2:
-- Coming soon 😄
+- [Programarea Dispozitivelor Mobile in Android - Kotlin](https://github.com/crime-story/University-Materials/tree/main/Anul%203/Semestrul%202/Android) 📌
+- [Blockchain](https://github.com/crime-story/University-Materials/tree/main/Anul%203/Semestrul%202/Blockchain) 📌
+- [Metode Formale in Inginerie Software](https://github.com/crime-story/University-Materials/tree/main/Anul%203/Semestrul%202/FMSE) 📌
+- [Testarea Sistemelor Software](https://github.com/crime-story/University-Materials/tree/main/Anul%203/Semestrul%202/Testare) 📌
