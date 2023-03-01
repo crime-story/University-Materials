@@ -1,0 +1,1 @@
+# Testarea sistemelor software
