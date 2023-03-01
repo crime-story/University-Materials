@@ -1,0 +1,25 @@
+<app-menu></app-menu>
+<mat-card id="estateContainer">
+    <div id="imagesContainer">
+        <div id="mainImage">
+            <img id="firstImage" src='{{estateData.images[0].url}}'>
+        </div>
+        <div id="imageList">
+            <div *ngFor="let image of estateData.images">
+            <img src='{{image.url}}' (click)="changeImage(image.url)">
+            </div>
+        </div>
+    </div>
+    <mat-card id="estateDetails">
+        <mat-card-title>
+            {{estateData.description}}
+        </mat-card-title>
+        <div>Surface: {{estateData.surface}}mp</div>
+        <div>Price: {{estateData.price}}$</div>
+        <div>Rooms number: {{estateData.numberOfRooms}}</div>
+        <div>Sector: {{estateData.setor}}</div>
+        <div>Neighborhood: {{estateData.neighborhood}}</div>
+        <div>Address: {{estateData.address}}</div>
+        <div>Status: {{estateData.status}}</div>
+    </mat-card>
+</mat-card>

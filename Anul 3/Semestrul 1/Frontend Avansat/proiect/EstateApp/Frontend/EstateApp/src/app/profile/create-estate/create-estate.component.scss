@@ -1,0 +1,91 @@
+mat-card-header{
+    text-align: center;
+    margin-left: 230px;
+}
+.postEstateForm{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 50px;
+}
+.postEstateField{
+    margin-left: 65px;
+    width: 220px;
+}
+.postEstateField input{
+    width: 150px;
+}
+mat-button-toggle-group{
+    margin-left: 65px;
+    width: 220px;
+    height: 60px;
+
+    mat-label{
+        background-color: #283593;
+        padding-top: 20px;
+        width: 100px;
+        text-align: center;
+        color: white;
+    }
+}
+#post{
+    margin-left: 23vw;
+}
+img{
+    width: 150px;
+    height: 100px;
+}
+mat-form-field{
+    width: 400px;
+    input{
+        width: 340px;
+    }
+    margin-left: 30px;
+    margin-top: 30px;
+}
+#images{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+#postImg{
+    mat-card-title{
+        margin-left: 150px;
+        margin-top: 20px
+    }
+    margin-left: 50px;
+    margin-right: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.remove-image {
+    user-select: none;
+    display: none;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    border-radius: 10em;
+    padding: 2px 6px 3px;
+    text-decoration: none;
+    font: 700 21px/20px sans-serif;
+    background: #555;
+    border: 3px solid #fff;
+    color: #FFF;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 2px 4px rgba(0,0,0,0.3);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+      -webkit-transition: background 0.5s;
+      transition: background 0.5s;
+    }
+    .remove-image:hover {
+     background: #E54E4E;
+      padding: 3px 7px 5px;
+      top: -11px;
+    right: -11px;
+    }
+    .remove-image:active {
+     background: #E54E4E;
+      top: -10px;
+    right: -11px;
+    }

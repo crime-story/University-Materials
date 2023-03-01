@@ -1,0 +1,18 @@
+<app-menu></app-menu>
+<mat-card class="estatesList">
+    <mat-card class="estateCard" *ngFor="let estate of estates | async" (click)='redirectTo(estate.estateID)'>
+        <img class="estateImage" src='{{estate.images[0].url}}'>
+        <mat-card class="estateData">
+            <div>Sector: {{estate.sector}}</div>
+            <div>Price: {{estate.price}}$</div>
+            <div>Surface: {{estate.surface}}mp</div>
+            <div>Number of rooms: {{estate.numberOfRooms}}</div>
+        </mat-card>
+    </mat-card>
+</mat-card>
+
+<div id="pagination">
+    <button id="back" *ngIf="pageNumber > 1" (click)="redirectBack()"><mat-icon>arrow_back_ios</mat-icon></button>
+    <button id="actualPage">{{pageNumber}}</button>
+    <button id="front" (click)="redirectFront()"><mat-icon>arrow_forward_ios</mat-icon></button>
+</div>

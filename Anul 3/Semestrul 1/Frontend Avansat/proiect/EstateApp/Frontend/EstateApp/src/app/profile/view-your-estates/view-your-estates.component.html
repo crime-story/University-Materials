@@ -1,0 +1,20 @@
+<p>Your estates:</p>
+<div *ngFor="let estate of estates | async">
+    <mat-card class="estateCard">
+        <mat-card-title>{{estate.description}}</mat-card-title>
+        <div class="estateContent">
+            <img class="estateImage" src="{{estate.images[0].url}}">
+            <div class="estateDetails">
+                <div>Surface: {{estate.surface}}mp   <mat-icon (click)="deleteEstate(estate.estateID)">delete_forever</mat-icon></div>
+                <div>Price: {{estate.price}}$</div>
+                <div>Rooms number: {{estate.numberOfRooms}}</div>
+                <div>Sector: {{estate.sector}}</div>
+                <div>Neighborhood: {{estate.neighborhood}}</div>
+                <div>Address: {{estate.address}}</div>
+                <div>Status: {{estate.status}}</div>
+                <button mat-raised-button class="editStatus" (click)="editStatus(estate)">Make {{returnStatus(estate.status)}}</button>
+                <button mat-raised-button class="access" (click)='redirectTo(estate.estateID)'>Access page</button>
+            </div>
+        </div>
+    </mat-card>
+</div>

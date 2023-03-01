@@ -1,0 +1,21 @@
+# .NET 6.0 project
+bin/
+obj/
+*.suo
+*.user
+*.vspscc
+*.vssscc
+
+# Angular CLI 14.2.2
+node_modules/
+dist/
+.idea/
+*.log
+
+# Other
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# dotnet user-secrets store
+*.secret
