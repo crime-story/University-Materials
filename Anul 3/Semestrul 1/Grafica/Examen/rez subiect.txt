@@ -1,0 +1,25 @@
+Model examen rezolvare
+
+subiectul 1
+1. rgb de pe link
+2. glUniform1i()
+3. glFrontFace()
+4. glDrawElements() sau glDrawArrays daca vrea explicit
+5. glm::lookAt()
+6. n = 30 deci 10 triunghiuri
+7. delta x = 10 delta y = 8 raport 8/10 deci subunitar, p = 2 delta y - 2 delta x = 6
+8. (1, 2, 2)
+9. n+ = 2, n- = 3
+doua numere egale in exterior
+doua numere diferite in interior si suma sa fie impara
+10. -4 4 pt alpha = 1
+11. v = {1, 2, 3} produs = 1 * 2 * 3 = 6 din 05_transformari partea 2 pagina 12
+12. a = 2, b = 3 si am ales functia f(x, y) = f(2x + 2y, 3x + 3y)
+2 * 0 + 2*1 = 2
+3 * 0 + 3*1 = 3
+deci functia e valida
+13. (1,2,3) - (4,5,6) = (-3,-3,-3)
+n = (-3,-3,-3)/ norma de (-3,-3,-3) = (-3,-3,-3)/3 radical din 3 = (-1/radical din 3, -1/radical din 3, -1/radical din 3)
+14. glm::ortho(-1.0f, 1.0f, -1.5f, 1.5f, -3.0f, 3.0f)
+2 * 3 * 6 = 36
+15. (4, 6, 4) cu geogebra
