@@ -1,1 +1,1 @@
-# Securitate
+# Securitatea sistemelor informatice
