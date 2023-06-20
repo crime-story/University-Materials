@@ -1,0 +1,17 @@
+La numarul meu a fost
+1. Ce face un cod sa fie neacoperibil
+2. Cum trb sa transmiti erorile catre developement? Si era o grila aici
+3. Sa faci teste cu testare functionala cu clase de echivalwnta + cu boundaries
+4. Un cod dubiosel pt a genera anagrama cu mutanti si sa testezi sa zucu care sunt diferentiabili, care sunt morti su daca nu sunt morti sa gasesti teste ca sa ii omori daca exista 
+5.  Sa implementezi doua functii pt testare random
+Pt rime
+La celalalt nr a fost ceva cu testare cu graf ala cfg sau cum se cheama
+Ceva din cursul 8 nu mai stiu la grila
+Si la 4 si 5 la fel doar ca ei la mutanti cu rime si random cu anagrame
+
+
+stiu ca unu dintre ele era cu un graf, la ala am luat regulile din cheatsheat și am numerotat instrucțiunile, am făcut un tabel in care aveam toate condițiile din if while etc și am zis ca dau valori a/f pt fiecare test, fiecare clauza etc
+și m-am folosit de definițiile de la tipuril de testing
+
+pe baza problemei faci și tu un cod in care sa generezi datele cu funcții random
+eu stiu ca făcusem sa genereze poziții random din alfabet si după cu alea sa facă cuvinte si le verifica
