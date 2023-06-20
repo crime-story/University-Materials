@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item android:title="@string/general">
+        <menu>
+            <item
+                android:id="@+id/nav_assistants"
+                android:icon="@drawable/ic_baseline_supervised_user_circle_24"
+                android:title="@string/assistants" />
+
+            <item
+                android:id="@+id/nav_map"
+                android:icon="@drawable/ic_baseline_location_on_24"
+                android:title="@string/map" />
+
+            <item
+                android:id="@+id/nav_urgent_call"
+                android:icon="@drawable/ic_baseline_call_24"
+                android:title="@string/urgent_call" />
+        </menu>
+    </item>
+
+    <item android:title="@string/account">
+        <menu>
+            <item
+                android:id="@+id/nav_profile"
+                android:icon="@drawable/ic_baseline_person_outline_24"
+                android:title="@string/profile" />
+
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_baseline_exit_to_app_24"
+                android:title="@string/logout" />
+        </menu>
+    </item>
+
+    <item android:title="@string/help">
+        <menu>
+            <item
+                android:id="@+id/nav_show_guide"
+                android:icon="@drawable/ic_baseline_help_center_24"
+                android:title="@string/app_guide" />
+
+            <item
+                android:id="@+id/nav_show_tutorial_video"
+                android:icon="@drawable/ic_baseline_video_cam_24"
+                android:title="@string/tutorial_video" />
+        </menu>
+    </item>
+
+    <item android:title="@string/community">
+        <menu>
+            <item
+                android:id="@+id/nav_share_app"
+                android:icon="@drawable/ic_baseline_share_24"
+                android:title="@string/share_the_app" />
+        </menu>
+    </item>
+</menu>

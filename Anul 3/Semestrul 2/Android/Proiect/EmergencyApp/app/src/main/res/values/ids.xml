@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="action_FirstFragment_to_SecondFragment" type="id" />
+    <item name="action_SecondFragment_to_FirstFragment" type="id" />
+</resources>

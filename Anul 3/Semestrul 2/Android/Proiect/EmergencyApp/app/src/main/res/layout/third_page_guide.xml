@@ -1,0 +1,46 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ccffff"
+    tools:context=".activities.GuidePage3">
+
+    <TextView
+        android:layout_width="214dp"
+        android:layout_height="206dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/call_center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="300dp"
+        android:padding="10dp"
+        android:text="@string/we_are_here_to_help_you"
+        android:textColor="#6666ff"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="350dp"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/third_page_guide_message"
+        android:textColor="#6666ff"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/LoginPageButton"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="260dp"
+        android:layout_marginTop="600dp"
+        android:text="@string/start" />
+</RelativeLayout>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@drawable/background_img_main"
+    tools:context=".activities.MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="130dp"
+        android:padding="10dp"
+        android:text="@string/home"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/profileBtn"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/profile" />
+
+    <Button
+        android:id="@+id/mapBtn"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_above="@id/profileBtn"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/map" />
+
+    <Button
+        android:id="@+id/phoneNumbersBtn"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/profileBtn"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/urgent_call" />
+
+    <Button
+        android:id="@+id/assistantsListBtn"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/phoneNumbersBtn"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/assistants" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/shareBtn"
+        android:layout_width="197dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/assistantsListBtn"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="65dp"
+        android:backgroundTint="@color/red"
+        android:drawableStart="@drawable/ic_baseline_share_24_white"
+        android:text="@string/share_the_app"
+        android:textColor="@android:color/white" />
+</RelativeLayout>
