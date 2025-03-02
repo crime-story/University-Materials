@@ -1,0 +1,66 @@
+.data
+    v:.space 400             # vector de 100 de elemente (400 = 100 * 4)
+    sp:.asciiz " "
+.text
+main:
+
+    li $v0, 5
+    syscall
+    move $t0, $v0
+
+    li $t1, 0
+    li $t2, 0
+
+    read:                    # citește vectorul (ca la problema anterioară)    
+
+        beq $t0, $t1, solve
+
+        li $v0, 5
+        syscall
+        sw $v0, v($t2)
+
+        addi $t1, $t1, 1
+        addi $t2, $t2, 4
+
+        j read
+
+    solve:                     # afișează pe ecran
+
+    li $t1, 0                  # t1 va fi counterul nostru care va merge din 4 în 4 poziții
+    li $t2, 0                  # indexul curent din vector (merge tot din 4 în 4 poziții
+                               # deci va fi incrementat cu 16, adica 4 * 4)
+
+    li $t2, 0
+
+    loop:
+
+        beq $t0, $t1, exit     # daca am parcurs vectorul ne oprim
+ 
+        lw $t3, v($t2)         # luăm valoarea din array la poziția noatră și o ținem în $t3
+
+        rem $t4, $t3, 2        # calculăm restul îmărțirii la 2 în $t4 pentru a verifica
+                               # dacă numărul este par
+
+        beq $t4, 0, par        # dacă e par, îl vom afișa
+        j cont                 # dacă nu, continuăm loop-ul în mod nomrla
+        par:                   # dacă am ajuns aici, e clar că numărul e par
+
+            move $a0, $t3      # copiază în a $a0 valoarea pară pentru a o afișa
+            li $v0, 1
+            syscall            # afișează valoarea
+
+            la $a0, sp
+            li $v0, 4
+            syscall            # afișează spațiu între rezultate
+
+        cont:
+
+            addi $t1, $t1, 1
+            addi $t2, $t2, 4
+
+            j loop
+
+    exit:
+
+    li $v0, 10
+    syscall

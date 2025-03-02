@@ -1,0 +1,35 @@
+.data
+    v:.word 5, 19, 25, 13, 8 # vectorul nostru din memorie
+    n:.word 5                # lungimea vectorului
+    sp:.asciiz " "
+.text
+main:
+    lw $t0, n                # încarcă lungimea vectorului în registrul $t0
+    li $t1, 0                # counterul nostru pentru loop
+    li $t2, 0                # indicele de unde vom accesa vectorul
+                             # nu îl folosim pe $t1 pentru asta
+                             # deoarce avem nevoie ca indicele nostru pentru vector
+                             # să fie multiplu de 4
+
+    loop:
+        beq $t0, $t1, exit 
+
+        lw $a0, v($t2)       # copiază elementul de la poziția $t2 din vector
+                             # in registrul $a0 pentru a o afisa pe ecran 
+        li $v0, 1
+        syscall
+
+        la $a0, sp
+        li $v0, 4
+        syscall
+
+        addi $t1, $t1, 1     # incrementează counterul
+        addi $t2, $t2, 4     # incrementează indicele nostru pentru vector.
+                             # este incrementat cu 4 bytes deoarece un word înseamnă
+                             # 4 bytes
+
+        j loop
+
+    exit:
+    li $v0, 10
+    syscall

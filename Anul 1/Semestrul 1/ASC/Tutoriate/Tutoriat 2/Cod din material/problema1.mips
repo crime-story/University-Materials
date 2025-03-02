@@ -1,0 +1,21 @@
+.data
+    n:.word 100756      # numărul declarat în memorie
+.text
+main:
+    
+    lw $t0, n           # incarcă în registrul $t0 valoarea din n
+    div $t0, $t0, 3     # realizează împărțirea la 3
+                        # observați că nu există instrucțiunea divi
+                        # deci pentru a realiza împărțirea la o constantă
+                        # este suficient ca al doilea parametru al instrucțiunii
+                        # să fie o constantă
+    sub $t0, $t0, 2     # scădem 2 
+                        # din nou, nu există subi, deci putem folosi o constantă
+                        # pentru al doilea parametru
+    move $a0, $t0       # copiază în $a0 valoarea pe care vrem să o afișăm
+    li $v0, 1           # incarcă în $v0 codul pentru print int
+    syscall             # realizează apelul de sistem
+
+    li $v0, 10          # exit
+    syscall
+

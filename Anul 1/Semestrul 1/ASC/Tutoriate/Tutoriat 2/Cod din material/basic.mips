@@ -1,0 +1,12 @@
+# Comentariile în MIPS încep cu #
+# Ele sunt ignorate de către compilator
+# Ele sunt valabile până la sfârșitul rândului
+.data
+    # zonă pentru declararea datelor
+.text
+    #cod pentru proceduri
+main:
+    #cod main
+    li $v0, 10
+    syscall
+

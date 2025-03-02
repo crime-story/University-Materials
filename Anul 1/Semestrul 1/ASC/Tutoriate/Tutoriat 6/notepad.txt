@@ -1,0 +1,27 @@
+gkjhwkgh             0
+label:instra         4
+instrb               8
+instrc               12
+beq $t1, $t2, label  16
+linie_urmatoare      20
+
+(20 - 4) = 16
+-16 / 4 -> -4
+
+
+
+
+instr
+instr
+instr
+ble $t0, $t1, et -1
+instr             0
+instr             1
+instr             2
+et:
+instr             3
+
+
+instr
+label: ble $t0, $t1, label -1
+instr 

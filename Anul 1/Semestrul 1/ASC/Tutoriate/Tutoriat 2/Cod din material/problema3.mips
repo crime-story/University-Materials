@@ -1,0 +1,38 @@
+.data
+.text
+main:
+
+    li $v0, 5
+    syscall
+    move $t0, $v0
+
+    li $t1, 0               # de data asta pornim de la 0,
+                            # nu de la 1 cum era la problema anterioara
+    li $t3, 0
+
+    loop:
+        bge $t1, $t0, exit
+
+        li $v0, 5           # citim termenul a_i și il salvăm în $t2
+        syscall
+        move $t2, $v0
+
+        div $t2, $t2, 3     # nu mai avem nevoie de valoarea citită
+                            # deci putem calcula termenul general direct in $t2
+        sub $t2, $t2, 2
+
+        add $t3, $t3, $t2   # adună termenul calculat la sumă
+
+        addi $t1, $t1, 1
+
+        j loop
+
+exit:
+
+    li $v0, 1
+    move $a0, $t3
+    syscall
+
+    li $v0, 10
+    syscall
+

@@ -1,0 +1,44 @@
+.data
+
+    n:.space 4             # numarul nostru (alocam 4 bytes pentru el)
+                           # putem folosi si word in loc 
+                           # (cum am facut la problema anterioara)
+    sp:.asciiz " "         # spatiu pentru a putea delimita numerele cand
+                           # le afisam pe ecran
+
+.text
+
+main:
+
+    li $v0, 5              # READ INT
+    syscall
+    move $t0, $v0,         # copiaza în $t0 valoarea citită
+    sw $t0, n              # salvează în memorie valoarea citită
+
+    li $t1, 0              # $t1 va fi counterul nostrul, deci îl inițializăm cu 0
+    loop:
+        beq $t1, $t0, exit # cand conterul ($t1) este egal cu n (valoarea din $t0),
+                           # e clar ca am afisat toate numerele de la 0 la n-1
+                           # deci ne ducem la label-ul exit pentru a inchide programul
+        move $a0, $t1      # PRINT INT (copiaza in $a0 valoarea curenta pentru a o afisa)
+        li $v0, 1          
+        syscall
+
+        li $v0, 4          # PRINT STRING
+        la $a0, sp         # Încarcă în $a0 pointer către șirul de caractere
+                           # care conține un singur spațiu
+        syscall            # afișează un spațiu pe ecran pentru a putea delimita
+                           # numerele
+
+        addi $t1, $t1, 1   # incrementează conterul
+                           # echivalentul lui i++ din C
+        j loop             # continuă iterarea 
+                           # adică continua executarea de la linia
+                           # unde este label-ul loop
+
+exit:                      # daca am ajuns aici înseamnă ca beq din loop
+                           # ne-a adus aici, deci am afisat toate numerele de la
+                           # 0 la n-1
+
+    li $v0, 10             # exit
+    syscall

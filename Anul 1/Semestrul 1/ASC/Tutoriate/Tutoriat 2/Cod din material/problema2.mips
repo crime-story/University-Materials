@@ -1,0 +1,36 @@
+.data
+.text
+main:
+
+    li $v0, 5
+    syscall
+    move $t0, $v0
+
+    li $t1, 1
+    li $t3, 0
+
+    loop:
+        bge $t1, $t0, exit  # am folosit bge pentru a nu avea loop infinit
+                            # în cazul în care primim o valoare mai mică decat 1
+                            # de la intrare
+
+        move $t2, $t1       # calculează termenul a_i în t2
+        div $t2, $t2, 3
+        sub $t2, $t2, 2
+
+        add $t3, $t3, $t2   # îl adună pe a_i la sumă
+                            # suma va fi ținută în registrul $t3
+
+        addi $t1, $t1, 1
+
+        j loop
+
+exit:
+
+    li $v0, 1               # afișează rezultatul sumei
+    move $a0, $t3
+    syscall
+
+    li $v0, 10
+    syscall
+

@@ -1,0 +1,92 @@
+.data
+    v:.space 800               # vector de 200 de elemente (800 = 200 * 4)
+    sp:.asciiz " "
+    nl:.asciiz "\n"            # pentru a afișa rânduri noi intre răspunsuri
+.text
+main:
+
+    li $v0, 5
+    syscall
+    move $t0, $v0
+
+    li $t1, 0
+    li $t2, 0
+
+    read:                      # citește vectorul (ca la problema anterioară)
+
+        beq $t0, $t1, solve
+
+        li $v0, 5
+        syscall
+        sw $v0, v($t2)
+
+        addi $t1, $t1, 1
+        addi $t2, $t2, 4
+
+        j read
+
+solve:                         # rezolvă problema
+
+    li $t1, 0                  # t1 va fi counterul nostru care va merge din 4 în 4 poziții
+    li $t2, 0                  # indexul curent din vector (merge tot din 4 în 4 poziții
+                               # deci va fi incrementat cu 16, adica 4 * 4)
+
+    loop:
+
+        bge $t1, $t0, exit     # dacă am ieșit din vector, ne oprim (teoretic nu ar fi
+                               # nevoie de această linie dacă avem garantat
+                               # că există mereu un 99 care să ne oprească)
+
+        lw $t3, v($t2)         # luăm valoarea din array la poziția noatră și o ținem în $t3
+
+        beq $t3, 99, exit      # dacă am găsit 99, programul se oprește
+
+        beq $t3, 1, afis_case  # dacă am dat de valoarea 1 afișăm următoarele 3 valori
+        beq $t3, 2, afis_case  # dacă am dat de valoarea 2 afișăm următoarele 3 valori
+
+        j cont_loop            # dacă am ajuns aici, nicio condiție nu este îndeplinită
+                               # deci continuă loop-ul normal
+        
+        afis_case:             # dacă am ajuns aici, e clar că $t3 este egal fie cu 1, fie cu 2
+
+            move $t4, $t2      # luăm poziția la care suntem in vector și o salvăm în $t4
+            
+            addi $t4, 4        # incrementăm poziția pentru a afișa elementul următor
+            lw $a0, v($t4)     # încărcăm în $a0 valoarea elementului următor pentru a o afișa
+            li $v0, 1
+            syscall            # afișăm valoarea pe ecran
+
+            la $a0, sp         # afișăm spațiu pe ecran
+            li $v0, 4
+            syscall
+
+            addi $t4, 4        # facem la fel și pentru următorul număr care trebuie afișat
+            lw $a0, v($t4)
+            li $v0, 1
+            syscall
+
+            la $a0, sp
+            li $v0, 4
+            syscall
+
+            addi $t4, 4        # la fel și pentru al treilea
+            lw $a0, v($t4)
+            li $v0, 1
+            syscall
+
+            la $a0, nl         # pune un rând nou
+            li $v0, 4
+            syscall
+            
+        cont_loop:
+        
+            addi $t1, $t1, 4   # continuă loop-ul, adică incrementează poziția curentă cu 4
+            addi $t2, $t2, 16  # incrementează indexul cu 16. (4 * 4)
+
+            j loop
+    
+exit:
+
+    li $v0, 10
+    syscall
+

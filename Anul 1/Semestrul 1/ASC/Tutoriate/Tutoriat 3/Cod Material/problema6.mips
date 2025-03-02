@@ -1,0 +1,60 @@
+.data
+    a:.word 1, 2, 3, 4
+      .word 5, 6, 7, 8
+      .word 9, 10, 11, 12
+    n:.word 3
+    m:.word 4
+    sp:.asciiz " "
+    nl:.asciiz "\n"
+.text
+main:
+
+    lw $t0, n                         # încarc în $t0 numărul de linii
+    lw $t1, m                         # încarc în $t1 numărul de coloane
+    
+    li $t2, 0                         # conter pentru iterarea liniilor
+
+    print:                            # "for" pentru linii
+
+        beq $t2, $t0, exit
+
+        li $t3, 0                     # counter pentru iterarea coloanelor
+
+        print_line:                   # "for" pentru coloane
+
+            beq $t3, $t1, end_line
+
+            move $t4, $t2             # calculează poziția în matrice
+                                      # poziția e dată de formula p = (l * m) + c
+                                      # unde l este linia, iar c este coloana
+            mul $t4, $t4, $t1
+            add $t4, $t4, $t3
+
+            add $t4, $t4, $t4         # înmulțim $t4 cu 4 pentru a fi poziție validă
+            add $t4, $t4, $t4         # în tabloul nostru
+
+            lw $a0, a($t4)            # încarc valoarea din tablou în registrul $a0
+            li $v0, 1                 # pentru a o afișa pe ecran
+            syscall
+
+            la $a0, sp
+            li $v0, 4
+            syscall
+
+            addi $t3, $t3, 1
+            j print_line
+
+        end_line:
+
+            la $a0, nl
+            li $v0, 4
+            syscall
+        
+            addi $t2, $t2, 1
+
+            j print
+
+exit:
+
+    li $v0, 10
+    syscall
