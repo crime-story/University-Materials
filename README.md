@@ -3,9 +3,11 @@ Resources for Faculty of Mathematics and Computer Science (University of Buchare
 
 Here you can find all my courses, homeworks and projects completed during my *Bachelor degree* in **Computer Science** (2020-2023) and my *Master’s degree* in **Software Engineering** (2024–2026). :fire: 💻
 
-## Contents of this Repository
-### Anul 1 🤔
-#### Semestrul 1:
+# Contents of this Repository
+
+## Bachelor Degree (2020–2023) 🎓
+### Year 1 🤔
+#### Semester 1:
 - [Arhitectura Sistemelor de Calcul](https://github.com/crime-story/University-Materials/tree/main/Anul%201/Semestrul%201/ASC) 📌
 - [Calcul Diferential si Integral](https://github.com/crime-story/University-Materials/tree/main/Anul%201/Semestrul%201/CDI) 📌
 - [Logica Matematica si Computationala](https://github.com/crime-story/University-Materials/tree/main/Anul%201/Semestrul%201/LMC) 📌
@@ -13,7 +15,7 @@ Here you can find all my courses, homeworks and projects completed during my *Ba
 - [Structuri Algebrice in Informatica](https://github.com/crime-story/University-Materials/tree/main/Anul%201/Semestrul%201/SAI) 📌
 - [Gandire Critica in Informatica](https://github.com/crime-story/University-Materials/tree/main/Anul%201/Semestrul%201/GCEA) 📌
 
-#### Semestrul 2:
+#### Semester 2:
 - [Algebra Liniara si Geometrie](https://github.com/crime-story/University-Materials/tree/main/Anul%201/Semestrul%202/Alg%20si%20Geometrie) 📌
 - [Baze de Date](https://github.com/crime-story/University-Materials/tree/main/Anul%201/Semestrul%202/Baze%20de%20date) 📌
 - [Engleza](https://github.com/crime-story/University-Materials/tree/main/Anul%201/Semestrul%202/Engleza) 📌
@@ -23,8 +25,8 @@ Here you can find all my courses, homeworks and projects completed during my *Ba
 - [Tehnici Web](https://github.com/crime-story/University-Materials/tree/main/Anul%201/Semestrul%202/Tehnici%20web) 📌
 
 ---
-### Anul 2 😄
-#### Semestrul 1:
+### Year 2 😄
+#### Semester 1:
 - [Algoritmi Fundamentali](https://github.com/crime-story/University-Materials/tree/main/Anul%202/Semestrul%201/AF) 📌
 - [Dezvoltarea Aplicatiilor Web in .NET](https://github.com/crime-story/University-Materials/tree/main/Anul%202/Semestrul%201/ASP) 📌
 - [Engleza](https://github.com/crime-story/University-Materials/tree/main/Anul%202/Semestrul%201/Engleza) 📌
@@ -33,7 +35,7 @@ Here you can find all my courses, homeworks and projects completed during my *Ba
 - [Sisteme de Gestiune a Bazelor de Date](https://github.com/crime-story/University-Materials/tree/main/Anul%202/Semestrul%201/SGBD) 📌
 - [Probabilitati si Statistica](https://github.com/crime-story/University-Materials/tree/main/Anul%202/Semestrul%201/Statistica) 📌
 
-#### Semestrul 2:
+#### Semester 2:
 - [Algoritmi Avansati](https://github.com/crime-story/University-Materials/tree/main/Anul%202/Semestrul%202/AA) 📌
 - [Inteligenta Artificiala](https://github.com/crime-story/University-Materials/tree/main/Anul%202/Semestrul%202/AI) 📌
 - [Fundamentele Limbajelor de Programare](https://github.com/crime-story/University-Materials/tree/main/Anul%202/Semestrul%202/FLP) 📌
@@ -42,8 +44,8 @@ Here you can find all my courses, homeworks and projects completed during my *Ba
 - [Retele de Calculatoare](https://github.com/crime-story/University-Materials/tree/main/Anul%202/Semestrul%202/Retele) 📌
 
 ---
-### Anul 3 😫
-#### Semestrul 1:
+### Year 3 😫
+#### Semester 1:
 - [Calculabilitate si Complexitate](https://github.com/crime-story/University-Materials/tree/main/Anul%203/Semestrul%201/Calculabilitate%20si%20Complexitate) 📌
 - [Frontend Avansat](https://github.com/crime-story/University-Materials/tree/main/Anul%203/Semestrul%201/Frontend%20Avansat) 📌
 - [Grafica pe Calculator](https://github.com/crime-story/University-Materials/tree/main/Anul%203/Semestrul%201/Grafica) 📌
@@ -51,8 +53,23 @@ Here you can find all my courses, homeworks and projects completed during my *Ba
 - [Inginerie Software](https://github.com/crime-story/University-Materials/tree/main/Anul%203/Semestrul%201/Inginerie%20Software) 📌
 - [Securitatea Sistemelor Informatice](https://github.com/crime-story/University-Materials/tree/main/Anul%203/Semestrul%201/Securitate) 📌
 
-#### Semestrul 2:
+#### Semester 2:
 - [Programarea Dispozitivelor Mobile in Android - Kotlin](https://github.com/crime-story/University-Materials/tree/main/Anul%203/Semestrul%202/Android) 📌
 - [Blockchain](https://github.com/crime-story/University-Materials/tree/main/Anul%203/Semestrul%202/Blockchain) 📌
 - [Metode Formale in Inginerie Software](https://github.com/crime-story/University-Materials/tree/main/Anul%203/Semestrul%202/FMSE) 📌
 - [Testarea Sistemelor Software](https://github.com/crime-story/University-Materials/tree/main/Anul%203/Semestrul%202/Testare) 📌
+
+## Master’s Degree (2024–2026) 🧑‍🎓
+### Year 1 🤔
+#### Semester 1:
+- [Proiectarea Algoritmilor Eficienti](https://github.com/crime-story/University-Materials/tree/main/Anul%201/Semestrul%201/ASC) 📌
+- [Analiza si modelarea sistemelor software](https://github.com/crime-story/University-Materials/tree/main/Anul%201/Semestrul%201/CDI) 📌
+- [Managementul si organizarea proiectelor software](https://github.com/crime-story/University-Materials/tree/main/Anul%201/Semestrul%201/LMC) 📌
+- [Sisteme de Baze de Date - Optional](https://github.com/crime-story/University-Materials/tree/main/Anul%201/Semestrul%201/PA) 📌
+- [Deontologie Academica](https://github.com/crime-story/University-Materials/tree/main/Anul%201/Semestrul%201/SAI) 📌
+
+#### Semester 2:
+- [Tehnici avansate de programare](https://github.com/crime-story/University-Materials/tree/main/Anul%201/Semestrul%202/Alg%20si%20Geometrie) 📌
+- [Arhitectura sistemelor software](https://github.com/crime-story/University-Materials/tree/main/Anul%201/Semestrul%202/Baze%20de%20date) 📌
+- [Experienta de utilizare si interactiunea cu utilizatorul - UX/UI](https://github.com/crime-story/University-Materials/tree/main/Anul%201/Semestrul%202/Engleza) 📌
+- [Aplicatii Web pentru Baze de Date - Optional](https://github.com/crime-story/University-Materials/tree/main/Anul%201/Semestrul%202/LFA) 📌
