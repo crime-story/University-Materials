@@ -1,0 +1,74 @@
+##############################################################################
+# Copyright (c) 1991, 2013 by Oracle Corporation
+##############################################################################
+ 
+###########################################
+# Cache and I/O
+###########################################
+db_block_size=8192
+ 
+###########################################
+# Cursors and Library Cache
+###########################################
+open_cursors=300
+ 
+###########################################
+# Database Identification
+###########################################
+db_name="homedb1"
+ 
+###########################################
+# File Configuration
+###########################################
+control_files=("C:\OracleBaseDB1\oradata\HOMEDB1\control01.ctl", "C:\OracleBaseDB1\oradata\HOMEDB1\control02.ctl")
+ 
+###########################################
+# Miscellaneous
+###########################################
+compatible=19.0.0
+diagnostic_dest=C:\OracleBaseDB1
+ 
+###########################################
+# NLS
+###########################################
+nls_language="AMERICAN"
+nls_territory="AMERICA"
+ 
+###########################################
+# Network Registration
+###########################################
+local_listener=LISTENER_HOMEDB1
+ 
+###########################################
+# Processes and Sessions
+###########################################
+processes=480
+ 
+###########################################
+# SGA Memory
+###########################################
+sga_target=2452m
+ 
+###########################################
+# Security and Auditing
+###########################################
+audit_file_dest="C:\OracleBaseDB1\admin\homedb1\adump"
+audit_trail=db
+remote_login_passwordfile=EXCLUSIVE
+ 
+###########################################
+# Shared Server
+###########################################
+dispatchers="(PROTOCOL=TCP) (SERVICE=homedb1XDB)"
+ 
+###########################################
+# Sort, Hash Joins, Bitmap Indexes
+###########################################
+pga_aggregate_target=818m
+ 
+###########################################
+# System Managed Undo and Rollback Segments
+###########################################
+undo_tablespace=UNDOTBS1
+ 
+ 

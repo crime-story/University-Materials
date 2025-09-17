@@ -1,0 +1,342 @@
+-- Popescu Paullo Robertto Karloss --
+-- Grupa 406 --
+
+-- Exercitiul 7
+-- 1) Sa se afiseze numele si id-ul tuturor produselor comandate de un client vreodata.
+SELECT DISTINCT
+    cl.id_client,
+    cl.nume,
+    cl.prenume,
+    prod.id_produs,
+    prod.nume
+FROM
+    comanda            c,
+    client             cl,
+    continut_comanda   cmd,
+    produs             prod
+WHERE
+    cl.id_client = c.id_client
+    AND c.id_comanda = cmd.id_comanda
+    AND cmd.id_produs = prod.id_produs
+ORDER BY
+    id_client,
+    id_produs;
+	
+
+-- 2) Pentru fiecare bucatar angajat in anul curent, afisati profitul mediu pe care il poate aduce daca ar vinde din fiecare mancare pe care stie sa o prepare exact o bucata.
+
+SELECT
+    a.id_angajat,
+    lower(a.nume),
+    lower(a.prenume),
+    r.id_restaurant,
+    upper(r.nume),
+    AVG(m.pret) "castig mediu"
+FROM
+    angajat      a,
+    bucatar      b,
+    preparare    prep,
+    produs       prod,
+    meniu        m,
+    restaurant   r
+WHERE
+    a.id_restaurant = r.id_restaurant
+    AND a.id_angajat = b.id_angajat
+    AND b.id_angajat = prep.id_angajat
+    AND prod.id_produs = prep.id_produs
+    AND prod.id_produs = m.id_produs
+    AND m.id_restaurant = r.id_restaurant
+    AND to_char(a.data_angajare, 'yyyy') LIKE to_char(sysdate, 'yyyy')
+GROUP BY (
+    a.id_angajat,
+    a.nume,
+    a.prenume,
+    r.id_restaurant,
+    r.nume
+);
+
+-- 3) Afisati pentru fiecare produs, id-ul bucatarului care il prepara si cate stele are bucatarul
+--    sau mesaj daca nu e preparat de nimeni
+--    daca e preparat de mai multi, ii afisati pe toti.
+-- Nesicronizata
+with myProd as (
+    select distinct prod.ID_PRODUS, prod.NUME, prep.ID_ANGAJAT
+    from produs prod,
+         PREPARARE prep
+    where prod.ID_PRODUS = prep.ID_PRODUS(+))
+select myProd.ID_PRODUS,
+       myProd.NUME,
+       decode(nvl(om.ID_ANGAJAT, -1), -1, 'nu e preparat de nimeni', om.id_angajat) preparator,
+       om.NR_STELE,
+       om.ID_RESTAURANT
+from myProd,
+     (select a.ID_ANGAJAT, a.NUME, a.PRENUME, b.NR_STELE, r.ID_RESTAURANT
+      from ANGAJAT a,
+           BUCATAR b,
+           RESTAURANT r
+      where a.ID_ANGAJAT = b.ID_ANGAJAT
+        and a.ID_RESTAURANT = r.ID_RESTAURANT) om
+where myProd.ID_ANGAJAT = om.ID_ANGAJAT(+);
+
+--- 4) Afisati toti clientii cu toate comenzile lor si facturile aferente,
+--     a caror suma cheltuita pana acum depaseste average-ul comenzilor cu cel putin 3 produs
+-- Sincronizata
+select *
+from CLIENT cl,
+     COMANDA cmd,
+     FACTURA f
+where cmd.ID_CLIENT = cl.ID_CLIENT
+  and f.ID_FACTURA = cmd.ID_FACTURA
+  and (select sum(cmd2.PRET)
+       from COMANDA cmd2
+       where cmd2.ID_CLIENT = cl.ID_CLIENT) >
+      (select avg(t1.pr)
+       from (select cmd3.ID_COMANDA, cmd3.PRET pr
+             from COMANDA cmd3,
+                  CONTINUT_COMANDA cnt
+             where cmd3.ID_COMANDA = cnt.ID_COMANDA
+             group by cmd3.ID_COMANDA, cmd3.PRET
+             having count(*) >= 3) t1);
+
+
+-- 5) Pentru fiecare pereche de angajati, afisati daca acestia se cunosc de cel putin un an.
+select case
+           when months_between(a1.DATA_ANGAJARE, a2.DATA_ANGAJARE) >= 12 then 'Angajatii ' || a1.ID_ANGAJAT || ' si ' ||
+                                                                              a2.ID_ANGAJAT ||
+                                                                              ' se cunosc de peste un an'
+           else 'Angajatii ' || a1.ID_ANGAJAT || ' si ' || a2.ID_ANGAJAT || ' se cunosc de mai putin de un an' end
+from ANGAJAT a1,
+     ANGAJAT a2
+where a1.ID_ANGAJAT < a2.ID_ANGAJAT;
+
+-- 6)
+-- Afisati pentru toate produsele din sistem, la ce restaurant se servesc, sau null daca nu e servit nicaieri.
+select p.ID_PRODUS, p.NUME, m.ID_RESTAURANT, r.NUME, l.TARA, l.ORAS, l.STRADA
+from meniu m, PRODUS p, RESTAURANT r, locatie l
+where m.ID_PRODUS(+)=p.ID_PRODUS 
+and m.ID_RESTAURANT=r.ID_RESTAURANT(+) 
+and r.ID_RESTAURANT=l.ID_LOCATIE(+); --outer join
+
+-- Afisati produsele care se gasesc in toate restaurantele.
+-- Folosim division
+select distinct p.ID_PRODUS,p.NUME
+from PRODUS p, MENIU m
+where p.ID_PRODUS in (select distinct m.ID_PRODUS from MENIU m) and m.ID_PRODUS=p.ID_PRODUS
+group by p.ID_PRODUS, p.NUME
+having count(p.ID_PRODUS) = (select count(r1.ID_RESTAURANT) from RESTAURANT r1);
+
+-- Afisati produsele care se gasesc in toate comenzile dintr-o anumita zi.
+-- Folosim Division
+
+insert into FACTURA values(1000,3,100,'nu');
+insert into COMANDA values (1000,1,1000,1000,to_date('13-07-2000','dd-mm-yyyy'));
+insert into CONTINUT_COMANDA values (4,1000,3);
+
+with t as(select * from CONTINUT_COMANDA cnt0, COMANDA cmd0 where cnt0.ID_COMANDA=cmd0.ID_COMANDA)
+select distinct p.ID_PRODUS, p.NUME
+from PRODUS p, t t1
+where p.ID_PRODUS=t1.ID_PRODUS 
+and to_char(t1.DATA,'dd-mm-yyyy')='13-07-2000'
+and p.ID_PRODUS in (select distinct t2.ID_PRODUS from t t2 
+                    where to_char(t2.DATA, 'dd-mm-yyyy')='13-07-2000')
+group by p.ID_PRODUS, p.NUME
+having count(p.ID_PRODUS)=(select count(*) from t t3 
+                            where  to_char(t3.DATA, 'dd-mm-yyyy')='13-07-2000');
+							
+-- 7)
+-- Afișați combinațiile posibile între restaurante și produse, 
+-- inclusiv acelea unde restaurantul nu vinde niciun produs 
+-- (coloanele de produs vor fi NULL) sau unde există produse
+-- ce nu apar în niciun meniu (coloanele de restaurant vor fi NULL).
+
+SELECT r.id_restaurant,
+       r.nume           AS nume_restaurant,
+       p.id_produs,
+       p.nume           AS nume_produs
+FROM   restaurant r
+FULL JOIN meniu m
+       ON r.id_restaurant = m.id_restaurant
+FULL JOIN produs p
+       ON p.id_produs = m.id_produs
+ORDER BY r.id_restaurant, p.id_produs;
+
+-- 8) Pentru fiecare produs din restaurantele aflate intr-o locatie specifica (Ex Romania, Bucuresti),
+-- sa se afiseze id-ul produsului, numele produsului, descrierea, primele 5 caractere din descriere,
+-- pozitia primului spatiu. numele si id-ul restaurantului, si datele despre locatia 
+-- fiecarui restaurant(tara, orasul si codul postal).
+
+SELECT DISTINCT 
+       p.id_produs         AS id_produs,
+       p.nume              AS nume_produs,
+       p.descriere,
+       SUBSTR(p.descriere, 1, 5) AS primele_5_caractere,
+       INSTR(p.descriere, ' ')   AS pozitie_prim_spatiu,
+       r.nume              AS nume_restaurant,
+       r.id_restaurant     AS id_restaurant,
+       l.tara              AS tara,
+       l.oras              AS oras,
+       l.cod_postal        AS cod_postal
+FROM   produs p
+JOIN   meniu m 
+       ON p.id_produs = m.id_produs
+JOIN   restaurant r 
+       ON m.id_restaurant = r.id_restaurant
+JOIN   locatie l 
+       ON r.id_locatie = l.id_locatie
+WHERE  l.tara = 'Romania'
+       AND l.oras = 'Bucuresti'
+ORDER BY p.id_produs, r.id_restaurant;
+
+-- 9)
+-- Pentru fiecare restaurant din Romania sau Germania, 
+-- sa se afiseze pretul minim, pretul maxim din meniu,
+-- dar si diferenta de pret intre pretul minim si pretul maxim din meniu
+
+SELECT r.id_restaurant,
+       r.nume          AS nume_restaurant,
+       l.tara          AS tara,
+       MIN(m.pret)     AS pret_minim_meniu,
+       MAX(m.pret)     AS pret_maxim_meniu,
+       MAX(m.pret) - MIN(m.pret) AS diferenta_preturi_meniu
+FROM   restaurant r
+JOIN   meniu m ON r.id_restaurant = m.id_restaurant
+JOIN locatie l ON r.id_locatie = l.id_locatie
+WHERE LOWER(l.tara) = 'romania' or LOWER(l.tara) = 'germania'
+GROUP BY r.id_restaurant, r.nume, l.tara
+ORDER BY r.id_restaurant;
+
+-- 10)
+-- Pentru fiecare angajat care este casier, sa se afiseze id-ul acestuia, nume, prenume si
+-- valoarea totala incasata de pe urma facturilor emise de acesta.
+
+SELECT c.id_angajat,
+       a.nume,
+       a.prenume,
+       sub.total_facturi
+FROM   casier c
+JOIN   angajat a ON c.id_angajat = a.id_angajat
+JOIN (
+    SELECT f.id_angajat,
+           SUM(f.valoare) AS total_facturi
+    FROM   factura f
+    GROUP BY f.id_angajat
+) sub ON c.id_angajat = sub.id_angajat
+ORDER BY c.id_angajat;
+
+-- 11)
+-- Pentru fiecare bucatar angajat in luna curenta, afisati data la care 
+-- i-ar expira contractul de munca, stiind ca fiecare angajat
+-- are un contract semnat pe 12 luni de la data angajarii
+
+SELECT a.id_angajat,
+       a.nume,
+       a.prenume,
+       a.data_angajare,
+       ADD_MONTHS(a.data_angajare, 12) AS expirare_contract_munca
+FROM   angajat a
+JOIN bucatar b on a.id_angajat = b.id_angajat
+WHERE  EXTRACT(MONTH FROM a.data_angajare) = EXTRACT(MONTH FROM SYSDATE)
+       AND EXTRACT(YEAR FROM a.data_angajare) = EXTRACT(YEAR FROM SYSDATE)
+ORDER BY a.id_angajat;
+
+-- 12)
+-- Sa se afisze lista completa de produse din meniu, 
+-- chiar daca apare un produs in meniu care nu mai este pe stoc
+-- (nu mai exista inregistrarea in tabelul produs), impreuna cu informatiile despre
+-- restaurant (id si numele restaurantului) si categoria de pret pentru fiecare produs
+-- (Sub 50 lei / Exact 50 lei / Peste 50 lei).
+
+SELECT r.id_restaurant,
+       r.nume                                  AS nume_restaurant,
+       m.id_produs,
+       p.nume                                  AS nume_produs,
+       m.pret,
+       DECODE(SIGN(m.pret - 50),
+              -1, 'Sub 50 lei', 
+               0, 'Exact 50 lei', 
+               1, 'Peste 50 lei') AS categorie_pret
+FROM produs p
+RIGHT JOIN meniu m
+       ON p.id_produs = m.id_produs
+JOIN restaurant r
+       ON m.id_restaurant = r.id_restaurant
+ORDER BY r.id_restaurant, m.id_produs;
+
+-- 13) 
+-- Sa se afisze angajatii care sunt si casieri si chelneri in acelasi timp.
+INSERT INTO chelner (id_angajat, ani_experienta)
+VALUES (12, 3);
+
+
+SELECT a.id_angajat,
+       a.nume,
+       a.prenume
+FROM angajat a
+WHERE a.id_angajat IN (
+    SELECT id_angajat FROM casier
+    INTERSECT
+    SELECT id_angajat FROM chelner
+);
+
+
+-- 14)
+-- Daca cel mai comandat produs este pizza atunci sa se afiseze null, iar daca
+-- exista mai multe produse cu acelasi numar maxim de comenzi sa se returneze din nou null
+-- iar toate celelalte cazuri sa se returneze numele produsului cu cel mai mare numar de comenzi.
+
+WITH pr AS (
+    SELECT LOWER(nume) AS nume, COUNT(*) AS nr
+    FROM PRODUS
+    GROUP BY LOWER(nume)
+),
+ans AS (
+    SELECT pr.nume 
+    FROM pr 
+    WHERE pr.nr = (SELECT MAX(pr2.nr) FROM pr pr2)
+)
+SELECT NULLIF(
+               CASE (SELECT COUNT(*) FROM ans)
+                   WHEN 1 THEN (SELECT * FROM ans)
+                   ELSE NULL
+               END, 'pizza')
+FROM dual;
+
+-- 15)
+-- Sa se afiseze pentru fiecare angajat id-ul, numele, prenumele, id-ul sefului daca exista
+-- nivelul ierarhi (nivel 1 = ceo firmei, nivel 2 sunt subordonatii directi ai ceo-lui, nivel 3 sunt sub-subordonatii etc.) si drumul complet de la CEO pana la angajatul curent.
+
+SELECT
+    a.id_angajat,
+    a.nume,
+    a.prenume,
+    a.id_sef,
+    LEVEL AS nivel_ierarhie,
+    SYS_CONNECT_BY_PATH(a.nume, ' -> ') AS path_angajati
+FROM angajat a
+-- Angajatul fara sef (id_sef IS NULL) este radacina ierarhiei
+START WITH a.id_sef IS NULL
+-- Definim relatia parinte-copil: parintele este randul anterior (PRIOR)
+-- iar copilul are id_sef = id_angajat al parintelui
+CONNECT BY PRIOR a.id_angajat = a.id_sef
+ORDER BY a.id_angajat;
+
+-- Exercitiul 8
+--- CREAREA TABELULUI MESAJE ---
+CREATE TABLE MESAJE
+(
+    cod_mesaj   NUMBER,
+    mesaj       VARCHAR2(255),
+    tip_mesaj   VARCHAR2(1),
+    creat_de    VARCHAR2(40) NOT NULL,
+    creat_la    DATE         NOT NULL,
+    CONSTRAINT pk_message PRIMARY KEY (cod_mesaj),
+    CHECK (tip_mesaj = 'E' OR tip_mesaj = 'W' OR tip_mesaj = 'I')
+);
+
+-- PENTRU TABELUL MESAJE --
+create sequence cod_mesaj
+start with 1
+increment by 1
+minvalue 0
+maxvalue 9999
+nocycle;

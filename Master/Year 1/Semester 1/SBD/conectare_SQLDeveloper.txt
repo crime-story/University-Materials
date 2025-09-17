@@ -1,0 +1,59 @@
+Conectare SQL Developer masini virtuale cu oracle 19c, 21c sau 23ai facultate:
+Connection Name: 	grupa405* , unde * in (1,2,3)
+Username:			grupa405* pt 19c si 21c sau C##grupa405* pentru 23ai, unde * in (1,2,3)
+Password:			oracle
+Hostname:			193.226.51.46 sau 193.226.51.48 sau 193.226.51.49
+Port:				1521
+Service name: 		db1 sau db2 sau free
+
+Testare exemple prezentate la curs
+==================================
+Connection Name: 	grupa405
+Username:			grupa405 pt 19c si 21c sau C##grupa405 pentru 23ai
+Password:			oracle
+Hostname:			193.226.51.46 sau 193.226.51.48 sau 193.226.51.49
+Port:				1521
+Service name: 		db1 sau db2 sau free
+
+Observatie
+==========
+Daca creati tabele pentru rezolvare cerinte laborator in schema utilizatorilor de pe masina virtuala de la facultate, 
+va rog sa adaugati sufix acestora de forma _pnu, 
+unde 'p' este initiala prenumelui vostru, 
+iar 'nu' sunt primele 2 litere ale numelui de familie (de exemplu, Popescu Ionut Mircea cu tabelul employees: employees_ipo).
+
+tutorial instalare Oracle 19c, respectiv 21c Windows x64
+==========================================================
+fisiere pdf in folder Materiale MS Teams
+
+SQL Developer 22.2.0.173.2018-x64
+=================================
+https://drive.google.com/file/d/18BWHJZDOI2N2tAFT_nQDswPjHv18cM7c/view?usp=share_link
+
+SQL Developer download page
+===========================
+https://www.oracle.com/tools/downloads/sqldev-downloads.html
+
+Oracle Application Express (APEX)
+=================================
+https://apex.oracle.com/
+
+Oracle Live SQL
+===============
+https://livesql.oracle.com/
+
+OracleDB container on Docker
+============================
+https://www.databasestar.com/database-docker/
+
+docker run -d --name OracleXE_db -p 1521:1521 --mount type=bind,source="$(pwd)"/baza_de_date,target=/opt/oracle/oradata -e ORACLE_PWD=<your password> container-registry.oracle.com/database/express:21.3.0-xe
+
+https://seanstacey.org/deploying-an-oracle-database-19c-as-a-docker-container/2020/09/
+
+Pre-Built Developer Virtual Machines (for Oracle VM VirtualBox)
+===============================================================
+https://www.oracle.com/downloads/developer-vm/community-downloads.html
+
+Configure Host Access to an Oracle Database on a VirtualBoxVM
+=============================================================
+https://learncodeshare.net/2015/05/01/configure-host-access-to-an-oracle-database-on-a-virtualbox-vm/
