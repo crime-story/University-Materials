@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create New Subtask</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
+
+<style>
+    body {
+        background: linear-gradient(to right, #1a237e, #64b5f6);
+        min-height: 100vh;
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: white;
+    }
+</style>
+
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="container mt-5">
+    <h1 class="mb-4">Create New Subtask</h1>
+
+    <form th:action="@{/subtasks}" method="post" th:object="${subtask}">
+        <div class="mb-3">
+            <label for="name" class="form-label">Subtask Name</label>
+            <input type="text" class="form-control" id="name" th:field="*{name}" required>
+            <div class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" th:field="*{description}" rows="3" placeholder="Describe the subtask..." required></textarea>
+            <div class="text-danger" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="difficulty" class="form-label">Difficulty Level</label>
+            <select class="form-select" id="difficulty" th:field="*{difficulty}" required>
+                <option value="EASY">Easy</option>
+                <option value="MEDIUM">Medium</option>
+                <option value="HARD">Hard</option>
+            </select>
+            <div class="text-danger" th:if="${#fields.hasErrors('difficulty')}" th:errors="*{difficulty}"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="toolsNeeded" class="form-label">Tools Needed</label>
+            <input type="text" class="form-control" id="toolsNeeded" th:field="*{toolsNeeded}" required>
+            <div class="text-danger" th:if="${#fields.hasErrors('toolsNeeded')}" th:errors="*{toolsNeeded}"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="priority" class="form-label">Priority</label>
+            <select id="priority" th:field="*{priority}" class="form-select">
+                <option th:each="p : ${T(com.unibuc.task.domain.Priority).values()}"
+                        th:value="${p}"
+                        th:text="${p}"></option>
+            </select>
+
+            <div class="text-danger" th:if="${#fields.hasErrors('priority')}" th:errors="*{priority}"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="size" class="form-label">Size</label>
+            <select id="size" th:field="*{size}" class="form-select">
+                <option th:each="p : ${T(com.unibuc.task.domain.Size).values()}"
+                        th:value="${p}"
+                        th:text="${p}"></option>
+            </select>
+
+            <div class="text-danger" th:if="${#fields.hasErrors('size')}" th:errors="*{size}"></div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Skills</label>
+
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-2">
+                <div class="col" th:each="s : ${skills}">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox"
+                               th:id="${'skill_' + s.id}"
+                               th:field="*{skillIds}"
+                               th:value="${s.id}">
+                        <label class="form-check-label"
+                               th:attr="for=${'skill_' + s.id}"
+                               th:text="${s.name}">Skill</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-danger" th:if="${#fields.hasErrors('skillIds')}"
+                 th:errors="*{skillIds}"></div>
+        </div>
+
+
+
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Create Subtask</button>
+            <a th:href="@{/subtasks}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function addMuscleGroup() {
+        const newGroupInput = document.getElementById('newMuscleGroup');
+        const newGroupName = newGroupInput.value.trim();
+
+        if (newGroupName) {
+            const token = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+            const header = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+
+            fetch('/api/muscleGroups', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    [header]: token
+                },
+                body: JSON.stringify({name: newGroupName}),
+            })
+                .then(response => {
+                    if (response.status !== 200) {
+                        alert('Failed to add muscle group! ' + response.statusText);
+                        return null;
+                    }
+                    return response.json();
+                })
+                .then(skill => {
+                    const checkboxContainer = document.querySelector('.form-check').parentElement;
+                    const newCheckboxDiv = document.createElement('div');
+                    newCheckboxDiv.className = 'form-check';
+
+                    const input = document.createElement('input');
+                    input.type = 'checkbox';
+                    input.className = 'form-check-input';
+                    input.name = 'muscleGroups';
+                    input.value = skill.id;
+                    input.checked = true;
+
+                    const label = document.createElement('label');
+                    label.className = 'form-check-label';
+                    label.textContent = skill.name;
+
+                    newCheckboxDiv.appendChild(input);
+                    newCheckboxDiv.appendChild(label);
+                    checkboxContainer.appendChild(newCheckboxDiv);
+                })
+                .catch(error => console.error('Error:', error));
+        }
+        newGroupInput.value = '';
+    }
+</script>
+</body>
+</html>

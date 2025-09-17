@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <title>Create New Task</title>
+</head>
+
+<style>
+    body {
+        background: linear-gradient(to right, #1a237e, #64b5f6);
+        min-height: 100vh;
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: white;
+    }
+</style>
+
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="container mt-5">
+    <h2>Create New Task</h2>
+
+    <form th:action="@{/tasks}" th:object="${task}" method="post" class="mt-4">
+        <div class="mb-3">
+            <label for="name" class="form-label">Task Name</label>
+            <input type="text" th:field="*{name}" id="name" class="form-control" placeholder="e.g. Design" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea th:field="*{description}" id="description" class="form-control" rows="4"
+                      placeholder="Describe the task..." required></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="priority" class="form-label">Priority</label>
+            <select id="priority" th:field="*{priority}" class="form-select">
+                <option th:each="p : ${T(com.unibuc.task.domain.Priority).values()}"
+                        th:value="${p}"
+                        th:text="${p}"></option>
+            </select>
+
+            <div class="text-danger" th:if="${#fields.hasErrors('priority')}" th:errors="*{priority}"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="size" class="form-label">Size</label>
+            <select id="size" th:field="*{size}" class="form-select">
+                <option th:each="p : ${T(com.unibuc.task.domain.Size).values()}"
+                        th:value="${p}"
+                        th:text="${p}"></option>
+            </select>
+
+            <div class="text-danger" th:if="${#fields.hasErrors('size')}" th:errors="*{size}"></div>
+        </div>
+
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Create Task</button>
+            <a href="/tasks" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+
+<script>
+    let setIndex = 1;
+
+    function addSet() {
+        const container = document.getElementById('setsContainer');
+        const newSet = document.createElement('div');
+        newSet.className = 'set-entry border p-3 mb-3';
+        newSet.innerHTML = `
+            <div class="row">
+                <div class="col-md-4">
+                    <label class="form-label">Exercise</label>
+                    <select name="sets[${setIndex}].exerciseId" class="form-control" required>
+                        <option value="">Select Exercise</option>
+                        ${document.querySelector('select[name="sets[0].exerciseId"]').innerHTML}
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Weight (kg)</label>
+                    <input type="number" step="0.5" name="sets[${setIndex}].weight" class="form-control" required>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Reps</label>
+                    <input type="number" name="sets[${setIndex}].reps" class="form-control" required>
+                </div>
+                <div class="col-md-2 d-flex align-items-end">
+                    <button type="button" class="btn btn-danger" onclick="removeSet(this)">Remove</button>
+                </div>
+            </div>
+        `;
+        container.appendChild(newSet);
+        setIndex++;
+    }
+
+    function removeSet(button) {
+        button.closest('.set-entry').remove();
+    }
+</script>
+
+</body>
+</html>

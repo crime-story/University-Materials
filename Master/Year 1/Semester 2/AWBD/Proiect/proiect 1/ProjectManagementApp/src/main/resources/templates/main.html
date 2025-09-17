@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Project Manager</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" />
+
+    <style>
+        body {
+            background: linear-gradient(to right, #1a237e, #64b5f6);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .main-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 50px 40px;
+            text-align: center;
+            color: #fff;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            width: 100%;
+            max-width: 550px;
+        }
+
+        .main-card h1 {
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .main-card p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .button-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            justify-items: center;
+        }
+
+        .card-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 15px;
+            padding: 30px 20px;
+            width: 180px;
+            height: 140px;
+            color: #fff;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            background-color: rgba(0, 102, 204, 0.2);
+        }
+
+        .card-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+        }
+
+        .card-button i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .card-button span {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        form {
+            margin: 0;
+        }
+
+        .divider {
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.2);
+            margin: 25px 0;
+        }
+
+        @media (max-width: 600px) {
+            .button-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="main-card">
+    <h1>Welcome to Project Manager</h1>
+    <div class="divider"></div>
+    <p>Track your tasks, monitor progress, and stay motivated.</p>
+    <div class="button-cards">
+        <form th:action="@{'/tasks'}" method="get">
+            <button type="submit" class="card-button">
+                <i class="fa-solid fa-list-check"></i>
+                <span>Tasks</span>
+            </button>
+        </form>
+
+        <form th:action="@{'/subtasks'}" method="get">
+            <button type="submit" class="card-button">
+                <i class="fa-solid fa-book"></i>
+                <span>Subtasks</span>
+            </button>
+        </form>
+
+        <form th:action="@{'/taskSessions'}" method="get">
+            <button type="submit" class="card-button">
+                <i class="fa-solid fa-calendar-days"></i>
+                <span>Task Sessions</span>
+            </button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Task Sessions</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <style>
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 1px;
+        }
+
+        .calendar-header, .calendar-day {
+            padding: 10px;
+            height: 100px;
+            border: 1px solid #ccc;
+            text-align: center;
+            vertical-align: top;
+        }
+
+        .calendar-day.has-session {
+            background-color: #d4edda;
+            font-weight: bold;
+        }
+
+        .calendar-day.empty {
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+
+<style>
+    body {
+        background: linear-gradient(to right, #1a237e, #64b5f6);
+        min-height: 100vh;
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+</style>
+
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="container my-5">
+    <header class="mb-4">
+        <h1 class="text-center" th:style="'color: white;'">TASK SESSIONS</h1>
+    </header>
+
+    <!-- Header with Navigation -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <a th:href="@{/taskSessions(year=${prevMonth.year}, month=${prevMonth.monthValue})}"
+           class="btn btn-primary">← Prev</a>
+        <h2 th:text="${currentMonth.month.name()} + ' ' + ${currentMonth.year}" th:style="'color: white;'"></h2>
+        <a th:href="@{/taskSessions(year=${nextMonth.year}, month=${nextMonth.monthValue})}"
+           class="btn btn-primary">Next →</a>
+    </div>
+
+    <div class="calendar fw-bold text-center bg-light">
+        <div class="calendar-header">Monday</div>
+        <div class="calendar-header">Tuesday</div>
+        <div class="calendar-header">Wednesday</div>
+        <div class="calendar-header">Thursday</div>
+        <div class="calendar-header">Friday</div>
+        <div class="calendar-header">Saturday</div>
+        <div class="calendar-header">Sunday</div>
+
+        <!-- Calendar Days -->
+        <th:block th:with="year=${currentMonth.year},
+                           month=${currentMonth.monthValue},
+                           firstDay=${T(java.time.LocalDate).of(year, month, 1)},
+                           startDay=${(firstDay.dayOfWeek.value - 1) % 7},
+                           daysInMonth=${T(java.time.YearMonth).of(year, month).lengthOfMonth()}">
+
+            <!-- Empty cells before the first of the month -->
+            <th:block th:each="i : ${#numbers.sequence(1, startDay, 1)}">
+                <div class="calendar-day empty"></div>
+            </th:block>
+
+            <!-- Actual Days -->
+            <th:block th:each="day : ${#numbers.sequence(1, daysInMonth)}">
+                <th:block th:with="date=${T(java.time.LocalDate).of(year, month, day)}">
+                    <div th:class="'calendar-day ' + (${taskSessions.containsKey(date)} ? 'has-session' : '')"
+                         data-bs-toggle="modal"
+                         th:attr="data-bs-target=${taskSessions.containsKey(date)} ? '#editModal' : '#createModal',
+                                 data-date=${date}"
+                         th:onclick="'document.getElementById(\'' + (${taskSessions.containsKey(date)} ? 'editSelectedDate' : 'selectedDate') + '\').value = this.getAttribute(\'data-date\')'">
+                        <span th:text="${day}"></span>
+                        <span th:if="${taskSessions.containsKey(date)}"
+                              th:text="${taskSessions.get(date).getTask().getName()}"></span>
+                        <br th:if="${taskSessions.containsKey(date)}" />
+                        <span th:if="${taskSessions.containsKey(date)}"
+                              th:style="'font-weight: normal; font-size: small;'"
+                              th:text="${taskSessions.get(date).getNotes()}"></span>
+                    </div>
+                </th:block>
+            </th:block>
+        </th:block>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+        crossorigin="anonymous"></script>
+
+<div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="createModalLabel">Create task session</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form th:action="@{/taskSessions}" th:object="${taskSession}" method="post">
+                <div class="modal-body">
+                    <input type="hidden" id="selectedDate" name="date">
+                    <div class="mb-3">
+                        <label for="taskSelect" class="form-label">Select Task</label>
+                        <select class="form-select" id="taskSelect" name="taskId" th:field="*{task}">
+                            <option th:each="task : ${tasks}"
+                                    th:value="${task.id}"
+                                    th:text="${task.name}">Task
+                            </option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="notes" class="form-label">Notes (optional)</label>
+                        <textarea class="form-control" id="notes" name="notes" rows="3" th:field="*{notes}"
+                                  placeholder="Any comments or goals for this session..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="editModalLabel">Edit task session</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form th:action="@{/taskSessions}" th:object="${taskSession}" method="post">
+                <div class="modal-body">
+                    <input type="hidden" id="editSelectedDate" name="date">
+                    <div class="mb-3">
+                        <label for="editTaskSelect" class="form-label">Select Task</label>
+                        <select class="form-select" id="editTaskSelect" name="taskId" th:field="*{task}">
+                            <option th:each="task : ${tasks}"
+                                    th:value="${task.id}"
+                                    th:text="${task.name}">Task
+                            </option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editNotes" class="form-label">Notes (optional)</label>
+                        <textarea class="form-control" id="editNotes" name="notes" rows="3" th:field="*{notes}"
+                                  placeholder="Any comments or goals for this session..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" onclick="deleteTaskSession()">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function deleteTaskSession() {
+        if (!confirm('Are you sure you want to delete this session?'))
+            return;
+
+        const token = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+        const header = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+
+        let date = document.getElementById('editSelectedDate').value;
+        let url = '/taskSessions/' + date;
+        fetch(url, {
+            method: 'DELETE',
+            headers: {
+                [header]: token
+            }
+        }).then(response => {
+            if (response.ok) {
+                window.location.reload();
+            } else {
+                alert('Failed to delete task session');
+            }
+        })
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap & Font Awesome -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" />
+
+    <style>
+        body {
+            background: linear-gradient(to right, #1a237e, #64b5f6);
+            height: 100vh;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 1.5rem;
+            padding: 2.5rem 2rem;
+            max-width: 420px;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(14px);
+            color: #ffffff;
+        }
+
+        .login-card h3 {
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .form-floating {
+            position: relative;
+        }
+
+        .form-control {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: none;
+            border-radius: 0.75rem;
+            padding-left: 2.5rem;
+        }
+
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .form-floating label {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .form-floating .form-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.7);
+            pointer-events: none;
+        }
+
+        .btn-primary {
+            background-color: #164a8f;
+            border: none;
+            font-weight: 600;
+            border-radius: 0.75rem;
+            padding: 0.75rem;
+            margin-top: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #0f3574;
+        }
+
+        .alert {
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-card">
+    <form method="post" th:action="@{/perform_login}">
+        <h3 class="text-center">Sign in</h3>
+
+        <div th:if="${param.error}" class="alert alert-danger text-center">
+            <i class="fas fa-exclamation-triangle me-2"></i> Invalid username or password.
+        </div>
+
+        <div class="form-floating mb-3">
+<!--            <i class="fas fa-user form-icon"></i>-->
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Username" required autofocus>
+        </div>
+
+        <div class="form-floating mb-3">
+<!--            <i class="fas fa-lock form-icon"></i>-->
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">
+            <i class="fas fa-sign-in-alt me-2"></i> Sign In
+        </button>
+    </form>
+</div>
+
+
+</body>
+</html>

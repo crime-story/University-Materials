@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Subtasks</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
+
+<style>
+    body {
+        background: linear-gradient(to right, #1a237e, #64b5f6);
+        min-height: 100vh;
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: white;
+    }
+</style>
+
+<body class="bg-light">
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+<div class="container my-5">
+    <header class="mb-4">
+        <h1 class="text-center">SUBTASKS</h1>
+        <a class="btn btn-primary" th:href="@{/subtasks/create}">Create New Subtask</a>
+    </header>
+
+    <section>
+        <table class="table table-bordered table-hover">
+            <thead class="table-dark">
+            <tr>
+                <th>#</th>
+                <th>
+                    Name
+                    <a th:href="@{/subtasks(page=${pageNumber}, size=${pageSize}, sortDir=${sortDir == 'asc' ? 'desc' : 'asc'})}"
+                       class="btn btn-sm btn-light ms-2">
+                        <span th:text="${sortDir == 'asc' ? '↓' : '↑'}"></span>
+                    </a>
+                </th>
+                <th>Description</th>
+                <th>Difficulty</th>
+                <th>Tools needed</th>
+                <th>Priority</th>
+                <th>Size</th>
+                <th>Skills</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="subtask, iterStat : ${subtasks.content}">
+                <td th:text="${pageNumber * pageSize + iterStat.index + 1}"></td>
+                <td th:text="${subtask.name}"></td>
+                <td th:text="${subtask.description}"></td>
+                <td th:text="${subtask.difficulty}"></td>
+                <td th:text="${subtask.toolsNeeded}"></td>
+                <td th:text="${subtask.priority}"></td>
+                <td th:text="${subtask.size}"></td>
+                <td>
+                    <ul class="mb-0">
+                        <li th:each="skill : ${subtask.skills}" th:text="${skill}"></li>
+                    </ul>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger btn-sm" th:attr="onclick='deleteSubtask(\'' + ${subtask.id} + '\')'">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p class="text-muted" th:if="${subtasks.content.isEmpty()}">No subtasks found.</p>
+    </section>
+
+    <div class="d-flex justify-content-end mb-3">
+        <form th:action="@{/subtasks}" method="get">
+            <label for="pageSize" class="me-2">Items per page:</label>
+            <select name="size" id="pageSize" class="form-select" style="width: auto; display: inline-block;" onchange="this.form.submit()">
+                <option value="2" th:selected="${ pageSize == 2}">2</option>
+                <option value="5" th:selected="${ pageSize == 5}">5</option>
+                <option value="10" th:selected="${ pageSize == 10}">10</option>
+            </select>
+        </form>
+    </div>
+
+    <nav aria-label="Page navigation" th:if="${subtasks.totalPages > 0}">
+        <ul class="pagination justify-content-center">
+            <li class="page-item" th:classappend="${subtasks.hasPrevious() ? '' : 'disabled'}">
+                <a class="page-link"
+                   th:href="@{/subtasks(page=${subtasks.number - 1}, size=${pageSize}, sortDir=${sortDir})}">
+                    Previous
+                </a>
+            </li>
+            <li class="page-item" th:each="page : ${#numbers.sequence(1, subtasks.totalPages)}"
+                th:classappend="${page == subtasks.number + 1 ? 'active' : ''}">
+                <a class="page-link"
+                   th:href="@{/subtasks(page=${page - 1}, size=${pageSize}, sortDir=${sortDir})}"
+                   th:text="${page}">
+                </a>
+            </li>
+            <li class="page-item" th:classappend="${subtasks.hasNext() ? '' : 'disabled'}">
+                <a class="page-link"
+                   th:href="@{/subtasks(page=${subtasks.number + 1}, size=${pageSize}, sortDir=${sortDir})}">
+                    Next
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function deleteSubtask(id) {
+        const token = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+        const header = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+
+        fetch('/subtasks/' + id + '/delete', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                [header]: token
+            }
+        }).then(response => {
+            if (response.status === 200) {
+                window.location.reload();
+            } else {
+                return response.text().then(text => {
+                    alert('Failed to delete subtask.\n' + text);
+                });
+            }
+        })
+    }
+
+</script>
+
+</body>
+</html>
