@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@drawable/background_img_main"
+    tools:context=".presentation.activities.MainActivity">
+
+    <TextView
+        android:id="@+id/home_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="65dp"
+        android:padding="10dp"
+        android:text="@string/home"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/profileBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/profileBtn"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_centerInParent="true"
+        android:text="@string/profile"
+        app:layout_constraintBottom_toTopOf="@id/mapBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/home_title" />
+
+    <Button
+        android:id="@+id/mapBtn"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_above="@id/profileBtn"
+        android:layout_centerInParent="true"
+        android:text="@string/map"
+        app:layout_constraintBottom_toTopOf="@id/PetsBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profileBtn" />
+
+    <Button
+        android:id="@+id/PetsBtn"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/profileBtn"
+        android:layout_centerInParent="true"
+        android:text="@string/pets"
+        app:layout_constraintBottom_toTopOf="@id/assistantsListBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mapBtn" />
+
+    <Button
+        android:id="@+id/assistantsListBtn"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/PetsBtn"
+        android:layout_centerInParent="true"
+        android:text="@string/assistants"
+        app:layout_constraintBottom_toTopOf="@id/formsBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/PetsBtn" />
+
+    <Button
+        android:id="@+id/formsBtn"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/assistantsListBtn"
+        android:layout_centerInParent="true"
+        android:text="@string/adoption_forms"
+        app:layout_constraintBottom_toTopOf="@id/shelterInfoBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/assistantsListBtn" />
+
+    <Button
+        android:id="@+id/shelterInfoBtn"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/assistantsListBtn"
+        android:layout_centerInParent="true"
+        android:text="@string/shelter_contact"
+        app:layout_constraintBottom_toTopOf="@id/shareBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/formsBtn" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/shareBtn"
+        android:layout_width="197dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/formsBtn"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="45dp"
+        android:layout_marginBottom="45dp"
+        android:backgroundTint="@color/red"
+        android:drawableStart="@drawable/ic_baseline_share_24_white"
+        android:text="@string/share_the_app"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/shelterInfoBtn" />
+</androidx.constraintlayout.widget.ConstraintLayout>

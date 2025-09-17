@@ -1,0 +1,123 @@
+sload num.maude
+
+smod VM is
+  protecting NUM .
+
+  sort Wallet .
+  op Wallet : Nat -> Wallet [ctor] .
+
+  sort User .
+  subsort Wallet < User .
+  op none : -> User [ctor] .
+  op __ : User User -> User [ctor assoc comm id: none] .
+
+  sort Credit .
+  op Credit : Nat -> Credit [ctor] .
+  op value : Credit -> Nat .
+  eq value(Credit(C)) = C .
+
+  sort CoffeeType .
+  ops none espresso americano : -> CoffeeType [ctor] .
+  op price : CoffeeType -> Nat .
+  eq price(none) = 0 .
+  eq price(espresso) = 7 .
+  eq price(americano) = 10 .
+
+  sort Selection .
+  op Selection : CoffeeType -> Selection [ctor] .
+
+  sort Coffee .
+  op Coffee : CoffeeType -> Coffee [ctor] .
+
+  sorts VendingMachine .
+  subsorts Credit Selection Coffee < VendingMachine .
+  op init : -> VendingMachine [ctor] .
+  op __ : VendingMachine VendingMachine -> VendingMachine
+    [ctor assoc comm id: init] .
+
+  op start : VendingMachine -> VendingMachine .
+  eq start(VM) = Credit(0) Selection(none) .
+
+  op noCoffees : VendingMachine -> Nat .
+  eq noCoffees(init) = 0 .
+  eq noCoffees(Coffee(T) VM) = noCoffees(VM) + 1 .
+  eq noCoffees(Credit(C) VM) = noCoffees(VM) .
+  eq noCoffees(Selection(T) VM) = noCoffees(VM) .
+
+  op totalPrice : VendingMachine -> Nat .
+  eq totalPrice(init) = 0 .
+  eq totalPrice(Coffee(T) VM) = price(T) + totalPrice(VM) .
+  eq totalPrice(Credit(C) VM) = totalPrice(VM) .
+  eq totalPrice(Selection(T) VM) = totalPrice(VM) .
+
+  var U : User .
+  var VM : VendingMachine .
+  var T : CoffeeType .
+  vars W C X : Nat .
+
+  ***************************************************************
+
+  sort System .
+  op _|_ : User VendingMachine -> System [ctor] .
+
+  *** -----------------------------------------------------------
+
+  rl [select] :
+     U | VM Selection(T)
+  => U | VM Selection(espresso) .
+
+  rl [select] :
+     U | VM Selection(T)
+  => U | VM Selection(americano) .
+
+  *** -----------------------------------------------------------
+
+  crl [add] :
+     U Wallet(W) | VM Credit(C)
+  => U Wallet(W - 10) | VM Credit(C + 10)
+  if W >= 10 .
+
+  crl [add] :
+     U Wallet(W) | VM Credit(C)
+  => U Wallet(W - 5) | VM Credit(C + 5)
+  if W >= 5 .
+
+  *** -----------------------------------------------------------
+
+  crl [pay] :
+     U | VM Credit(C) Selection(T)
+  => U | VM Credit(C - price(T)) Selection(T)
+  if C >= price(T) .
+
+  *** -----------------------------------------------------------
+
+  rl [brew] :
+     Selection(T)
+  => Selection(none) Coffee(T) .
+
+  *** -----------------------------------------------------------
+
+  rl [change] :
+     U Wallet(W)     | VM Credit(C)
+  => U Wallet(W + C) | VM Credit(0) .
+
+  ***************************************************************
+
+  strat simple-prog : @ System .
+  sd simple-prog := select ; add ; pay ; brew ; change .
+
+  strat prog : @ System .
+  sd prog := (select + ; add * ; pay + ; brew) * ; change .
+endsm
+
+*****************************************************************
+
+srew Wallet(20) | start(init)
+using simple-prog .
+
+*** -------------------------------------------------------------
+
+srew Wallet(20) | start(init)
+using prog ; match Wallet(W:Nat) | VM:VendingMachine
+s.t. noCoffees(VM:VendingMachine) > 0
+and 20 - W:Nat > totalPrice(VM:VendingMachine) .

@@ -1,0 +1,504 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "d0ba06db93f148613e873b1156ed8970",
+    "entities": [
+      {
+        "tableName": "User",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`name` TEXT NOT NULL, `email` TEXT NOT NULL, `phoneNumber` TEXT NOT NULL, `birthDate` TEXT NOT NULL, `centerUid` TEXT, `profileImage` TEXT, `deviceToken` TEXT, `uid` TEXT NOT NULL, PRIMARY KEY(`uid`))",
+        "fields": [
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "email",
+            "columnName": "email",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "phoneNumber",
+            "columnName": "phoneNumber",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "birthDate",
+            "columnName": "birthDate",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "centerUid",
+            "columnName": "centerUid",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "profileImage",
+            "columnName": "profileImage",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "deviceToken",
+            "columnName": "deviceToken",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "uid",
+            "columnName": "uid",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "uid"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Center",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`addressUid` TEXT NOT NULL, `phoneNumber` TEXT NOT NULL, `schedule` TEXT NOT NULL, `uid` TEXT NOT NULL, PRIMARY KEY(`uid`), FOREIGN KEY(`addressUid`) REFERENCES `Address`(`uid`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "addressUid",
+            "columnName": "addressUid",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "phoneNumber",
+            "columnName": "phoneNumber",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "schedule",
+            "columnName": "schedule",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "uid",
+            "columnName": "uid",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "uid"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_Center_addressUid",
+            "unique": false,
+            "columnNames": [
+              "addressUid"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_Center_addressUid` ON `${TABLE_NAME}` (`addressUid`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "Address",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "addressUid"
+            ],
+            "referencedColumns": [
+              "uid"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "Address",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`county` TEXT NOT NULL, `city` TEXT NOT NULL, `street` TEXT NOT NULL, `postalCode` TEXT NOT NULL, `uid` TEXT NOT NULL, PRIMARY KEY(`uid`))",
+        "fields": [
+          {
+            "fieldPath": "county",
+            "columnName": "county",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "city",
+            "columnName": "city",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "street",
+            "columnName": "street",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "postalCode",
+            "columnName": "postalCode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "uid",
+            "columnName": "uid",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "uid"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Employee",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`centerUid` TEXT NOT NULL, `name` TEXT NOT NULL, `email` TEXT NOT NULL, `profileImage` TEXT NOT NULL, `uid` TEXT NOT NULL, PRIMARY KEY(`uid`), FOREIGN KEY(`centerUid`) REFERENCES `Center`(`uid`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "centerUid",
+            "columnName": "centerUid",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "email",
+            "columnName": "email",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "profileImage",
+            "columnName": "profileImage",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "uid",
+            "columnName": "uid",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "uid"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_Employee_centerUid",
+            "unique": false,
+            "columnNames": [
+              "centerUid"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_Employee_centerUid` ON `${TABLE_NAME}` (`centerUid`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "Center",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "centerUid"
+            ],
+            "referencedColumns": [
+              "uid"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "BankInfo",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`centerUid` TEXT NOT NULL, `iban` TEXT NOT NULL, `details` TEXT NOT NULL, `uid` TEXT NOT NULL, PRIMARY KEY(`uid`), FOREIGN KEY(`centerUid`) REFERENCES `Center`(`uid`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "centerUid",
+            "columnName": "centerUid",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "iban",
+            "columnName": "iban",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "details",
+            "columnName": "details",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "uid",
+            "columnName": "uid",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "uid"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_BankInfo_centerUid",
+            "unique": false,
+            "columnNames": [
+              "centerUid"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_BankInfo_centerUid` ON `${TABLE_NAME}` (`centerUid`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "Center",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "centerUid"
+            ],
+            "referencedColumns": [
+              "uid"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "Pet",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`centerUid` TEXT NOT NULL, `species` TEXT NOT NULL, `name` TEXT NOT NULL, `breed` TEXT NOT NULL, `birthYear` TEXT NOT NULL, `profileImage` TEXT, `description` TEXT NOT NULL, `uid` TEXT NOT NULL, PRIMARY KEY(`uid`), FOREIGN KEY(`centerUid`) REFERENCES `Center`(`uid`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "centerUid",
+            "columnName": "centerUid",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "species",
+            "columnName": "species",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "breed",
+            "columnName": "breed",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "birthYear",
+            "columnName": "birthYear",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "profileImage",
+            "columnName": "profileImage",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "uid",
+            "columnName": "uid",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "uid"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_Pet_centerUid",
+            "unique": false,
+            "columnNames": [
+              "centerUid"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_Pet_centerUid` ON `${TABLE_NAME}` (`centerUid`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "Center",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "centerUid"
+            ],
+            "referencedColumns": [
+              "uid"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "AdoptionForm",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`petUid` TEXT NOT NULL, `userUid` TEXT NOT NULL, `employeeUid` TEXT, `nickName` TEXT NOT NULL, `contactEmail` TEXT NOT NULL, `contactPhone` TEXT NOT NULL, `desiredVisitDate` TEXT NOT NULL, `comment` TEXT NOT NULL, `status` INTEGER, `uid` TEXT NOT NULL, PRIMARY KEY(`uid`), FOREIGN KEY(`petUid`) REFERENCES `Pet`(`uid`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "petUid",
+            "columnName": "petUid",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "userUid",
+            "columnName": "userUid",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "employeeUid",
+            "columnName": "employeeUid",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "nickName",
+            "columnName": "nickName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "contactEmail",
+            "columnName": "contactEmail",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "contactPhone",
+            "columnName": "contactPhone",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "desiredVisitDate",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "comment",
+            "columnName": "comment",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "uid",
+            "columnName": "uid",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "uid"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_AdoptionForm_petUid",
+            "unique": false,
+            "columnNames": [
+              "petUid"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_AdoptionForm_petUid` ON `${TABLE_NAME}` (`petUid`)"
+          },
+          {
+            "name": "index_AdoptionForm_employeeUid",
+            "unique": false,
+            "columnNames": [
+              "employeeUid"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_AdoptionForm_employeeUid` ON `${TABLE_NAME}` (`employeeUid`)"
+          },
+          {
+            "name": "index_AdoptionForm_userUid",
+            "unique": false,
+            "columnNames": [
+              "userUid"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_AdoptionForm_userUid` ON `${TABLE_NAME}` (`userUid`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "Pet",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "petUid"
+            ],
+            "referencedColumns": [
+              "uid"
+            ]
+          }
+        ]
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd0ba06db93f148613e873b1156ed8970')"
+    ]
+  }
+}

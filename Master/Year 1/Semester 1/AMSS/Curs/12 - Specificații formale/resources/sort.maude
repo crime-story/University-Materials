@@ -1,0 +1,11 @@
+smod SORT is
+  protecting NAT-LIST .
+  vars X Y : Nat .
+
+  crl [order] : X Y => Y X if Y < X .
+
+  strat sort : @ Nat .
+  sd sort := order ! .
+endsm
+
+srew 3 2 1 using sort .

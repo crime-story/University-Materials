@@ -1,0 +1,12 @@
+fmod NUM is
+  protecting NAT .
+  vars M N : Nat .
+
+  op _-_ : Nat Nat -> Nat [prec 33] .
+
+  eq 0 - N = 0 .
+  eq M - 0 = M .
+  eq (s M) - (s N) = M - N .
+endfm
+
+*****************************************************************
