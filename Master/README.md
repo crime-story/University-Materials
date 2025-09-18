@@ -1,4 +1,4 @@
-# Master’s Degree (2024–2026) 🧑‍🎓
+# Master’s Degree in Software Engineering (2024–2026) 🧑‍🎓
 ## Year 1 🤔
 ### Semester 1:
 - [Proiectarea Algoritmilor Eficienti](https://github.com/crime-story/University-Materials/tree/main/Master/Year%201/Semester%201/PAE) 📌
