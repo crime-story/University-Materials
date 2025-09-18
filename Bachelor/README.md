@@ -1,4 +1,4 @@
-# Bachelor Degree (2020–2023) 🎓
+# Bachelor Degree in Computer Science (2020–2023) 🎓
 ## Year 1 🤔
 ### Semester 1:
 - [Arhitectura Sistemelor de Calcul](https://github.com/crime-story/University-Materials/tree/main/Bachelor/Anul%201/Semestrul%201/ASC) 📌
